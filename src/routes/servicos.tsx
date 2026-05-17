@@ -156,7 +156,8 @@ function ServicosPage() {
             return (
               <article
                 key={s.slug}
-                className={`grid lg:grid-cols-12 gap-8 items-center bg-white rounded-2xl ring-1 ring-black/5 p-8 lg:p-12`}
+                id={s.slug}
+                className="scroll-mt-24 grid lg:grid-cols-12 gap-8 items-center bg-white rounded-2xl ring-1 ring-black/5 p-8 lg:p-12"
               >
                 <div className={`lg:col-span-5 ${reverse ? "lg:order-2" : ""}`}>
                   <div className="size-14 rounded-xl bg-brand-soft text-brand grid place-items-center mb-5">
