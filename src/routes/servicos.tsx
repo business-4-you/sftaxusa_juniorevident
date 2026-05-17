@@ -1,5 +1,21 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, FileText, Building2, BookOpen, Users, TrendingUp, Receipt, CheckCircle2 } from "lucide-react";
+import {
+  ArrowRight,
+  FileText,
+  Building2,
+  BookOpen,
+  Users,
+  TrendingUp,
+  Receipt,
+  Crown,
+  Globe2,
+  Calculator,
+  Home,
+  Landmark,
+  FileSignature,
+  RefreshCw,
+  CheckCircle2,
+} from "lucide-react";
 import { services, site } from "@/lib/site";
 
 export const Route = createFileRoute("/servicos")({
@@ -9,7 +25,7 @@ export const Route = createFileRoute("/servicos")({
       {
         name: "description",
         content:
-          "Preparação de impostos, abertura de LLC/Corp, escrita contábil, folha, planejamento tributário e Sales Tax na Flórida para brasileiros e empresas internacionais.",
+          "Preparação de impostos, abertura de LLC/Corp, escrita contábil, folha, planejamento tributário, Sales Tax, FBAR, FIRPTA, Quit Claim Deed e mais — para brasileiros e empresas internacionais na Flórida.",
       },
       { property: "og:title", content: "Serviços — Atlântico Contábil" },
       { property: "og:description", content: "Soluções contábeis e fiscais completas para brasileiros nos EUA." },
@@ -20,7 +36,21 @@ export const Route = createFileRoute("/servicos")({
   component: ServicosPage,
 });
 
-const iconMap = { FileText, Building2, BookOpen, Users, TrendingUp, Receipt };
+const iconMap = {
+  FileText,
+  Building2,
+  BookOpen,
+  Users,
+  TrendingUp,
+  Receipt,
+  Crown,
+  Globe2,
+  Calculator,
+  Home,
+  Landmark,
+  FileSignature,
+  RefreshCw,
+};
 
 const detailed: Record<string, string[]> = {
   "preparacao-impostos": [
@@ -59,6 +89,48 @@ const detailed: Record<string, string[]> = {
     "Regularização de pendências",
     "Compliance multi-estadual quando aplicável",
   ],
+  "consultoria-premium": [
+    "Diagnóstico 360° da sua operação fiscal e contábil",
+    "Consultor sênior dedicado e atendimento prioritário",
+    "Plano de ação personalizado com prazos e responsáveis",
+    "Reuniões estratégicas recorrentes de acompanhamento",
+  ],
+  "tributacao-internacional": [
+    "Estruturação de operações cross-border (Brasil-EUA e além)",
+    "Aproveitamento de tratados e créditos contra bitributação",
+    "Compliance de FATCA, CRS e obrigações acessórias",
+    "Planejamento de remessas, dividendos e royalties",
+  ],
+  "imposto-de-renda-estimado": [
+    "Cálculo trimestral do Estimated Tax (1040-ES / 1120-W)",
+    "Projeção de receita e ajustes ao longo do ano",
+    "Pagamentos via EFTPS sem juros e multas",
+    "Acompanhamento de safe harbor e prevenção de penalidades",
+  ],
+  firpta: [
+    "Análise prévia da retenção de 15% sobre venda de imóvel",
+    "Withholding Certificate (Form 8288-B) quando aplicável",
+    "Preparação de Form 8288 e 8288-A para o closing",
+    "Recuperação do imposto retido via Tax Return seguinte",
+  ],
+  fbar: [
+    "Identificação das contas reportáveis no exterior",
+    "Preparação e envio do FinCEN Form 114 (FBAR)",
+    "Integração com Form 8938 (FATCA) quando aplicável",
+    "Regularização de FBARs em atraso (Streamlined Procedures)",
+  ],
+  "quit-claim-deed": [
+    "Elaboração do Quit Claim Deed conforme leis da Flórida",
+    "Coordenação de assinatura, notarização e testemunhas",
+    "Registro junto ao County Clerk competente",
+    "Análise de impactos fiscais (Doc Stamp Tax, gift tax)",
+  ],
+  "recadastramento-anual-florida": [
+    "Submissão do Annual Report na Sunbiz dentro do prazo",
+    "Atualização de Registered Agent, sócios e endereço",
+    "Reativação de empresas Inactive ou Dissolved",
+    "Acompanhamento de cobranças e late fees",
+  ],
 };
 
 function ServicosPage() {
@@ -84,7 +156,8 @@ function ServicosPage() {
             return (
               <article
                 key={s.slug}
-                className={`grid lg:grid-cols-12 gap-8 items-center bg-white rounded-2xl ring-1 ring-black/5 p-8 lg:p-12`}
+                id={s.slug}
+                className="scroll-mt-24 grid lg:grid-cols-12 gap-8 items-center bg-white rounded-2xl ring-1 ring-black/5 p-8 lg:p-12"
               >
                 <div className={`lg:col-span-5 ${reverse ? "lg:order-2" : ""}`}>
                   <div className="size-14 rounded-xl bg-brand-soft text-brand grid place-items-center mb-5">

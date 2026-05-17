@@ -58,4 +58,47 @@ export const services = [
     short: "Apuração, recolhimento e compliance do Sales Tax da Flórida — sem multas, sem surpresas.",
     icon: "Receipt",
   },
+  {
+    slug: "consultoria-premium",
+    title: "Consultoria Premium",
+    short: "Atendimento dedicado e personalizado: nosso time de consultores extrai o cenário completo e desenha a solução sob medida para o seu momento.",
+    icon: "Crown",
+  },
+  {
+    slug: "tributacao-internacional",
+    title: "Tributação Internacional",
+    short: "Estruturamos operações cross-border de forma organizada, buscando todos os benefícios fiscais e legais permitidos entre Brasil, EUA e demais jurisdições.",
+    icon: "Globe2",
+  },
+  {
+    slug: "imposto-de-renda-estimado",
+    title: "Imposto de Renda Estimado",
+    short: "Estima dever mais de US$ 1.000 (PF) ou US$ 500 (C-Corp)? Você precisa recolher imposto trimestral ao IRS. Nós calculamos e organizamos tudo para você.",
+    icon: "Calculator",
+  },
+  {
+    slug: "firpta",
+    title: "FIRPTA",
+    short: "Vendeu imóvel nos EUA como estrangeiro não-residente? A lei exige retenção de 15% sobre o valor bruto. Cuidamos do processo e da recuperação quando aplicável.",
+    icon: "Home",
+  },
+  {
+    slug: "fbar",
+    title: "FBAR",
+    short: "Obrigatório para contribuintes nos EUA com contas no exterior cujo saldo agregado ultrapasse US$ 10.000 em qualquer momento do ano. Preparamos e transmitimos no prazo.",
+    icon: "Landmark",
+  },
+  {
+    slug: "quit-claim-deed",
+    title: "Quit Claim Deed",
+    short: "Documento legal que transfere o título de uma propriedade do concedente para o donatário. Temos a expertise para apoiar você em toda a operação com segurança jurídica.",
+    icon: "FileSignature",
+  },
+  {
+    slug: "recadastramento-anual-florida",
+    title: "Recadastramento Anual — Flórida",
+    short: "Annual Report obrigatório perante a Sunbiz (junta comercial) do estado onde sua empresa foi aberta. Garantimos que sua empresa fique ativa e em compliance.",
+    icon: "RefreshCw",
+  },
 ];
+
