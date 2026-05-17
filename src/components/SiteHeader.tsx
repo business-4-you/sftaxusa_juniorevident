@@ -3,13 +3,14 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import { useState } from "react";
 import { site, services } from "@/lib/site";
 
-const navItems = [
+type NavItem = { to: "/" | "/sobre" | "/servicos" | "/blog" | "/contato"; label: string; hasSubmenu?: boolean };
+const navItems: NavItem[] = [
   { to: "/", label: "Home" },
   { to: "/sobre", label: "Sobre" },
   { to: "/servicos", label: "Serviços", hasSubmenu: true },
   { to: "/blog", label: "Blog" },
   { to: "/contato", label: "Contato" },
-] as const;
+];
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
