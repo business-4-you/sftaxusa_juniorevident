@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, CheckCircle2, FileText, Building2, BookOpen, Users, TrendingUp, Receipt, Quote } from "lucide-react";
+import { ArrowRight, CheckCircle2, FileText, Building2, BookOpen, Users, TrendingUp, Receipt, Quote, Crown, Globe2, Calculator, Landmark, Home, FileSignature, RefreshCw } from "lucide-react";
 import heroImg from "@/assets/hero-orlando.jpg";
 import ceoImg from "@/assets/ceo-portrait.jpg";
 import { services, site } from "@/lib/site";
