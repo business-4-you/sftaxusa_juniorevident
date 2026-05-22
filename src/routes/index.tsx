@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
   component: HomePage,
 });
 
-const iconMap = { FileText, Building2, BookOpen, Users, TrendingUp, Receipt };
+const iconMap = { FileText, Building2, BookOpen, Users, TrendingUp, Receipt, Crown, Globe2, Calculator, Landmark, Home, FileSignature, RefreshCw };
 
 function HomePage() {
   return (
