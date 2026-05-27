@@ -53,8 +53,8 @@ export function SiteHeader() {
                     {services.map((s) => (
                       <Link
                         key={s.slug}
-                        to="/servicos"
-                        hash={s.slug}
+                        to="/servicos/$slug"
+                        params={{ slug: s.slug }}
                         className="block px-3 py-2 rounded-md text-sm text-muted-foreground hover:bg-secondary hover:text-brand transition-colors"
                       >
                         {s.title}
