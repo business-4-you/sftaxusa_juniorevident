@@ -165,14 +165,13 @@ function ServicosPage() {
                   </div>
                   <h2 className="text-2xl md:text-3xl font-semibold mb-4">{s.title}</h2>
                   <p className="text-muted-foreground leading-relaxed mb-6">{s.short}</p>
-                  <a
-                    href={`https://wa.me/${site.whatsappNumber}?text=${encodeURIComponent(`Olá! Quero saber mais sobre ${s.title}.`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Link
+                    to="/servicos/$slug"
+                    params={{ slug: s.slug }}
                     className="inline-flex items-center gap-2 text-sm font-semibold text-brand hover:text-brand-hover"
                   >
-                    Solicitar proposta <ArrowRight className="size-4" />
-                  </a>
+                    Saiba mais <ArrowRight className="size-4" />
+                  </Link>
                 </div>
                 <div className={`lg:col-span-7 ${reverse ? "lg:order-1" : ""}`}>
                   <div className="bg-brand-soft/40 rounded-xl p-6 lg:p-8">
