@@ -85,7 +85,11 @@ export const Route = createFileRoute("/servicos/$slug")({
 });
 
 function ServicoDetailPage() {
-  const { service, content } = Route.useLoaderData();
+  const data = Route.useLoaderData() as {
+    service: (typeof services)[number];
+    content: (typeof serviceContent)[string];
+  };
+  const { service, content } = data;
   const Icon = iconMap[service.icon as keyof typeof iconMap];
 
   return (
