@@ -112,14 +112,18 @@ function HomePage() {
               return (
                 <Link
                   key={s.slug}
-                  to="/servicos"
-                  className="group p-7 rounded-2xl bg-white ring-1 ring-black/5 hover:ring-brand/30 hover:-translate-y-0.5 transition-all"
+                  to="/servicos/$slug"
+                  params={{ slug: s.slug }}
+                  className="group p-7 rounded-2xl bg-white ring-1 ring-black/5 hover:ring-brand/30 hover:-translate-y-0.5 transition-all flex flex-col"
                 >
                   <div className="size-11 rounded-lg bg-brand-soft text-brand grid place-items-center mb-6 group-hover:bg-brand group-hover:text-white transition-colors">
                     <Icon className="size-5" />
                   </div>
                   <h3 className="text-lg font-semibold mb-2">{s.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{s.short}</p>
+                  <p className="text-sm text-muted-foreground leading-relaxed flex-1">{s.short}</p>
+                  <span className="mt-5 text-xs font-semibold text-brand inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                    Saiba mais →
+                  </span>
                 </Link>
               );
             })}
