@@ -129,8 +129,8 @@ export function SiteHeader() {
                       {services.map((s) => (
                         <Link
                           key={s.slug}
-                          to="/servicos"
-                          hash={s.slug}
+                          to="/servicos/$slug"
+                          params={{ slug: s.slug }}
                           onClick={() => setOpen(false)}
                           className="py-1.5 text-sm text-muted-foreground hover:text-brand"
                         >
