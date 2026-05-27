@@ -139,7 +139,6 @@ function ServicoDetailPage() {
               <MessageCircle className="size-4" /> WhatsApp direto
             </a>
           </div>
-<<<<<<< HEAD
 
           {/* URGENCY NOTE */}
           {content.urgencyNote && (
@@ -170,11 +169,6 @@ function ServicoDetailPage() {
         </section>
       )}
 
-=======
-        </div>
-      </section>
-
->>>>>>> 2f8349a9d1e612bad415713dfc4784e77249e6ea
       {/* DORES */}
       <section className="px-6 py-20">
         <div className="max-w-5xl mx-auto">
