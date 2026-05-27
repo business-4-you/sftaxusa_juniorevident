@@ -75,7 +75,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Atlântico Contábil — Contabilidade para brasileiros na Flórida" },
+      { title: "SF Tax USA — Contabilidade para brasileiros na Flórida" },
       {
         name: "description",
         content:
@@ -85,6 +85,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Atlântico Contábil" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "SF Tax USA — Contabilidade para brasileiros na Flórida" },
+      { name: "twitter:title", content: "SF Tax USA — Contabilidade para brasileiros na Flórida" },
+      { name: "description", content: "TAX-envident crafts persuasive digital marketing assets, including websites, social media content, and ad copy, to drive business growth." },
+      { property: "og:description", content: "TAX-envident crafts persuasive digital marketing assets, including websites, social media content, and ad copy, to drive business growth." },
+      { name: "twitter:description", content: "TAX-envident crafts persuasive digital marketing assets, including websites, social media content, and ad copy, to drive business growth." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/511b9961-9e00-4c45-9d7d-81e9c0955d7c/id-preview-b6dae44e--7149b321-7fb1-4103-bb6e-491261c5a2e6.lovable.app-1779844758682.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/511b9961-9e00-4c45-9d7d-81e9c0955d7c/id-preview-b6dae44e--7149b321-7fb1-4103-bb6e-491261c5a2e6.lovable.app-1779844758682.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
