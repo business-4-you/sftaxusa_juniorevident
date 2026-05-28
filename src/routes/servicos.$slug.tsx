@@ -110,23 +110,6 @@ export const Route = createFileRoute("/servicos/$slug")({
     if (!service || !content) throw notFound();
     return { service, content };
   },
-  head: ({ loaderData }) => {
-    if (!loaderData) return { meta: [{ title: "Serviço — Atlântico Contábil" }] };
-    const { service, content } = loaderData;
-    const title = `${service.title} — Atlântico Contábil | Orlando, FL`;
-    return {
-      meta: [
-        { title },
-        { name: "description", content: content.emotionalHook },
-        { property: "og:title", content: title },
-        { property: "og:description", content: content.emotionalHook },
-        { property: "og:url", content: `/servicos/${service.slug}` },
-        { property: "og:image", content: serviceImages[service.slug] ?? fallbackImage },
-      ],
-      links: [{ rel: "canonical", href: `/servicos/${service.slug}` }],
-    };
-  },
-  component: ServicoDetailPage,
   notFoundComponent: () => (
     <div className="px-6 py-32 text-center">
       <h1 className="text-2xl font-semibold mb-3">Serviço não encontrado</h1>
@@ -530,16 +513,7 @@ function ServicoDetailPage() {
               </div>
             ))}
           </div>
-          {/* Google Rating */}
-          <div className="mt-10 flex items-center justify-center gap-3">
-            <div className="flex gap-1">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="size-5 fill-amber-400 text-amber-400" />
-              ))}
-            </div>
-            <span className="font-bold text-foreground">5.0</span>
-            <span className="text-muted-foreground text-sm">no Google · +47 avaliações</span>
-          </div>
+
         </div>
       </section>
 

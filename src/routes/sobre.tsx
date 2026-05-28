@@ -5,21 +5,6 @@ import teamImg from "@/assets/team-office.jpg";
 import { site } from "@/lib/site";
 
 export const Route = createFileRoute("/sobre")({
-  head: () => ({
-    meta: [
-      { title: "Sobre a Atlântico — Contabilidade estratégica em Orlando, FL" },
-      {
-        name: "description",
-        content:
-          "Conheça a Atlântico Contábil: equipe bilíngue dedicada a ajudar brasileiros e empresas internacionais a crescer com segurança nos Estados Unidos.",
-      },
-      { property: "og:title", content: "Sobre a Atlântico Contábil" },
-      { property: "og:description", content: "Equipe bilíngue em Orlando ajudando brasileiros a prosperar nos EUA." },
-      { property: "og:url", content: "/sobre" },
-    ],
-    links: [{ rel: "canonical", href: "/sobre" }],
-  }),
-  component: SobrePage,
 });
 
 function SobrePage() {

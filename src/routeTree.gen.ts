@@ -8,202 +8,184 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as SobreRouteImport } from './routes/sobre'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ServicosRouteImport } from './routes/servicos'
-import { Route as ContatoRouteImport } from './routes/contato'
-import { Route as BlogRouteImport } from './routes/blog'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as ServicosSlugRouteImport } from './routes/servicos.$slug'
+import { Route as rootRouteImport } from "./routes/__root";
+import { Route as SobreRouteImport } from "./routes/sobre";
+import { Route as ServicosRouteImport } from "./routes/servicos";
+import { Route as ContatoRouteImport } from "./routes/contato";
+import { Route as BlogRouteImport } from "./routes/blog";
+import { Route as IndexRouteImport } from "./routes/index";
+import { Route as ServicosIndexRouteImport } from "./routes/servicos.index";
+import { Route as ServicosSlugRouteImport } from "./routes/servicos.$slug";
 
 const SobreRoute = SobreRouteImport.update({
-  id: '/sobre',
-  path: '/sobre',
+  id: "/sobre",
+  path: "/sobre",
   getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const ServicosRoute = ServicosRouteImport.update({
-  id: '/servicos',
-  path: '/servicos',
+  id: "/servicos",
+  path: "/servicos",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const ContatoRoute = ContatoRouteImport.update({
-  id: '/contato',
-  path: '/contato',
+  id: "/contato",
+  path: "/contato",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
+  id: "/blog",
+  path: "/blog",
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+  id: "/",
+  path: "/",
   getParentRoute: () => rootRouteImport,
-} as any)
-const ServicosSlugRoute = ServicosSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
+} as any);
+const ServicosIndexRoute = ServicosIndexRouteImport.update({
+  id: "/",
+  path: "/",
   getParentRoute: () => ServicosRoute,
-} as any)
+} as any);
+const ServicosSlugRoute = ServicosSlugRouteImport.update({
+  id: "/$slug",
+  path: "/$slug",
+  getParentRoute: () => ServicosRoute,
+} as any);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/blog': typeof BlogRoute
-  '/contato': typeof ContatoRoute
-  '/servicos': typeof ServicosRouteWithChildren
-  '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/sobre': typeof SobreRoute
-  '/servicos/$slug': typeof ServicosSlugRoute
+  "/": typeof IndexRoute;
+  "/blog": typeof BlogRoute;
+  "/contato": typeof ContatoRoute;
+  "/servicos": typeof ServicosRouteWithChildren;
+  "/sobre": typeof SobreRoute;
+  "/servicos/$slug": typeof ServicosSlugRoute;
+  "/servicos/": typeof ServicosIndexRoute;
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/blog': typeof BlogRoute
-  '/contato': typeof ContatoRoute
-  '/servicos': typeof ServicosRouteWithChildren
-  '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/sobre': typeof SobreRoute
-  '/servicos/$slug': typeof ServicosSlugRoute
+  "/": typeof IndexRoute;
+  "/blog": typeof BlogRoute;
+  "/contato": typeof ContatoRoute;
+  "/sobre": typeof SobreRoute;
+  "/servicos/$slug": typeof ServicosSlugRoute;
+  "/servicos": typeof ServicosIndexRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/blog': typeof BlogRoute
-  '/contato': typeof ContatoRoute
-  '/servicos': typeof ServicosRouteWithChildren
-  '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/sobre': typeof SobreRoute
-  '/servicos/$slug': typeof ServicosSlugRoute
+  __root__: typeof rootRouteImport;
+  "/": typeof IndexRoute;
+  "/blog": typeof BlogRoute;
+  "/contato": typeof ContatoRoute;
+  "/servicos": typeof ServicosRouteWithChildren;
+  "/sobre": typeof SobreRoute;
+  "/servicos/$slug": typeof ServicosSlugRoute;
+  "/servicos/": typeof ServicosIndexRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
-    | '/'
-    | '/blog'
-    | '/contato'
-    | '/servicos'
-    | '/sitemap.xml'
-    | '/sobre'
-    | '/servicos/$slug'
-  fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/blog'
-    | '/contato'
-    | '/servicos'
-    | '/sitemap.xml'
-    | '/sobre'
-    | '/servicos/$slug'
+    | "/"
+    | "/blog"
+    | "/contato"
+    | "/servicos"
+    | "/sobre"
+    | "/servicos/$slug"
+    | "/servicos/";
+  fileRoutesByTo: FileRoutesByTo;
+  to: "/" | "/blog" | "/contato" | "/sobre" | "/servicos/$slug" | "/servicos";
   id:
-    | '__root__'
-    | '/'
-    | '/blog'
-    | '/contato'
-    | '/servicos'
-    | '/sitemap.xml'
-    | '/sobre'
-    | '/servicos/$slug'
-  fileRoutesById: FileRoutesById
+    | "__root__"
+    | "/"
+    | "/blog"
+    | "/contato"
+    | "/servicos"
+    | "/sobre"
+    | "/servicos/$slug"
+    | "/servicos/";
+  fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  BlogRoute: typeof BlogRoute
-  ContatoRoute: typeof ContatoRoute
-  ServicosRoute: typeof ServicosRouteWithChildren
-  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  SobreRoute: typeof SobreRoute
+  IndexRoute: typeof IndexRoute;
+  BlogRoute: typeof BlogRoute;
+  ContatoRoute: typeof ContatoRoute;
+  ServicosRoute: typeof ServicosRouteWithChildren;
+  SobreRoute: typeof SobreRoute;
 }
 
-declare module '@tanstack/react-router' {
+declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    '/sobre': {
-      id: '/sobre'
-      path: '/sobre'
-      fullPath: '/sobre'
-      preLoaderRoute: typeof SobreRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/servicos': {
-      id: '/servicos'
-      path: '/servicos'
-      fullPath: '/servicos'
-      preLoaderRoute: typeof ServicosRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contato': {
-      id: '/contato'
-      path: '/contato'
-      fullPath: '/contato'
-      preLoaderRoute: typeof ContatoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/servicos/$slug': {
-      id: '/servicos/$slug'
-      path: '/$slug'
-      fullPath: '/servicos/$slug'
-      preLoaderRoute: typeof ServicosSlugRouteImport
-      parentRoute: typeof ServicosRoute
-    }
+    "/sobre": {
+      id: "/sobre";
+      path: "/sobre";
+      fullPath: "/sobre";
+      preLoaderRoute: typeof SobreRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/servicos": {
+      id: "/servicos";
+      path: "/servicos";
+      fullPath: "/servicos";
+      preLoaderRoute: typeof ServicosRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/contato": {
+      id: "/contato";
+      path: "/contato";
+      fullPath: "/contato";
+      preLoaderRoute: typeof ContatoRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/blog": {
+      id: "/blog";
+      path: "/blog";
+      fullPath: "/blog";
+      preLoaderRoute: typeof BlogRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/": {
+      id: "/";
+      path: "/";
+      fullPath: "/";
+      preLoaderRoute: typeof IndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
+    "/servicos/": {
+      id: "/servicos/";
+      path: "/";
+      fullPath: "/servicos/";
+      preLoaderRoute: typeof ServicosIndexRouteImport;
+      parentRoute: typeof ServicosRoute;
+    };
+    "/servicos/$slug": {
+      id: "/servicos/$slug";
+      path: "/$slug";
+      fullPath: "/servicos/$slug";
+      preLoaderRoute: typeof ServicosSlugRouteImport;
+      parentRoute: typeof ServicosRoute;
+    };
   }
 }
 
 interface ServicosRouteChildren {
-  ServicosSlugRoute: typeof ServicosSlugRoute
+  ServicosSlugRoute: typeof ServicosSlugRoute;
+  ServicosIndexRoute: typeof ServicosIndexRoute;
 }
 
 const ServicosRouteChildren: ServicosRouteChildren = {
   ServicosSlugRoute: ServicosSlugRoute,
-}
+  ServicosIndexRoute: ServicosIndexRoute,
+};
 
 const ServicosRouteWithChildren = ServicosRoute._addFileChildren(
   ServicosRouteChildren,
-)
+);
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRoute: BlogRoute,
   ContatoRoute: ContatoRoute,
   ServicosRoute: ServicosRouteWithChildren,
-  SitemapDotxmlRoute: SitemapDotxmlRoute,
   SobreRoute: SobreRoute,
-}
+};
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
+  ._addFileTypes<FileRouteTypes>();

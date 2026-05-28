@@ -4,21 +4,6 @@ import { useState } from "react";
 import { site } from "@/lib/site";
 
 export const Route = createFileRoute("/contato")({
-  head: () => ({
-    meta: [
-      { title: "Contato — Atlântico Contábil | Orlando, Flórida" },
-      {
-        name: "description",
-        content:
-          "Fale com a Atlântico Contábil em Orlando. Atendimento por WhatsApp, telefone EUA/BR ou formulário. Resposta em até 24h.",
-      },
-      { property: "og:title", content: "Contato — Atlântico Contábil" },
-      { property: "og:description", content: "Fale conosco em português. Orlando, Flórida." },
-      { property: "og:url", content: "/contato" },
-    ],
-    links: [{ rel: "canonical", href: "/contato" }],
-  }),
-  component: ContatoPage,
 });
 
 function ContatoPage() {

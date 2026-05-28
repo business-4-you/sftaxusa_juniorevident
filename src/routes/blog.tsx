@@ -2,21 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Calendar } from "lucide-react";
 
 export const Route = createFileRoute("/blog")({
-  head: () => ({
-    meta: [
-      { title: "Blog — Atlântico Contábil | Tax e contabilidade nos EUA" },
-      {
-        name: "description",
-        content:
-          "Conteúdos sobre tax return, abertura de empresas, planejamento tributário e contabilidade na Flórida para brasileiros nos EUA.",
-      },
-      { property: "og:title", content: "Blog — Atlântico Contábil" },
-      { property: "og:description", content: "Insights sobre contabilidade, tax e abertura de empresas nos EUA." },
-      { property: "og:url", content: "/blog" },
-    ],
-    links: [{ rel: "canonical", href: "/blog" }],
-  }),
-  component: BlogPage,
 });
 
 const posts = [

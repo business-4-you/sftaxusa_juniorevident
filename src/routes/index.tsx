@@ -5,21 +5,6 @@ import ceoImg from "@/assets/ceo-portrait.jpg";
 import { services, site } from "@/lib/site";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Atlântico Contábil — Contabilidade para brasileiros na Flórida" },
-      {
-        name: "description",
-        content:
-          "Contabilidade estratégica em Orlando para brasileiros e empresas nos EUA. Tax, abertura de LLC, escrita contábil e planejamento tributário. Fale no WhatsApp.",
-      },
-      { property: "og:title", content: "Atlântico Contábil — Contabilidade para brasileiros na Flórida" },
-      { property: "og:description", content: "Tax, abertura de empresas, escrita contábil e planejamento tributário em Orlando." },
-      { property: "og:url", content: "/" },
-    ],
-    links: [{ rel: "canonical", href: "/" }],
-  }),
-  component: HomePage,
 });
 
 const iconMap = { FileText, Building2, BookOpen, Users, TrendingUp, Receipt, Crown, Globe2, Calculator, Landmark, Home, FileSignature, RefreshCw };
