@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { I18nProvider } from './i18n/index';
 import Layout from './components/layout/Layout';
 import HomePage from './pages/HomePage';
@@ -47,14 +47,12 @@ function LangRoutes() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <I18nProvider>
-        <Routes>
-          <Route path="/" element={<Navigate to="/pt" replace />} />
-          <Route path="/:lang/*" element={<LangRoutes />} />
-          <Route path="*" element={<Navigate to="/pt" replace />} />
-        </Routes>
-      </I18nProvider>
-    </BrowserRouter>
+    <I18nProvider>
+      <Routes>
+        <Route path="/" element={<Navigate to="/pt" replace />} />
+        <Route path="/:lang/*" element={<LangRoutes />} />
+        <Route path="*" element={<Navigate to="/pt" replace />} />
+      </Routes>
+    </I18nProvider>
   );
 }
