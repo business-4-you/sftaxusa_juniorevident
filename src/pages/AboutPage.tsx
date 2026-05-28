@@ -187,7 +187,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col md:flex-row gap-12 items-center">
             <div className="flex-1">
@@ -209,7 +209,7 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="py-20 px-4 bg-slate-50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-serif font-bold text-navy text-center mb-12">{c.values.h2}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -227,7 +227,7 @@ export default function AboutPage() {
       </section>
 
       {/* Who we serve */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-serif font-bold text-navy text-center mb-12">{c.who.h2}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -242,7 +242,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why choose */}
-      <section className="py-20 px-4 bg-navy">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-navy">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-3xl font-serif font-bold text-white text-center mb-12">{c.why.h2}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

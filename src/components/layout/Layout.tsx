@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import WhatsAppFloat from '../ui/WhatsAppFloat';
 
 interface LayoutProps {
   children: ReactNode;
@@ -8,12 +9,13 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', width: '100%', overflowX: 'hidden' }}>
       <Header />
-      <main className="flex-1">
+      <main style={{ flex: 1, width: '100%' }}>
         {children}
       </main>
       <Footer />
+      <WhatsAppFloat />
     </div>
   );
 }

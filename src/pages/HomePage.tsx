@@ -152,7 +152,7 @@ export default function HomePage() {
       </section>
 
       {/* Pains */}
-      <section className="py-20 px-4" style={{ background: '#f8fafc' }}>
+      <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ background: '#f8fafc' }}>
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ fontFamily: 'var(--font-display)', color: '#0a1628' }}>
@@ -173,7 +173,7 @@ export default function HomePage() {
       </section>
 
       {/* Services */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ fontFamily: 'var(--font-display)', color: '#0a1628' }}>
@@ -215,7 +215,7 @@ export default function HomePage() {
       </section>
 
       {/* About snippet */}
-      <section className="py-20 px-4 overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a1628 0%, #0d3b5e 100%)' }}>
+      <section className="py-20 px-4 sm:px-6 lg:px-8 overflow-hidden" style={{ background: 'linear-gradient(135deg, #0a1628 0%, #0d3b5e 100%)' }}>
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -263,7 +263,7 @@ export default function HomePage() {
       </section>
 
       {/* Process */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-14">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4" style={{ fontFamily: 'var(--font-display)', color: '#0a1628' }}>
@@ -292,7 +292,7 @@ export default function HomePage() {
       </section>
 
       {/* Multilingual */}
-      <section className="py-20 px-4" style={{ background: '#f8fafc' }}>
+      <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ background: '#f8fafc' }}>
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-3" style={{ fontFamily: 'var(--font-display)', color: '#0a1628' }}>
@@ -318,7 +318,7 @@ export default function HomePage() {
       </section>
 
       {/* Blog Preview */}
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-12">
             <div>
@@ -355,7 +355,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ Preview */}
-      <section className="py-20 px-4" style={{ background: '#f8fafc' }}>
+      <section className="py-20 px-4 sm:px-6 lg:px-8" style={{ background: '#f8fafc' }}>
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-3" style={{ fontFamily: 'var(--font-display)', color: '#0a1628' }}>{t.faq.title}</h2>

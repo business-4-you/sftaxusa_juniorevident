@@ -24,7 +24,7 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <section className="py-20 px-4 bg-white">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-3xl mx-auto">
           <p className="text-slate-500 text-center mb-10">{t.faq.subtitle}</p>
           <FAQAccordion items={t.faq.items} />

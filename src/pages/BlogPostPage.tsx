@@ -129,7 +129,7 @@ export default function BlogPostPage() {
       </section>
 
       {/* Content */}
-      <section className="py-16 px-4 bg-white">
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="max-w-3xl mx-auto">
           <article className="prose prose-lg max-w-none">
             {postData.body.map((paragraph, i) => (
@@ -161,7 +161,7 @@ export default function BlogPostPage() {
 
       {/* Related posts */}
       {related.length > 0 && (
-        <section className="py-16 px-4 bg-slate-50">
+        <section className="py-16 px-4 sm:px-6 lg:px-8 bg-slate-50">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-2xl font-serif font-bold text-navy mb-8 text-center">
               {lang === 'pt' ? 'Outros artigos' : lang === 'en' ? 'Other articles' : 'Otros artículos'}
