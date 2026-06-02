@@ -1,0 +1,282 @@
+/* =========================================================================
+   SF TAX USA — Santiago & Felix Accounting Services
+   Design system / global styles
+   ========================================================================= */
+
+:root {
+  /* Brand palette — sampled from logo */
+  --navy-950: #0a1736;
+  --navy-900: #0e1f4a;
+  --navy-800: #16306b;
+  --navy-700: #1d3f8a;
+  --brand:    #234390;   /* primary brand blue */
+  --brand-600:#2a55b8;
+  --blue:     #4898d8;   /* bright accent blue */
+  --blue-100: #e7f1fb;
+  --green:    #6aa72a;   /* action / conversion */
+  --green-600:#5e951f;
+  --green-100:#eef6e2;
+  --gold:     #e9b21e;   /* discreet highlight */
+  --gold-100: #fbf1d4;
+
+  /* Neutrals — cool, low saturation */
+  --ink:      #101a2e;
+  --ink-soft: #2b3852;
+  --muted:    #5a6783;
+  --line:     #e4e9f1;
+  --line-2:   #eef2f7;
+  --bg:       #ffffff;
+  --bg-soft:  #f5f7fb;
+  --bg-tint:  #f0f4fa;
+
+  /* Type */
+  --font-head: "Archivo", system-ui, sans-serif;
+  --font-body: "Public Sans", system-ui, sans-serif;
+
+  /* Shape */
+  --r-sm: 8px;
+  --r:    14px;
+  --r-lg: 20px;
+  --r-xl: 28px;
+
+  /* Shadow */
+  --sh-sm: 0 1px 2px rgba(16,26,46,.06), 0 1px 3px rgba(16,26,46,.05);
+  --sh:    0 6px 18px -6px rgba(16,26,46,.14), 0 2px 6px -2px rgba(16,26,46,.08);
+  --sh-lg: 0 24px 48px -16px rgba(13,30,70,.28), 0 8px 20px -10px rgba(13,30,70,.16);
+
+  /* Layout */
+  --maxw: 1200px;
+  --gut: clamp(20px, 5vw, 64px);
+  --header-h: 76px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-head);
+  color: var(--ink);
+  line-height: 1.08;
+  margin: 0;
+  letter-spacing: -0.02em;
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+p { margin: 0; text-wrap: pretty; }
+
+/* ----------------------------------------------------------------- layout */
+.wrap { max-width: var(--maxw); margin: 0 auto; padding-inline: var(--gut); }
+.section { padding-block: clamp(56px, 8vw, 110px); }
+.section--tight { padding-block: clamp(40px, 5vw, 64px); }
+
+.eyebrow {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--brand-600);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+.eyebrow::before {
+  content: "";
+  width: 26px; height: 2px;
+  background: var(--gold);
+  display: inline-block;
+}
+.eyebrow--center { justify-content: center; }
+
+.h-display {
+  font-size: clamp(2.1rem, 5.4vw, 4rem);
+  letter-spacing: -0.03em;
+}
+.h-1 { font-size: clamp(1.9rem, 4vw, 3rem); }
+.h-2 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); }
+.lead {
+  font-size: clamp(1.05rem, 1.5vw, 1.22rem);
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+.muted { color: var(--muted); }
+
+.section-head { max-width: 720px; }
+.section-head--center { margin-inline: auto; text-align: center; }
+
+/* ----------------------------------------------------------------- buttons */
+.btn {
+  --btn-bg: var(--green);
+  --btn-fg: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  padding: 14px 24px;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
+  white-space: nowrap;
+  line-height: 1;
+}
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn:hover { transform: translateY(-2px); box-shadow: var(--sh); }
+.btn:active { transform: translateY(0); }
+
+.btn--green  { --btn-bg: var(--green); }
+.btn--green:hover  { background: var(--green-600); }
+.btn--navy   { --btn-bg: var(--brand); }
+.btn--navy:hover { background: var(--navy-700); }
+.btn--gold   { --btn-bg: var(--gold); --btn-fg: var(--navy-900); }
+.btn--ghost  {
+  --btn-bg: transparent; --btn-fg: var(--ink);
+  border-color: var(--line);
+}
+.btn--ghost:hover { border-color: var(--brand); color: var(--brand); background: #fff; }
+.btn--light  { --btn-bg: #fff; --btn-fg: var(--navy-900); }
+.btn--outline-light {
+  --btn-bg: transparent; --btn-fg: #fff;
+  border-color: rgba(255,255,255,.34);
+}
+.btn--outline-light:hover { border-color: #fff; background: rgba(255,255,255,.08); }
+.btn--lg { padding: 17px 30px; font-size: 16px; }
+.btn--block { width: 100%; }
+
+/* whatsapp glyph color when inside green button stays white */
+
+/* ----------------------------------------------------------------- chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: var(--bg-soft);
+  border: 1px solid var(--line);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+.chip svg { width: 15px; height: 15px; color: var(--green-600); }
+.chip--ghost-light {
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.18);
+  color: #dce6f5;
+}
+.chip--ghost-light svg { color: var(--blue); }
+
+/* ----------------------------------------------------------------- cards */
+.card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  box-shadow: var(--sh-sm);
+  transition: transform .2s ease, box-shadow .25s ease, border-color .2s ease;
+}
+
+.icon-badge {
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  display: grid; place-items: center;
+  background: var(--blue-100);
+  color: var(--brand-600);
+  margin-bottom: 18px;
+}
+.icon-badge svg { width: 26px; height: 26px; }
+.icon-badge--green { background: var(--green-100); color: var(--green-600); }
+.icon-badge--gold  { background: var(--gold-100); color: #b07d05; }
+
+/* ----------------------------------------------------------------- service card */
+.svc-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  cursor: pointer;
+}
+.svc-card:hover { transform: translateY(-4px); box-shadow: var(--sh-lg); border-color: #d4ddec; }
+.svc-card h3 { font-size: 1.16rem; font-weight: 800; }
+.svc-card p { font-size: .96rem; color: var(--muted); flex: 1; }
+.svc-card .svc-more {
+  font-family: var(--font-head);
+  font-weight: 700; font-size: 14px;
+  color: var(--brand-600);
+  display: inline-flex; align-items: center; gap: 7px;
+  margin-top: 4px;
+}
+.svc-card:hover .svc-more svg { transform: translateX(3px); }
+.svc-more svg { width: 15px; height: 15px; transition: transform .2s ease; }
+
+/* ----------------------------------------------------------------- placeholder imagery */
+.ph {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background:
+    repeating-linear-gradient(135deg, rgba(35,67,144,.05) 0 12px, rgba(35,67,144,.09) 12px 24px),
+    linear-gradient(160deg, var(--bg-tint), #e6edf7);
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  color: var(--brand);
+}
+.ph__label {
+  font-family: ui-monospace, "SFMono-Regular", Menlo, monospace;
+  font-size: 12.5px;
+  letter-spacing: .02em;
+  color: #67769a;
+  background: rgba(255,255,255,.72);
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(35,67,144,.12);
+  backdrop-filter: blur(2px);
+  text-align: center;
+  max-width: 80%;
+}
+
+/* ----------------------------------------------------------------- divider dots */
+.dotline { display: inline-flex; gap: 5px; }
+.dotline i { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); display: inline-block; }
+
+/* ----------------------------------------------------------------- utilities */
+.center { text-align: center; }
+.grid { display: grid; gap: 22px; }
+[hidden] { display: none !important; }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* reveal-on-scroll */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+  html { scroll-behavior: auto; }
+}

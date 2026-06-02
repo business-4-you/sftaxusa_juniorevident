@@ -1,0 +1,65 @@
+/* SF TAX USA — Service page layout */
+.svc-hero .hero-grid { padding-block: clamp(40px,6vw,72px); }
+.svc-breadcrumb a, .svc-breadcrumb span { color: #c5d2ea; }
+.svc-breadcrumb a:hover { color: #fff; }
+.svc-breadcrumb svg { opacity: .5; }
+
+.svc-body {
+  display: grid; grid-template-columns: minmax(0,1fr) 340px;
+  gap: clamp(32px,4vw,60px); padding-block: clamp(48px,6vw,84px);
+  align-items: start;
+}
+.svc-main { display: flex; flex-direction: column; gap: clamp(36px,4vw,56px); }
+.svc-block .eyebrow { margin-bottom: 14px; }
+.svc-block .h-2 { max-width: 24ch; }
+
+.svc-prose p { font-size: 1.08rem; color: var(--ink-soft); line-height: 1.65; margin-bottom: 14px; }
+.svc-prose p:last-child { margin-bottom: 0; }
+
+.svc-list { display: flex; flex-direction: column; gap: 12px; margin-top: 4px; }
+.svc-benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 26px; }
+.svc-li { display: flex; gap: 12px; align-items: flex-start; font-size: 1rem; color: var(--ink-soft); }
+.svc-li__ic { width: 26px; height: 26px; border-radius: 50%; background: var(--green-100); color: var(--green-600); display: grid; place-items: center; flex: none; }
+.svc-li__ic svg { width: 15px; height: 15px; }
+.svc-list--pain .svc-li { color: var(--ink-soft); font-weight: 500; }
+.svc-list--pain svg { width: 18px; height: 18px; color: var(--gold); margin-top: 3px; flex: none; }
+
+.svc-aud { display: flex; flex-wrap: wrap; gap: 10px; }
+.svc-aud .chip { background: #fff; }
+
+.svc-steps { grid-template-columns: 1fr 1fr; }
+
+.svc-aside { position: sticky; top: calc(var(--header-h) + 20px); }
+.svc-sticky { padding: 26px; }
+.svc-sticky h3 { font-size: 1.18rem; }
+.svc-aside-contact { margin-top: 18px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 12px; }
+.svc-aside-contact a { display: flex; align-items: center; gap: 10px; color: var(--ink-soft); font-weight: 600; font-size: 14.5px; }
+.svc-aside-contact a:hover { color: var(--brand); }
+.svc-aside-contact svg { width: 18px; height: 18px; color: var(--brand-600); }
+
+@media (max-width: 940px) {
+  .svc-body { grid-template-columns: 1fr; }
+  .svc-aside { position: static; }
+  .svc-benefits { grid-template-columns: 1fr; }
+  .svc-steps { grid-template-columns: 1fr; }
+}
+
+/* ---------- FAQ grouped page ---------- */
+.faq-groups { display: flex; flex-direction: column; gap: clamp(36px,5vw,56px); max-width: 860px; margin-inline: auto; }
+.faq-group__title { margin-bottom: 18px; }
+.faq-group .faq { margin: 0; }
+
+/* ---------- Legal pages ---------- */
+.legal-wrap { max-width: 800px; }
+.legal-block { margin-bottom: 32px; }
+.legal-block h2 { font-size: 1.3rem; margin-bottom: 12px; }
+.legal-block p { color: var(--ink-soft); margin-bottom: 12px; line-height: 1.7; }
+.legal-meta { color: var(--muted); font-size: 14px; margin-bottom: 8px; }
+
+/* ---------- About values + mission ---------- */
+.mvv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
+.mvv-card { padding: 28px; }
+.mvv-card .icon-badge { margin-bottom: 16px; }
+.mvv-card h3 { font-size: 1.15rem; margin-bottom: 10px; }
+.mvv-card p { color: var(--muted); font-size: .98rem; }
+@media (max-width: 820px) { .mvv-grid { grid-template-columns: 1fr; } }
