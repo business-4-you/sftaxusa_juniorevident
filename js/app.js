@@ -185,315 +185,6 @@
     });
   }
 
-  /* ---------- Home why carousel (tablet/mobile) ---------- */
-  var HOME_WHY_MQ = window.matchMedia ? window.matchMedia("(max-width: 1180px)") : null;
-  var homeWhyCarouselBound = false;
-  function renderHomeWhyCarousel() {
-    var host = document.querySelector("[data-home-why-carousel]");
-    if (!host) return;
-    var track = host.querySelector("[data-why]");
-    var dotsHost = host.querySelector("[data-home-why-dots]");
-    var prev = host.querySelector("[data-home-why-prev]");
-    var next = host.querySelector("[data-home-why-next]");
-    if (!track || !dotsHost || !prev || !next) return;
-
-    var cards = Array.prototype.slice.call(track.querySelectorAll(".feature"));
-    if (!cards.length) return;
-
-    dotsHost.innerHTML = cards.map(function (_, index) {
-      return '<button type="button" class="home-why-carousel__dot" data-home-why-dot="' + index + '" aria-label="Ir para o diferencial ' + (index + 1) + '"></button>';
-    }).join("");
-
-    var dots = Array.prototype.slice.call(dotsHost.querySelectorAll("[data-home-why-dot]"));
-    var activeIndex = -1;
-    var rafId = 0;
-
-    function isActiveMode() {
-      return !HOME_WHY_MQ || HOME_WHY_MQ.matches;
-    }
-
-    function slideStep() {
-      if (!cards.length) return 0;
-      var style = window.getComputedStyle(track);
-      var gap = parseFloat(style.columnGap || style.gap || "0") || 0;
-      return cards[0].getBoundingClientRect().width + gap;
-    }
-
-    function clampIndex(index) {
-      return Math.max(0, Math.min(cards.length - 1, index));
-    }
-
-    function setActive(index) {
-      var nextIndex = clampIndex(index);
-      if (nextIndex === activeIndex) return;
-      activeIndex = nextIndex;
-      dots.forEach(function (dot, dotIndex) {
-        var active = dotIndex === activeIndex;
-        dot.classList.toggle("is-active", active);
-        dot.setAttribute("aria-current", active ? "true" : "false");
-      });
-    }
-
-    function syncFromScroll() {
-      if (!isActiveMode()) return;
-      var step = slideStep();
-      if (!step) return;
-      setActive(Math.round(track.scrollLeft / step));
-    }
-
-    function scrollToIndex(index, behavior) {
-      var nextIndex = clampIndex(index);
-      var card = cards[nextIndex];
-      if (!card) return;
-      card.scrollIntoView({ behavior: behavior || "smooth", inline: "start", block: "nearest" });
-      setActive(nextIndex);
-    }
-
-    function scrollByDirection(direction) {
-      if (!isActiveMode()) return;
-      scrollToIndex(activeIndex + direction, "smooth");
-    }
-
-    function toggleCarouselMode() {
-      host.classList.toggle("is-carousel", isActiveMode());
-      if (!isActiveMode()) {
-        setActive(0);
-        return;
-      }
-      syncFromScroll();
-    }
-
-    if (!homeWhyCarouselBound) {
-      prev.addEventListener("click", function () { scrollByDirection(-1); });
-      next.addEventListener("click", function () { scrollByDirection(1); });
-      dotsHost.addEventListener("click", function (e) {
-        var dot = e.target.closest("[data-home-why-dot]");
-        if (!dot || !dotsHost.contains(dot)) return;
-        var index = parseInt(dot.getAttribute("data-home-why-dot"), 10);
-        if (!isNaN(index)) scrollToIndex(index, "smooth");
-      });
-      track.addEventListener("scroll", function () {
-        if (rafId) window.cancelAnimationFrame(rafId);
-        rafId = window.requestAnimationFrame(syncFromScroll);
-      }, { passive: true });
-      if (HOME_WHY_MQ && HOME_WHY_MQ.addEventListener) {
-        HOME_WHY_MQ.addEventListener("change", toggleCarouselMode);
-      } else if (HOME_WHY_MQ && HOME_WHY_MQ.addListener) {
-        HOME_WHY_MQ.addListener(toggleCarouselMode);
-      }
-      window.addEventListener("resize", toggleCarouselMode);
-      homeWhyCarouselBound = true;
-    }
-
-    toggleCarouselMode();
-  }
-
-  /* ---------- Home process carousel (tablet/mobile) ---------- */
-  var HOME_PROCESS_MQ = window.matchMedia ? window.matchMedia("(max-width: 1180px)") : null;
-  var homeProcessCarouselBound = false;
-  function renderHomeProcessCarousel() {
-    var host = document.querySelector("[data-home-process-carousel]");
-    if (!host) return;
-    var track = host.querySelector("[data-process]");
-    var dotsHost = host.querySelector("[data-home-process-dots]");
-    var prev = host.querySelector("[data-home-process-prev]");
-    var next = host.querySelector("[data-home-process-next]");
-    if (!track || !dotsHost || !prev || !next) return;
-
-    var cards = Array.prototype.slice.call(track.querySelectorAll(".process-step"));
-    if (!cards.length) return;
-
-    dotsHost.innerHTML = cards.map(function (_, index) {
-      return '<button type="button" class="home-process-carousel__dot" data-home-process-dot="' + index + '" aria-label="Ir para o passo ' + (index + 1) + '"></button>';
-    }).join("");
-
-    var dots = Array.prototype.slice.call(dotsHost.querySelectorAll("[data-home-process-dot]"));
-    var activeIndex = -1;
-    var rafId = 0;
-
-    function isActiveMode() {
-      return !HOME_PROCESS_MQ || HOME_PROCESS_MQ.matches;
-    }
-
-    function slideStep() {
-      if (!cards.length) return 0;
-      var style = window.getComputedStyle(track);
-      var gap = parseFloat(style.columnGap || style.gap || "0") || 0;
-      return cards[0].getBoundingClientRect().width + gap;
-    }
-
-    function clampIndex(index) {
-      return Math.max(0, Math.min(cards.length - 1, index));
-    }
-
-    function setActive(index) {
-      var nextIndex = clampIndex(index);
-      if (nextIndex === activeIndex) return;
-      activeIndex = nextIndex;
-      dots.forEach(function (dot, dotIndex) {
-        var active = dotIndex === activeIndex;
-        dot.classList.toggle("is-active", active);
-        dot.setAttribute("aria-current", active ? "true" : "false");
-      });
-    }
-
-    function syncFromScroll() {
-      if (!isActiveMode()) return;
-      var step = slideStep();
-      if (!step) return;
-      setActive(Math.round(track.scrollLeft / step));
-    }
-
-    function scrollToIndex(index, behavior) {
-      var nextIndex = clampIndex(index);
-      var card = cards[nextIndex];
-      if (!card) return;
-      card.scrollIntoView({ behavior: behavior || "smooth", inline: "start", block: "nearest" });
-      setActive(nextIndex);
-    }
-
-    function scrollByDirection(direction) {
-      if (!isActiveMode()) return;
-      scrollToIndex(activeIndex + direction, "smooth");
-    }
-
-    function toggleCarouselMode() {
-      host.classList.toggle("is-carousel", isActiveMode());
-      if (!isActiveMode()) {
-        setActive(0);
-        return;
-      }
-      syncFromScroll();
-    }
-
-    if (!homeProcessCarouselBound) {
-      prev.addEventListener("click", function () { scrollByDirection(-1); });
-      next.addEventListener("click", function () { scrollByDirection(1); });
-      dotsHost.addEventListener("click", function (e) {
-        var dot = e.target.closest("[data-home-process-dot]");
-        if (!dot || !dotsHost.contains(dot)) return;
-        var index = parseInt(dot.getAttribute("data-home-process-dot"), 10);
-        if (!isNaN(index)) scrollToIndex(index, "smooth");
-      });
-      track.addEventListener("scroll", function () {
-        if (rafId) window.cancelAnimationFrame(rafId);
-        rafId = window.requestAnimationFrame(syncFromScroll);
-      }, { passive: true });
-      if (HOME_PROCESS_MQ && HOME_PROCESS_MQ.addEventListener) {
-        HOME_PROCESS_MQ.addEventListener("change", toggleCarouselMode);
-      } else if (HOME_PROCESS_MQ && HOME_PROCESS_MQ.addListener) {
-        HOME_PROCESS_MQ.addListener(toggleCarouselMode);
-      }
-      window.addEventListener("resize", toggleCarouselMode);
-      homeProcessCarouselBound = true;
-    }
-
-    toggleCarouselMode();
-  }
-
-  /* ---------- Home services carousel (tablet/mobile) ---------- */
-  var HOME_SERVICES_MQ = window.matchMedia ? window.matchMedia("(max-width: 1180px)") : null;
-  var homeServicesCarouselBound = false;
-  function renderHomeServicesCarousel() {
-    var host = document.querySelector("[data-home-services-carousel]");
-    if (!host) return;
-    var track = host.querySelector("[data-service-grid]");
-    var dotsHost = host.querySelector("[data-home-services-dots]");
-    var prev = host.querySelector("[data-home-services-prev]");
-    var next = host.querySelector("[data-home-services-next]");
-    if (!track || !dotsHost || !prev || !next) return;
-
-    var cards = Array.prototype.slice.call(track.querySelectorAll("[data-svc]"));
-    if (!cards.length) return;
-
-    dotsHost.innerHTML = cards.map(function (_, index) {
-      return '<button type="button" class="home-services-carousel__dot" data-home-services-dot="' + index + '" aria-label="Ir para o serviço ' + (index + 1) + '"></button>';
-    }).join("");
-
-    var dots = Array.prototype.slice.call(dotsHost.querySelectorAll("[data-home-services-dot]"));
-    var activeIndex = -1;
-    var rafId = 0;
-
-    function isActiveMode() {
-      return !HOME_SERVICES_MQ || HOME_SERVICES_MQ.matches;
-    }
-
-    function slideStep() {
-      if (!cards.length) return 0;
-      var style = window.getComputedStyle(track);
-      var gap = parseFloat(style.columnGap || style.gap || "0") || 0;
-      return cards[0].getBoundingClientRect().width + gap;
-    }
-
-    function clampIndex(index) {
-      return Math.max(0, Math.min(cards.length - 1, index));
-    }
-
-    function setActive(index) {
-      var nextIndex = clampIndex(index);
-      if (nextIndex === activeIndex) return;
-      activeIndex = nextIndex;
-      dots.forEach(function (dot, dotIndex) {
-        var active = dotIndex === activeIndex;
-        dot.classList.toggle("is-active", active);
-        dot.setAttribute("aria-current", active ? "true" : "false");
-      });
-    }
-
-    function syncFromScroll() {
-      if (!isActiveMode()) return;
-      var step = slideStep();
-      if (!step) return;
-      setActive(Math.round(track.scrollLeft / step));
-    }
-
-    function scrollToIndex(index, behavior) {
-      var nextIndex = clampIndex(index);
-      var card = cards[nextIndex];
-      if (!card) return;
-      card.scrollIntoView({ behavior: behavior || "smooth", inline: "start", block: "nearest" });
-      setActive(nextIndex);
-    }
-
-    function scrollByDirection(direction) {
-      if (!isActiveMode()) return;
-      scrollToIndex(activeIndex + direction, "smooth");
-    }
-
-    function toggleCarouselMode() {
-      host.classList.toggle("is-carousel", isActiveMode());
-      if (!isActiveMode()) {
-        setActive(0);
-        return;
-      }
-      syncFromScroll();
-    }
-
-    if (!homeServicesCarouselBound) {
-      prev.addEventListener("click", function () { scrollByDirection(-1); });
-      next.addEventListener("click", function () { scrollByDirection(1); });
-      dotsHost.addEventListener("click", function (e) {
-        var dot = e.target.closest("[data-home-services-dot]");
-        if (!dot || !dotsHost.contains(dot)) return;
-        var index = parseInt(dot.getAttribute("data-home-services-dot"), 10);
-        if (!isNaN(index)) scrollToIndex(index, "smooth");
-      });
-      track.addEventListener("scroll", function () {
-        if (rafId) window.cancelAnimationFrame(rafId);
-        rafId = window.requestAnimationFrame(syncFromScroll);
-      }, { passive: true });
-      if (HOME_SERVICES_MQ && HOME_SERVICES_MQ.addEventListener) {
-        HOME_SERVICES_MQ.addEventListener("change", toggleCarouselMode);
-      } else if (HOME_SERVICES_MQ && HOME_SERVICES_MQ.addListener) {
-        HOME_SERVICES_MQ.addListener(toggleCarouselMode);
-      }
-      window.addEventListener("resize", toggleCarouselMode);
-      homeServicesCarouselBound = true;
-    }
-
-    toggleCarouselMode();
-  }
-
   /* ---------- Services dropdown + footer links + form options ---------- */
   function renderServiceMenus() {
     document.querySelectorAll("[data-service-dropdown]").forEach(function (host) {
@@ -589,77 +280,21 @@
   }
   window.SF_renderFAQ = renderFAQ;
 
-  /* ---------- Mobile drawer ---------- */
-  function buildDrawer() {
-    var backdrop = document.querySelector("[data-mobile-menu-overlay]");
-    var drawer = document.querySelector("[data-mobile-menu]");
-    var burger = document.querySelector(".burger");
-    var servicesToggle = drawer ? drawer.querySelector("[data-mobile-services-toggle]") : null;
-    var servicesPanel = drawer ? drawer.querySelector("[data-mobile-services-panel]") : null;
-    if (!drawer || !burger) return;
-    if (drawer.dataset.drawerBound === "1") return;
-    drawer.dataset.drawerBound = "1";
-    var openTimer = null;
-    var closeTimer = null;
-    function closeServices() {
-      if (servicesToggle) servicesToggle.setAttribute("aria-expanded", "false");
-      if (servicesPanel) servicesPanel.setAttribute("hidden", "");
-      if (servicesToggle) servicesToggle.classList.remove("is-open");
-    }
-    function setBodyLocked(locked) {
-      document.body.classList.toggle("mobile-menu-open", !!locked);
-    }
-    function openMenu() {
-      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
-      drawer.hidden = false;
-      if (backdrop) backdrop.hidden = false;
-      if (openTimer) clearTimeout(openTimer);
-      openTimer = window.setTimeout(function () {
-        drawer.classList.add("is-open");
-        if (backdrop) backdrop.classList.add("is-open");
-      }, 16);
-      setBodyLocked(true);
-    }
-    function closeMenu() {
-      if (openTimer) { clearTimeout(openTimer); openTimer = null; }
-      drawer.classList.remove("is-open");
-      if (backdrop) backdrop.classList.remove("is-open");
-      setBodyLocked(false);
-      closeServices();
-      closeTimer = window.setTimeout(function () {
-        if (!drawer.classList.contains("is-open")) drawer.hidden = true;
-        if (backdrop && !backdrop.classList.contains("is-open")) backdrop.hidden = true;
-      }, 280);
-    }
-    burger.addEventListener("click", openMenu);
-    if (backdrop) backdrop.addEventListener("click", closeMenu);
-    var c = drawer.querySelector("[data-mobile-menu-close]"); if (c) c.addEventListener("click", closeMenu);
-    if (servicesToggle && servicesPanel) {
-      servicesToggle.addEventListener("click", function () {
-        var expanded = servicesToggle.getAttribute("aria-expanded") === "true";
-        servicesToggle.setAttribute("aria-expanded", String(!expanded));
-        servicesToggle.classList.toggle("is-open", !expanded);
-        if (expanded) {
-          servicesPanel.setAttribute("hidden", "");
-        } else {
-          servicesPanel.removeAttribute("hidden");
-        }
-      });
-    }
-    drawer.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", closeMenu); });
-    drawer.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") closeMenu();
-    });
-  }
+  /* ---------- Mobile drawer services (interaction lives in header.js) ---------- */
   function renderDrawerServices() {
-    var host = document.querySelector("[data-mobile-services-panel]");
+    var host = document.querySelector("[data-drawer-services]");
     if (!host) return;
     host.innerHTML = window.SERVICE_ORDER.map(function (slug) {
       var s = svcData()[slug]; if (!s) return "";
-      return '<a class="mobile-menu__service-link" href="servico.html?s=' + slug + '&lang=' + getLang() + '">' +
-        icon(window.SERVICE_ICONS[slug] || "doc") +
-        '<span>' + s.name + '</span></a>';
+      return '<a href="servico.html?s=' + slug + '&lang=' + getLang() + '">' +
+        icon(window.SERVICE_ICONS[slug] || "doc") + '<span>' + s.name + '</span></a>';
     }).join("");
+    // if the accordion is open, recompute its height after re-render
+    var panel = document.querySelector("[data-acc-panel]");
+    var toggle = document.querySelector("[data-acc-toggle]");
+    if (panel && toggle && toggle.getAttribute("aria-expanded") === "true") {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
   }
 
   /* ---------- Contact form ---------- */
@@ -823,13 +458,9 @@
     renderFaqGroups();
     renderLegal();
     renderAboutValues();
-    renderHomeProcessCarousel();
-    renderHomeWhyCarousel();
-    renderHomeServicesCarousel();
     applyLinks();
     bindForm();
     initReveal();
-    if (typeof window.SF_initMobileMenu === "function") window.SF_initMobileMenu();
   }
 
   /* ---------- Boot ---------- */
@@ -838,7 +469,6 @@
     render();
     window.addEventListener("popstate", render);
   }
-  window.SF_initMobileMenu = buildDrawer;
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })();

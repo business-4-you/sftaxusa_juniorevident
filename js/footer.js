@@ -13,7 +13,7 @@
       '<div class="wrap">' +
         '<div class="footer-grid">' +
           '<div class="footer-brand">' +
-            '<img class="footer-brand__logo" src="uploads/logo-transparente.png" alt="SF TAX USA — Santiago & Felix Accounting Services" />' +
+            '<img src="assets/sf-logo-full-white.png" alt="SF TAX USA — Santiago & Felix Accounting Services" />' +
             '<p data-i18n="footer.tagline"></p>' +
             '<div class="footer-social">' +
               '<a href="' + CFG.instagram + '" aria-label="Instagram">' + svgi("instagram") + '</a>' +
