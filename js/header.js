@@ -36,8 +36,9 @@
           '<div id="drawer-services-panel" class="sub" data-drawer-services hidden></div>' +
           '<a href="contato.html" data-href-lang data-i18n="nav.contact"></a>' +
         '</nav>' +
-        '<a class="btn btn--green drawer-cta" data-wa data-loc="drawer"><span data-i18n="cta.specialist"></span></a>' +
+      '<a class="btn btn--green drawer-cta" data-wa data-loc="drawer"><span data-i18n="cta.specialist"></span></a>' +
       '</aside>';
+    if (typeof window.SF_bindDrawer === "function") window.SF_bindDrawer();
   }
   window.SF_renderHeader = render;
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", render);

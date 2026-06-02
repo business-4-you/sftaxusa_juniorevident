@@ -597,6 +597,8 @@
     var servicesToggle = drawer ? drawer.querySelector(".drawer-services-toggle") : null;
     var servicesPanel = drawer ? drawer.querySelector("[data-drawer-services]") : null;
     if (!drawer || !burger) return;
+    if (drawer.dataset.drawerBound === "1") return;
+    drawer.dataset.drawerBound = "1";
     function closeServices() {
       if (servicesToggle) servicesToggle.setAttribute("aria-expanded", "false");
       if (servicesPanel) servicesPanel.setAttribute("hidden", "");
@@ -804,10 +806,11 @@
   /* ---------- Boot ---------- */
   function boot() {
     document.documentElement.lang = getLang();
-    buildDrawer();
     render();
+    buildDrawer();
     window.addEventListener("popstate", render);
   }
+  window.SF_bindDrawer = buildDrawer;
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })();
