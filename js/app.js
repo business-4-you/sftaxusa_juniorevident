@@ -21,20 +21,26 @@
   var LANG_LABELS = { pt: "Português", en: "English", es: "Español" };
   var LANG_FLAGS = { pt: "🇧🇷", en: "🇺🇸", es: "🇪🇸" };
 
+  /* ---------- Safe storage (Firefox on file:// can throw) ---------- */
+  function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+  function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+
   function urlLang() {
     var p = new URLSearchParams(location.search).get("lang");
     return LANGS.indexOf(p) > -1 ? p : null;
   }
   function getLang() {
-    return urlLang() || localStorage.getItem("sf_lang") || "pt";
+    return urlLang() || lsGet("sf_lang") || "pt";
   }
   function setLang(lang, push) {
     if (LANGS.indexOf(lang) < 0) lang = "pt";
-    localStorage.setItem("sf_lang", lang);
+    lsSet("sf_lang", lang);
     document.documentElement.lang = lang;
-    var u = new URL(location.href);
-    u.searchParams.set("lang", lang);
-    history[push ? "pushState" : "replaceState"]({}, "", u);
+    try {
+      var u = new URL(location.href);
+      u.searchParams.set("lang", lang);
+      history[push ? "pushState" : "replaceState"]({}, "", u);
+    } catch (e) {}
     render();
     track("language_change", { language: lang });
   }

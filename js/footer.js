@@ -4,7 +4,8 @@
   function render() {
     var host = document.querySelector("[data-footer]");
     if (!host) return;
-    var t = window.SF_t, lang = (localStorage.getItem("sf_lang") || "pt");
+    var t = window.SF_t, lang = "pt";
+    try { lang = localStorage.getItem("sf_lang") || "pt"; } catch (e) {}
     var p = new URLSearchParams(location.search).get("lang");
     if (["pt", "en", "es"].indexOf(p) > -1) lang = p;
     var CFG = window.SF_CONFIG;
