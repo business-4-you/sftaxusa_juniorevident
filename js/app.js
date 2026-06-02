@@ -235,9 +235,150 @@
     // process
     var proc = document.querySelector("[data-process]");
     if (proc) {
-      proc.innerHTML = (t("process.steps") || []).map(function (s, i) {
-        return '<div class="process-step card"><div class="step-num">' + (i + 1) + '</div><h3>' + s.t + '</h3><p>' + s.d + '</p></div>';
+      var stepsData = t("process.steps") || [];
+      proc.innerHTML = stepsData.map(function (s, i) {
+        return '<div class="process-step card process-slide" data-process-card>' +
+          '<div class="step-num">' + (i + 1) + '</div><h3>' + s.t + '</h3><p>' + s.d + '</p></div>';
       }).join("");
+
+      var section = proc.closest("section");
+      var carousel = proc.closest(".process-carousel");
+      if (!carousel && section) {
+        carousel = document.createElement("div");
+        carousel.className = "process-carousel";
+        section.insertBefore(carousel, proc);
+        carousel.appendChild(proc);
+      }
+
+      if (carousel && !carousel.querySelector(".process-carousel__controls")) {
+        var controls = document.createElement("div");
+        controls.className = "process-carousel__controls";
+        controls.innerHTML =
+          '<button type="button" class="process-carousel__arrow process-carousel__arrow--prev" data-process-prev aria-label="Anterior">' +
+            icon("chevron") +
+          '</button>' +
+          '<div class="process-carousel__dots" data-process-dots aria-label="Indicadores do carrossel"></div>' +
+          '<button type="button" class="process-carousel__arrow process-carousel__arrow--next" data-process-next aria-label="Próximo">' +
+            icon("chevron") +
+          '</button>';
+        carousel.appendChild(controls);
+      }
+
+      var dotsHost = carousel ? carousel.querySelector("[data-process-dots]") : null;
+      if (dotsHost) {
+        dotsHost.innerHTML = stepsData.map(function (_, i) {
+          return '<button type="button" class="process-carousel__dot" data-process-dot="' + i + '" aria-label="Ir para o passo ' + (i + 1) + '"></button>';
+        }).join("");
+      }
+
+      if (carousel && !carousel.dataset.carouselBound) {
+        carousel.dataset.carouselBound = "1";
+
+        var prev = carousel.querySelector("[data-process-prev]");
+        var next = carousel.querySelector("[data-process-next]");
+
+        function getCards() {
+          return Array.prototype.slice.call(proc.querySelectorAll("[data-process-card]"));
+        }
+
+        function getStepWidth() {
+          var cards = getCards();
+          if (!cards.length) return proc.clientWidth || 0;
+          var cardWidth = cards[0].getBoundingClientRect().width;
+          var gap = parseFloat(getComputedStyle(proc).gap || "0") || 0;
+          return cardWidth + gap;
+        }
+
+        function getActiveIndex() {
+          var cards = getCards();
+          if (!cards.length) return 0;
+          var center = proc.scrollLeft + (proc.clientWidth / 2);
+          var active = 0;
+          var bestDistance = Infinity;
+          cards.forEach(function (card, index) {
+            var cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+            var distance = Math.abs(cardCenter - center);
+            if (distance < bestDistance) {
+              bestDistance = distance;
+              active = index;
+            }
+          });
+          return active;
+        }
+
+        function setActiveDot(index) {
+          var dots = carousel.querySelectorAll("[data-process-dot]");
+          dots.forEach(function (dot, dotIndex) {
+            dot.classList.toggle("is-active", dotIndex === index);
+            dot.setAttribute("aria-pressed", dotIndex === index ? "true" : "false");
+          });
+        }
+
+        function syncControls() {
+          setActiveDot(getActiveIndex());
+        }
+
+        if (prev) {
+          prev.addEventListener("click", function () {
+            proc.scrollBy({ left: -getStepWidth(), behavior: "smooth" });
+          });
+        }
+        if (next) {
+          next.addEventListener("click", function () {
+            proc.scrollBy({ left: getStepWidth(), behavior: "smooth" });
+          });
+        }
+
+        carousel.querySelectorAll("[data-process-dot]").forEach(function (dot) {
+          dot.addEventListener("click", function () {
+            var index = parseInt(dot.getAttribute("data-process-dot"), 10) || 0;
+            var cards = getCards();
+            if (cards[index]) {
+              proc.scrollTo({ left: cards[index].offsetLeft, behavior: "smooth" });
+            }
+          });
+        });
+
+        proc.addEventListener("scroll", function () {
+          window.requestAnimationFrame(syncControls);
+        }, { passive: true });
+        window.addEventListener("resize", syncControls);
+        syncControls();
+      } else if (carousel) {
+        var dotsHost = carousel.querySelector("[data-process-dots]");
+        if (dotsHost && dotsHost.children.length !== stepsData.length) {
+          dotsHost.innerHTML = stepsData.map(function (_, i) {
+            return '<button type="button" class="process-carousel__dot" data-process-dot="' + i + '" aria-label="Ir para o passo ' + (i + 1) + '"></button>';
+          }).join("");
+        }
+        carousel.querySelectorAll("[data-process-dot]").forEach(function (dot) {
+          if (dot.dataset.bound) return;
+          dot.dataset.bound = "1";
+          dot.addEventListener("click", function () {
+            var index = parseInt(dot.getAttribute("data-process-dot"), 10) || 0;
+            var cards = Array.prototype.slice.call(proc.querySelectorAll("[data-process-card]"));
+            if (cards[index]) {
+              proc.scrollTo({ left: cards[index].offsetLeft, behavior: "smooth" });
+            }
+          });
+        });
+        var activeCards = Array.prototype.slice.call(proc.querySelectorAll("[data-process-card]"));
+        var activeCenter = proc.scrollLeft + (proc.clientWidth / 2);
+        var activeIndex = 0;
+        var activeDistance = Infinity;
+        activeCards.forEach(function (card, index) {
+          var cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+          var distance = Math.abs(cardCenter - activeCenter);
+          if (distance < activeDistance) {
+            activeDistance = distance;
+            activeIndex = index;
+          }
+        });
+        carousel.querySelectorAll("[data-process-dot]").forEach(function (dot, dotIndex) {
+          dot.classList.toggle("is-active", dotIndex === activeIndex);
+          dot.setAttribute("aria-pressed", dotIndex === activeIndex ? "true" : "false");
+        });
+      }
     }
     // lang pills
     var pills = document.querySelector("[data-langpills]");
@@ -286,12 +427,25 @@
     var drawer = document.querySelector(".drawer");
     var burger = document.querySelector(".burger");
     if (!drawer || !burger) return;
-    function open() { drawer.classList.add("open"); backdrop.classList.add("open"); document.body.style.overflow = "hidden"; }
-    function close() { drawer.classList.remove("open"); backdrop.classList.remove("open"); document.body.style.overflow = ""; }
+    function open() {
+      drawer.classList.add("open");
+      backdrop.classList.add("open");
+      document.body.classList.add("drawer-open");
+      document.body.style.overflow = "hidden";
+    }
+    function close() {
+      drawer.classList.remove("open");
+      backdrop.classList.remove("open");
+      document.body.classList.remove("drawer-open");
+      document.body.style.overflow = "";
+    }
     burger.addEventListener("click", open);
     backdrop.addEventListener("click", close);
     var c = drawer.querySelector(".drawer-close"); if (c) c.addEventListener("click", close);
     drawer.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", close); });
+    window.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") close();
+    });
   }
   function renderDrawerServices() {
     var host = document.querySelector("[data-drawer-services]");
@@ -445,9 +599,133 @@
   function renderAboutValues() {
     var host = document.querySelector("[data-about-values]");
     if (!host) return;
-    host.innerHTML = (t("pages.about.values") || []).map(function (v) {
-      return '<div class="feature"><div class="icon-badge">' + icon(v.i) + '</div><div><h3>' + v.t + '</h3><p>' + v.d + '</p></div></div>';
+    var items = t("pages.about.values") || [];
+    host.innerHTML = items.map(function (v, i) {
+      return '<div class="feature about-values-slide" data-about-card>' +
+        '<div class="icon-badge">' + icon(v.i) + '</div><div><h3>' + v.t + '</h3><p>' + v.d + '</p></div></div>';
     }).join("");
+
+    var section = host.closest("section");
+    var carousel = host.closest(".about-values-carousel");
+    if (!carousel && section) {
+      carousel = document.createElement("div");
+      carousel.className = "about-values-carousel";
+      section.insertBefore(carousel, host);
+      carousel.appendChild(host);
+    }
+
+    if (carousel && !carousel.querySelector(".about-values-carousel__controls")) {
+      var controls = document.createElement("div");
+      controls.className = "about-values-carousel__controls";
+      controls.innerHTML =
+        '<button type="button" class="about-values-carousel__arrow about-values-carousel__arrow--prev" data-about-prev aria-label="Anterior">' +
+          icon("chevron") +
+        '</button>' +
+        '<div class="about-values-carousel__dots" data-about-dots aria-label="Indicadores do carrossel"></div>' +
+        '<button type="button" class="about-values-carousel__arrow about-values-carousel__arrow--next" data-about-next aria-label="Próximo">' +
+          icon("chevron") +
+        '</button>';
+      carousel.appendChild(controls);
+    }
+
+    var dotsHost = carousel ? carousel.querySelector("[data-about-dots]") : null;
+    if (dotsHost) {
+      dotsHost.innerHTML = items.map(function (_, i) {
+        return '<button type="button" class="about-values-carousel__dot" data-about-dot="' + i + '" aria-label="Ir para o card ' + (i + 1) + '"></button>';
+      }).join("");
+    }
+
+    if (carousel && !carousel.dataset.carouselBound) {
+      carousel.dataset.carouselBound = "1";
+
+      var prev = carousel.querySelector("[data-about-prev]");
+      var next = carousel.querySelector("[data-about-next]");
+
+      function getCards() {
+        return Array.prototype.slice.call(host.querySelectorAll("[data-about-card]"));
+      }
+
+      function getStepWidth() {
+        var cards = getCards();
+        if (!cards.length) return host.clientWidth || 0;
+        var cardWidth = cards[0].getBoundingClientRect().width;
+        var gap = parseFloat(getComputedStyle(host).gap || "0") || 0;
+        return cardWidth + gap;
+      }
+
+      function getActiveIndex() {
+        var cards = getCards();
+        if (!cards.length) return 0;
+        var center = host.scrollLeft + (host.clientWidth / 2);
+        var active = 0;
+        var bestDistance = Infinity;
+        cards.forEach(function (card, index) {
+          var cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+          var distance = Math.abs(cardCenter - center);
+          if (distance < bestDistance) {
+            bestDistance = distance;
+            active = index;
+          }
+        });
+        return active;
+      }
+
+      function setActiveDot(index) {
+        var dots = carousel.querySelectorAll("[data-about-dot]");
+        dots.forEach(function (dot, dotIndex) {
+          dot.classList.toggle("is-active", dotIndex === index);
+          dot.setAttribute("aria-pressed", dotIndex === index ? "true" : "false");
+        });
+      }
+
+      function syncControls() {
+        setActiveDot(getActiveIndex());
+      }
+
+      if (prev) {
+        prev.addEventListener("click", function () {
+          host.scrollBy({ left: -getStepWidth(), behavior: "smooth" });
+        });
+      }
+      if (next) {
+        next.addEventListener("click", function () {
+          host.scrollBy({ left: getStepWidth(), behavior: "smooth" });
+        });
+      }
+
+      carousel.querySelectorAll("[data-about-dot]").forEach(function (dot) {
+        dot.addEventListener("click", function () {
+          var index = parseInt(dot.getAttribute("data-about-dot"), 10) || 0;
+          var cards = getCards();
+          if (cards[index]) {
+            host.scrollTo({ left: cards[index].offsetLeft, behavior: "smooth" });
+          }
+        });
+      });
+
+      host.addEventListener("scroll", function () {
+        window.requestAnimationFrame(syncControls);
+      }, { passive: true });
+      window.addEventListener("resize", syncControls);
+      syncControls();
+    } else if (carousel) {
+      var activeCards = Array.prototype.slice.call(host.querySelectorAll("[data-about-card]"));
+      var activeCenter = host.scrollLeft + (host.clientWidth / 2);
+      var activeIndex = 0;
+      var activeDistance = Infinity;
+      activeCards.forEach(function (card, index) {
+        var cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+        var distance = Math.abs(cardCenter - activeCenter);
+        if (distance < activeDistance) {
+          activeDistance = distance;
+          activeIndex = index;
+        }
+      });
+      carousel.querySelectorAll("[data-about-dot]").forEach(function (dot, dotIndex) {
+        dot.classList.toggle("is-active", dotIndex === activeIndex);
+        dot.setAttribute("aria-pressed", dotIndex === activeIndex ? "true" : "false");
+      });
+    }
   }
 
   function render() {
