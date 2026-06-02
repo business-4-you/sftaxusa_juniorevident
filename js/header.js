@@ -23,7 +23,6 @@
           '<a href="sobre.html" data-href-lang data-i18n="nav.about"></a>' +
           '<div class="has-menu"><button type="button"><span data-i18n="nav.services"></span>' + i("chevron") + '</button>' +
             '<div class="dropdown" data-service-dropdown></div></div>' +
-          '<a href="index.html#insights" data-href-lang data-i18n="nav.insights"></a>' +
           '<a href="contato.html" data-href-lang data-i18n="nav.contact"></a>' +
         '</nav>' +
         '<div class="header-actions">' +
