@@ -48,62 +48,12 @@
         '<a class="btn btn--green drawer-cta" data-wa data-loc="drawer" data-drawer-link><span data-i18n="cta.specialist"></span></a>' +
       '</aside>';
 
-    bindDrawer();
-  }
-
-  /* Self-contained drawer behavior via event delegation — order-independent */
-  function bindDrawer() {
-    var backdrop = document.querySelector(".drawer-backdrop");
-    var drawer = document.querySelector(".drawer");
-    var burger = document.querySelector(".burger");
-    if (!drawer || !burger || drawer.dataset.bound) return;
-    drawer.dataset.bound = "1";
-
-    function open() {
-      drawer.classList.add("open");
-      backdrop.classList.add("open");
-      drawer.setAttribute("aria-hidden", "false");
-      burger.setAttribute("aria-expanded", "true");
-      document.body.style.overflow = "hidden";
-    }
-    function close() {
-      drawer.classList.remove("open");
-      backdrop.classList.remove("open");
-      drawer.setAttribute("aria-hidden", "true");
-      burger.setAttribute("aria-expanded", "false");
-      document.body.style.overflow = "";
-    }
-    window.SF_closeDrawer = close;
-
-    burger.addEventListener("click", open);
-    backdrop.addEventListener("click", close);
-
-    // Delegate all clicks inside the drawer
-    drawer.addEventListener("click", function (e) {
-      var closer = e.target.closest("[data-drawer-close]");
-      if (closer) { close(); return; }
-
-      var acc = e.target.closest("[data-acc-toggle]");
-      if (acc) {
-        var panel = drawer.querySelector("[data-acc-panel]");
-        var open = acc.getAttribute("aria-expanded") === "true";
-        acc.setAttribute("aria-expanded", String(!open));
-        panel.style.maxHeight = open ? "0px" : (panel.scrollHeight + "px");
-        return;
-      }
-
-      // any navigational link closes the drawer (links are added dynamically)
-      var link = e.target.closest("a[data-drawer-link], [data-drawer-services] a");
-      if (link) { close(); }
-    });
-
-    // Close on Escape
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && drawer.classList.contains("open")) close();
-    });
+    // Drawer interaction is now handled by drawer.js
   }
 
   window.SF_renderHeader = render;
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", render);
   else render();
+
+  /* Note: Drawer interaction is handled by drawer.js for better separation of concerns */
 })();

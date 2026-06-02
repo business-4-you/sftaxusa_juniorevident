@@ -295,18 +295,43 @@
 .breadcrumb svg { width: 14px; height: 14px; opacity: .5; }
 
 /* ------------------------------------------------------------------ mobile drawer */
-.drawer-backdrop { position: fixed; inset: 0; background: rgba(10,23,54,.45); z-index: 90; opacity: 0; visibility: hidden; transition: opacity .25s ease; }
-.drawer-backdrop.open { opacity: 1; visibility: visible; }
-.drawer {
-  position: fixed; top: 0; bottom: 0; right: 0; width: min(360px, 88vw); max-width: 360px;
-  background: #fff; z-index: 95; padding: 22px; overflow-y: auto;
-  display: flex; flex-direction: column; gap: 6px;
-  /* hidden state: pushed off-screen via margin (no transform — most robust) */
-  margin-right: -380px; visibility: hidden;
-  box-shadow: -16px 0 48px -16px rgba(10,23,54,.3);
-  transition: margin-right .28s ease, visibility .28s ease;
+/* ------------------------------------------------------------------ mobile drawer */
+.drawer-backdrop { 
+  position: fixed; inset: 0; 
+  background: rgba(10,23,54,.45); 
+  z-index: 90; 
+  opacity: 0; 
+  pointer-events: none;
+  transition: opacity .3s ease;
 }
-.drawer.open { margin-right: 0; visibility: visible; }
+.drawer-backdrop.open { 
+  opacity: 1; 
+  pointer-events: auto;
+}
+.drawer {
+  position: fixed; 
+  top: 0; 
+  right: 0;
+  bottom: 0;
+  width: min(360px, 88vw); 
+  max-width: 360px;
+  background: #fff; 
+  z-index: 95; 
+  padding: 22px; 
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  display: flex; 
+  flex-direction: column; 
+  gap: 6px;
+  /* GPU-accelerated animation */
+  transform: translateX(100%);
+  box-shadow: -16px 0 48px -16px rgba(10,23,54,.3);
+  transition: transform .35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+.drawer.open { 
+  transform: translateX(0);
+}
 .drawer-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
 .drawer-close { width: 42px; height: 42px; border: 1px solid var(--line); border-radius: 10px; background: #fff; display: grid; place-items: center; }
 .drawer-close svg { width: 20px; height: 20px; }
