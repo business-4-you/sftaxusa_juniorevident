@@ -182,6 +182,128 @@
       host.querySelectorAll("[data-svc]").forEach(function (a) {
         a.addEventListener("click", function () { track("service_click", { service: a.getAttribute("data-svc") }); });
       });
+
+      var section = host.closest("section");
+      var carousel = host.closest(".service-carousel");
+      if (!carousel && section) {
+        carousel = document.createElement("div");
+        carousel.className = "service-carousel";
+        section.insertBefore(carousel, host);
+        carousel.appendChild(host);
+      }
+
+      if (carousel && !carousel.querySelector(".service-carousel__controls")) {
+        var controls = document.createElement("div");
+        controls.className = "service-carousel__controls";
+        controls.innerHTML =
+          '<button type="button" class="service-carousel__arrow service-carousel__arrow--prev" data-service-prev aria-label="Anterior">' +
+            icon("chevron") +
+          '</button>' +
+          '<div class="service-carousel__dots" data-service-dots aria-label="Indicadores do carrossel"></div>' +
+          '<button type="button" class="service-carousel__arrow service-carousel__arrow--next" data-service-next aria-label="Próximo">' +
+            icon("chevron") +
+          '</button>';
+        carousel.appendChild(controls);
+      }
+
+      var dotsHost = carousel ? carousel.querySelector("[data-service-dots]") : null;
+      if (dotsHost) {
+        dotsHost.innerHTML = order.map(function (_, i) {
+          return '<button type="button" class="service-carousel__dot" data-service-dot="' + i + '" aria-label="Ir para o serviço ' + (i + 1) + '"></button>';
+        }).join("");
+      }
+
+      if (carousel && !carousel.dataset.carouselBound) {
+        carousel.dataset.carouselBound = "1";
+
+        var prev = carousel.querySelector("[data-service-prev]");
+        var next = carousel.querySelector("[data-service-next]");
+
+        function getCards() {
+          return Array.prototype.slice.call(host.querySelectorAll("[data-svc]"));
+        }
+
+        function getStepWidth() {
+          var cards = getCards();
+          if (!cards.length) return host.clientWidth || 0;
+          var cardWidth = cards[0].getBoundingClientRect().width;
+          var gap = parseFloat(getComputedStyle(host).gap || "0") || 0;
+          return cardWidth + gap;
+        }
+
+        function getActiveIndex() {
+          var cards = getCards();
+          if (!cards.length) return 0;
+          var center = host.scrollLeft + (host.clientWidth / 2);
+          var active = 0;
+          var bestDistance = Infinity;
+          cards.forEach(function (card, index) {
+            var cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+            var distance = Math.abs(cardCenter - center);
+            if (distance < bestDistance) {
+              bestDistance = distance;
+              active = index;
+            }
+          });
+          return active;
+        }
+
+        function setActiveDot(index) {
+          var dots = carousel.querySelectorAll("[data-service-dot]");
+          dots.forEach(function (dot, dotIndex) {
+            dot.classList.toggle("is-active", dotIndex === index);
+            dot.setAttribute("aria-pressed", dotIndex === index ? "true" : "false");
+          });
+        }
+
+        function syncControls() {
+          setActiveDot(getActiveIndex());
+        }
+
+        if (prev) {
+          prev.addEventListener("click", function () {
+            host.scrollBy({ left: -getStepWidth(), behavior: "smooth" });
+          });
+        }
+        if (next) {
+          next.addEventListener("click", function () {
+            host.scrollBy({ left: getStepWidth(), behavior: "smooth" });
+          });
+        }
+
+        carousel.querySelectorAll("[data-service-dot]").forEach(function (dot) {
+          dot.addEventListener("click", function () {
+            var index = parseInt(dot.getAttribute("data-service-dot"), 10) || 0;
+            var cards = getCards();
+            if (cards[index]) {
+              host.scrollTo({ left: cards[index].offsetLeft, behavior: "smooth" });
+            }
+          });
+        });
+
+        host.addEventListener("scroll", function () {
+          window.requestAnimationFrame(syncControls);
+        }, { passive: true });
+        window.addEventListener("resize", syncControls);
+        syncControls();
+      } else if (carousel) {
+        var cardsNow = Array.prototype.slice.call(host.querySelectorAll("[data-svc]"));
+        var activeCenter = host.scrollLeft + (host.clientWidth / 2);
+        var activeIndex = 0;
+        var activeDistance = Infinity;
+        cardsNow.forEach(function (card, index) {
+          var cardCenter = card.offsetLeft + (card.offsetWidth / 2);
+          var distance = Math.abs(cardCenter - activeCenter);
+          if (distance < activeDistance) {
+            activeDistance = distance;
+            activeIndex = index;
+          }
+        });
+        carousel.querySelectorAll("[data-service-dot]").forEach(function (dot, dotIndex) {
+          dot.classList.toggle("is-active", dotIndex === activeIndex);
+          dot.setAttribute("aria-pressed", dotIndex === activeIndex ? "true" : "false");
+        });
+      }
     });
   }
 

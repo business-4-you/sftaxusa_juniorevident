@@ -316,6 +316,52 @@
 .process-step h3 { font-size: 1.08rem; margin-bottom: 7px; }
 .process-step p { color: var(--muted); font-size: .95rem; }
 
+/* ------------------------------------------------------------------ services carousel */
+.service-carousel { position: relative; }
+.service-carousel__controls {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 16px;
+}
+.service-carousel__arrow {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: #fff;
+  box-shadow: var(--sh-sm);
+  display: grid;
+  place-items: center;
+  color: var(--ink-soft);
+  flex: none;
+}
+.service-carousel__arrow:hover { color: var(--brand); box-shadow: var(--sh); }
+.service-carousel__arrow svg { width: 18px; height: 18px; }
+.service-carousel__arrow--next svg { transform: rotate(180deg); }
+.service-carousel__dots {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  min-height: 18px;
+}
+.service-carousel__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 0;
+  background: #c8d3e6;
+  padding: 0;
+  transition: transform .2s ease, background .2s ease, width .2s ease;
+}
+.service-carousel__dot.is-active {
+  width: 28px;
+  background: var(--brand);
+}
+
 /* ------------------------------------------------------------------ split / about */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,4vw,60px); align-items: center; }
 .stat-row { display: flex; flex-wrap: wrap; gap: 28px 40px; margin-top: 30px; }
@@ -532,6 +578,7 @@ body.drawer-open { overflow: hidden; touch-action: none; }
   .footer-brand { grid-column: 1 / -1; }
 }
 @media (max-width: 1180px) {
+  .service-carousel__controls { display: flex; }
   .about-values-carousel__controls { display: block; }
   [data-about-values] {
     display: flex !important;
@@ -656,6 +703,15 @@ body.drawer-open { overflow: hidden; touch-action: none; }
   }
 }
 @media (max-width: 720px) {
+  .service-carousel__controls {
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .service-carousel__arrow {
+    width: 40px;
+    height: 40px;
+  }
+  .service-carousel__dots { gap: 8px; }
   .about-values-carousel__arrow {
     width: 44px;
     height: 44px;
