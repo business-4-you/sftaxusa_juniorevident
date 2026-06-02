@@ -4,6 +4,13 @@
   function render() {
     var host = document.querySelector("[data-header]");
     if (!host) return;
+    var lang = new URLSearchParams(location.search).get("lang") || localStorage.getItem("sf_lang") || "pt";
+    var services = (window.SERVICES && window.SERVICES[lang]) || (window.SERVICES && window.SERVICES.pt) || {};
+    var serviceLinks = (window.SERVICE_ORDER || []).map(function (slug) {
+      var service = services[slug];
+      if (!service) return "";
+      return '<a href="servico.html?s=' + slug + '&lang=' + lang + '">' + service.name + '</a>';
+    }).join("");
     host.outerHTML =
       '<header class="site-header"><div class="wrap header-inner">' +
         '<a class="brand" href="index.html" data-href-lang aria-label="SF TAX USA">' +
@@ -31,9 +38,8 @@
           '<button class="drawer-close" aria-label="Close">' + i("x") + '</button></div>' +
         '<a href="index.html" data-href-lang data-i18n="nav.home"></a>' +
         '<a href="sobre.html" data-href-lang data-i18n="nav.about"></a>' +
-        '<details><summary><span data-i18n="nav.services"></span>' + i("chevron") + '</summary>' +
-          '<div class="sub" data-drawer-services></div></details>' +
-        '<a href="index.html#insights" data-href-lang data-i18n="nav.insights"></a>' +
+        '<details open><summary><span data-i18n="nav.services"></span>' + i("chevron") + '</summary>' +
+          '<div class="sub" data-drawer-services>' + serviceLinks + '</div></details>' +
         '<a href="contato.html" data-href-lang data-i18n="nav.contact"></a>' +
         '<a class="btn btn--green" data-wa data-loc="drawer" style="margin-top:14px"><span data-i18n="cta.specialist"></span></a>' +
       '</aside>';
