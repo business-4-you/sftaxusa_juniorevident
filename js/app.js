@@ -174,6 +174,50 @@
       '</a>';
   }
   function renderServiceGrids() {
+    function applyServiceGridMode(host) {
+      var cards = Array.prototype.slice.call(host.querySelectorAll("[data-svc]"));
+      var isCarousel = window.innerWidth <= 1180;
+      var isMobile = window.innerWidth <= 720;
+
+      if (isCarousel) {
+        host.style.setProperty("display", "flex", "important");
+        host.style.flexWrap = "nowrap";
+        host.style.overflowX = "auto";
+        host.style.overflowY = "hidden";
+        host.style.gap = isMobile ? "14px" : "18px";
+        host.style.padding = isMobile ? "4px 6px 10px" : "4px 6px 12px";
+        host.style.marginInline = "-6px";
+        host.style.scrollSnapType = "x mandatory";
+        host.style.scrollPaddingInline = "6px";
+        host.style.overscrollBehaviorX = "contain";
+        host.style.webkitOverflowScrolling = "touch";
+        cards.forEach(function (card) {
+          card.style.flex = isMobile ? "0 0 calc(100vw - 48px)" : "0 0 clamp(280px, 42vw, 340px)";
+          card.style.minWidth = isMobile ? "calc(100vw - 48px)" : "clamp(280px, 42vw, 340px)";
+          card.style.scrollSnapAlign = "start";
+          card.style.scrollSnapStop = "always";
+        });
+      } else {
+        host.style.removeProperty("display");
+        host.style.flexWrap = "";
+        host.style.overflowX = "";
+        host.style.overflowY = "";
+        host.style.gap = "";
+        host.style.padding = "";
+        host.style.marginInline = "";
+        host.style.scrollSnapType = "";
+        host.style.scrollPaddingInline = "";
+        host.style.overscrollBehaviorX = "";
+        host.style.webkitOverflowScrolling = "";
+        cards.forEach(function (card) {
+          card.style.flex = "";
+          card.style.minWidth = "";
+          card.style.scrollSnapAlign = "";
+          card.style.scrollSnapStop = "";
+        });
+      }
+    }
+
     document.querySelectorAll("[data-service-grid]").forEach(function (host) {
       var limit = parseInt(host.getAttribute("data-limit") || "0", 10);
       var order = window.SERVICE_ORDER.slice();
@@ -182,6 +226,7 @@
       host.querySelectorAll("[data-svc]").forEach(function (a) {
         a.addEventListener("click", function () { track("service_click", { service: a.getAttribute("data-svc") }); });
       });
+      applyServiceGridMode(host);
 
       var section = host.closest("section");
       var carousel = host.closest(".service-carousel");
@@ -285,6 +330,12 @@
           window.requestAnimationFrame(syncControls);
         }, { passive: true });
         window.addEventListener("resize", syncControls);
+        if (!window.__sfServiceGridResizeBound) {
+          window.__sfServiceGridResizeBound = true;
+          window.addEventListener("resize", function () {
+            document.querySelectorAll("[data-service-grid]").forEach(applyServiceGridMode);
+          });
+        }
         syncControls();
       } else if (carousel) {
         var cardsNow = Array.prototype.slice.call(host.querySelectorAll("[data-svc]"));
