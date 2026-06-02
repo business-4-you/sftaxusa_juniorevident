@@ -466,45 +466,61 @@
 .breadcrumb a:hover { color: var(--brand); }
 .breadcrumb svg { width: 14px; height: 14px; opacity: .5; }
 
-/* ------------------------------------------------------------------ mobile drawer */
-.drawer-backdrop { position: fixed; inset: 0; background: rgba(10,23,54,.45); z-index: 90; opacity: 0; visibility: hidden; transition: opacity .25s; }
-.drawer-backdrop.open { opacity: 1; visibility: visible; }
-.drawer {
+/* ------------------------------------------------------------------ mobile menu (global) */
+.mobile-menu-overlay {
   position: fixed;
-  top: 0;
-  right: 0;
-  width: 85vw;
-  min-width: 300px;
-  max-width: 380px;
+  inset: 0;
+  background: rgba(10, 23, 54, .45);
+  z-index: 90;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+.mobile-menu-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
   height: 100vh;
-  max-height: 100vh;
-  box-sizing: border-box;
-  background: #fff;
   z-index: 95;
-  transform: translateX(100%);
-  transition: transform .28s ease;
-  padding: 16px 14px 18px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .25s ease, visibility .25s ease;
+}
+.mobile-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.mobile-menu__panel {
+  width: min(85vw, 380px);
+  min-width: 300px;
+  height: 100%;
+  max-height: 100vh;
+  background: #fff;
+  box-shadow: -18px 0 40px rgba(10, 23, 54, .18);
+  box-sizing: border-box;
+  padding: 18px 16px calc(18px + env(safe-area-inset-bottom));
   display: flex;
   flex-direction: column;
   gap: 10px;
-  box-shadow: -18px 0 40px rgba(10, 23, 54, .18);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
-.drawer.open { transform: none; }
-.drawer-head {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background: #fff;
+.mobile-menu__head {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  margin-bottom: 6px;
-  padding-bottom: 10px;
+  margin-bottom: 4px;
 }
-.drawer-close {
+.mobile-menu__close {
   width: 44px;
   height: 44px;
   border: 1px solid var(--line);
@@ -514,63 +530,56 @@
   place-items: center;
   flex: none;
 }
-.drawer-close svg { width: 20px; height: 20px; }
-.drawer-nav {
+.mobile-menu__close svg { width: 20px; height: 20px; }
+.mobile-menu__nav {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-.drawer a, .drawer-nav > button {
+.mobile-menu__nav > a,
+.mobile-menu__services-toggle {
   width: 100%;
   box-sizing: border-box;
-  padding: 4px 4px;
-  border-radius: 10px;
-  font-weight: 600;
-  color: var(--ink-soft);
-  font-size: 15px;
-}
-.drawer a:hover { background: var(--bg-soft); }
-.drawer-services-toggle {
-  width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
   padding: 12px 10px;
-  border: 0;
   border-radius: 10px;
-  background: transparent;
-  color: var(--ink-soft);
   font-weight: 600;
   font-size: 15px;
+  color: var(--ink-soft);
+}
+.mobile-menu__nav > a:hover { background: var(--bg-soft); }
+.mobile-menu__services-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border: 0;
+  background: transparent;
   cursor: pointer;
 }
-.drawer-services-toggle:hover { background: var(--bg-soft); }
-.drawer-services-toggle svg {
+.mobile-menu__services-toggle:hover { background: var(--bg-soft); }
+.mobile-menu__services-toggle svg {
   width: 20px;
   height: 20px;
   flex: none;
   transition: transform .2s ease;
 }
-.drawer-services-toggle.is-open svg { transform: rotate(180deg); }
-.drawer .sub {
+.mobile-menu__services-toggle.is-open svg { transform: rotate(180deg); }
+.mobile-menu__services {
   display: grid;
   gap: 6px;
   max-height: 0;
   overflow: hidden;
   opacity: 0;
   padding: 0 0 0 10px;
-  background: transparent;
   transition: max-height .25s ease, opacity .2s ease, padding .2s ease;
 }
-.drawer .sub:not([hidden]) {
+.mobile-menu__services:not([hidden]) {
   max-height: min(38vh, 280px);
   opacity: 1;
   padding: 6px 0 0 10px;
   overflow-y: auto;
 }
-.drawer-service-link {
+.mobile-menu__service-link {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -581,9 +590,10 @@
   color: var(--ink-soft);
   font-size: 13px;
 }
-.drawer-service-link:hover { color: var(--brand); background: #fff; border-color: rgba(35,67,144,.12); }
-.drawer-service-link svg { width: 18px; height: 18px; color: var(--blue); flex: none; }
-.drawer-cta { margin-top: 10px; }
+.mobile-menu__service-link:hover { color: var(--brand); background: #fff; border-color: rgba(35,67,144,.12); }
+.mobile-menu__service-link svg { width: 18px; height: 18px; color: var(--blue); flex: none; }
+.mobile-menu__cta { margin-top: 10px; }
+body.mobile-menu-open { overflow: hidden; touch-action: none; overscroll-behavior: none; }
 
 /* =================================================================== responsive */
 @media (max-width: 1080px) {
@@ -609,23 +619,6 @@
     left: auto;
     right: 0;
   }
-  .drawer {
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    max-width: none;
-    min-width: 0;
-    border-radius: 0;
-    padding: 18px 16px calc(18px + env(safe-area-inset-bottom));
-    gap: 10px;
-  }
-  .drawer-head {
-    margin-bottom: 4px;
-  }
-  .drawer a, .drawer-nav > button {
-    font-size: 15.5px;
-  }
-  .drawer-services-toggle { font-size: 15.5px; }
   .hero-grid { grid-template-columns: 1fr; gap: 36px; }
   .hero-visual { order: -1; max-width: 460px; }
   .split, .contact-grid, .lang-band, .cta-band ~ * { grid-template-columns: 1fr; }
@@ -685,15 +678,17 @@
   .field-row { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .float-card { display: none; }
-  .drawer-service-link {
-    padding: 10px 11px;
-  }
-  .drawer {
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    max-width: none;
+  .mobile-menu__panel {
+    width: min(92vw, 380px);
     min-width: 0;
+    padding: 16px 14px calc(16px + env(safe-area-inset-bottom));
+  }
+  .mobile-menu__nav > a,
+  .mobile-menu__services-toggle {
+    font-size: 15px;
+  }
+  .mobile-menu__service-link {
+    padding: 7px 9px;
   }
   .home-process-carousel__controls { gap: 10px; margin-top: 14px; }
   .home-process-carousel__arrow { width: 40px; height: 40px; }

@@ -591,24 +591,49 @@
 
   /* ---------- Mobile drawer ---------- */
   function buildDrawer() {
-    var backdrop = document.querySelector(".drawer-backdrop");
-    var drawer = document.querySelector(".drawer");
+    var backdrop = document.querySelector("[data-mobile-menu-overlay]");
+    var drawer = document.querySelector("[data-mobile-menu]");
     var burger = document.querySelector(".burger");
-    var servicesToggle = drawer ? drawer.querySelector(".drawer-services-toggle") : null;
-    var servicesPanel = drawer ? drawer.querySelector("[data-drawer-services]") : null;
+    var servicesToggle = drawer ? drawer.querySelector("[data-mobile-services-toggle]") : null;
+    var servicesPanel = drawer ? drawer.querySelector("[data-mobile-services-panel]") : null;
     if (!drawer || !burger) return;
     if (drawer.dataset.drawerBound === "1") return;
     drawer.dataset.drawerBound = "1";
+    var openTimer = null;
+    var closeTimer = null;
     function closeServices() {
       if (servicesToggle) servicesToggle.setAttribute("aria-expanded", "false");
       if (servicesPanel) servicesPanel.setAttribute("hidden", "");
       if (servicesToggle) servicesToggle.classList.remove("is-open");
     }
-    function open() { drawer.classList.add("open"); backdrop.classList.add("open"); document.body.style.overflow = "hidden"; }
-    function close() { drawer.classList.remove("open"); backdrop.classList.remove("open"); document.body.style.overflow = ""; closeServices(); }
-    burger.addEventListener("click", open);
-    backdrop.addEventListener("click", close);
-    var c = drawer.querySelector(".drawer-close"); if (c) c.addEventListener("click", close);
+    function setBodyLocked(locked) {
+      document.body.classList.toggle("mobile-menu-open", !!locked);
+    }
+    function openMenu() {
+      if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+      drawer.hidden = false;
+      if (backdrop) backdrop.hidden = false;
+      if (openTimer) clearTimeout(openTimer);
+      openTimer = window.setTimeout(function () {
+        drawer.classList.add("is-open");
+        if (backdrop) backdrop.classList.add("is-open");
+      }, 16);
+      setBodyLocked(true);
+    }
+    function closeMenu() {
+      if (openTimer) { clearTimeout(openTimer); openTimer = null; }
+      drawer.classList.remove("is-open");
+      if (backdrop) backdrop.classList.remove("is-open");
+      setBodyLocked(false);
+      closeServices();
+      closeTimer = window.setTimeout(function () {
+        if (!drawer.classList.contains("is-open")) drawer.hidden = true;
+        if (backdrop && !backdrop.classList.contains("is-open")) backdrop.hidden = true;
+      }, 280);
+    }
+    burger.addEventListener("click", openMenu);
+    if (backdrop) backdrop.addEventListener("click", closeMenu);
+    var c = drawer.querySelector("[data-mobile-menu-close]"); if (c) c.addEventListener("click", closeMenu);
     if (servicesToggle && servicesPanel) {
       servicesToggle.addEventListener("click", function () {
         var expanded = servicesToggle.getAttribute("aria-expanded") === "true";
@@ -621,14 +646,17 @@
         }
       });
     }
-    drawer.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", close); });
+    drawer.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", closeMenu); });
+    drawer.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") closeMenu();
+    });
   }
   function renderDrawerServices() {
-    var host = document.querySelector("[data-drawer-services]");
+    var host = document.querySelector("[data-mobile-services-panel]");
     if (!host) return;
     host.innerHTML = window.SERVICE_ORDER.map(function (slug) {
       var s = svcData()[slug]; if (!s) return "";
-      return '<a class="drawer-service-link" href="servico.html?s=' + slug + '&lang=' + getLang() + '">' +
+      return '<a class="mobile-menu__service-link" href="servico.html?s=' + slug + '&lang=' + getLang() + '">' +
         icon(window.SERVICE_ICONS[slug] || "doc") +
         '<span>' + s.name + '</span></a>';
     }).join("");
@@ -801,16 +829,16 @@
     applyLinks();
     bindForm();
     initReveal();
+    if (typeof window.SF_initMobileMenu === "function") window.SF_initMobileMenu();
   }
 
   /* ---------- Boot ---------- */
   function boot() {
     document.documentElement.lang = getLang();
     render();
-    buildDrawer();
     window.addEventListener("popstate", render);
   }
-  window.SF_bindDrawer = buildDrawer;
+  window.SF_initMobileMenu = buildDrawer;
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
   else boot();
 })();
