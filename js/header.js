@@ -4,19 +4,10 @@
   function render() {
     var host = document.querySelector("[data-header]");
     if (!host) return;
-    var lang = new URLSearchParams(location.search).get("lang") || localStorage.getItem("sf_lang") || "pt";
-    var services = (window.SERVICES && window.SERVICES[lang]) || (window.SERVICES && window.SERVICES.pt) || {};
-    var serviceLinks = (window.SERVICE_ORDER || []).map(function (slug) {
-      var service = services[slug];
-      if (!service) return "";
-      return '<a href="servico.html?s=' + slug + '&lang=' + lang + '">' + service.name + '</a>';
-    }).join("");
     host.outerHTML =
       '<header class="site-header"><div class="wrap header-inner">' +
         '<a class="brand" href="index.html" data-href-lang aria-label="SF TAX USA">' +
-          '<img class="brand__icon" src="assets/sf-logo-icon.png" alt="SF TAX USA — Santiago & Felix Accounting Services" />' +
-          '<span class="brand__text"><span class="brand__name">SF TAX <b>USA</b></span>' +
-          '<span class="brand__sub">Santiago &amp; Felix Accounting</span></span>' +
+          '<img class="brand__logo" src="uploads/logo-transparente.png" alt="SF TAX USA — Santiago & Felix Accounting Services" />' +
         '</a>' +
         '<nav class="nav" aria-label="Primary">' +
           '<a href="index.html" data-href-lang data-i18n="nav.home"></a>' +
@@ -33,14 +24,19 @@
       '</div></header>' +
       '<div class="drawer-backdrop"></div>' +
       '<aside class="drawer" aria-label="Menu">' +
-        '<div class="drawer-head"><span class="brand__name">SF TAX <b style="color:var(--green-600)">USA</b></span>' +
-          '<button class="drawer-close" aria-label="Close">' + i("x") + '</button></div>' +
-        '<a href="index.html" data-href-lang data-i18n="nav.home"></a>' +
-        '<a href="sobre.html" data-href-lang data-i18n="nav.about"></a>' +
-        '<details open><summary><span data-i18n="nav.services"></span>' + i("chevron") + '</summary>' +
-          '<div class="sub" data-drawer-services>' + serviceLinks + '</div></details>' +
-        '<a href="contato.html" data-href-lang data-i18n="nav.contact"></a>' +
-        '<a class="btn btn--green" data-wa data-loc="drawer" style="margin-top:14px"><span data-i18n="cta.specialist"></span></a>' +
+        '<div class="drawer-head">' +
+          '<button class="drawer-close" aria-label="Close">' + i("x") + '</button>' +
+        '</div>' +
+        '<nav class="drawer-nav" aria-label="Menu mobile">' +
+          '<a href="index.html" data-href-lang data-i18n="nav.home"></a>' +
+          '<a href="sobre.html" data-href-lang data-i18n="nav.about"></a>' +
+          '<button type="button" class="drawer-services-toggle" aria-expanded="false" aria-controls="drawer-services-panel">' +
+            '<span data-i18n="nav.services"></span>' + i("chevron") +
+          '</button>' +
+          '<div id="drawer-services-panel" class="sub" data-drawer-services hidden></div>' +
+          '<a href="contato.html" data-href-lang data-i18n="nav.contact"></a>' +
+        '</nav>' +
+        '<a class="btn btn--green drawer-cta" data-wa data-loc="drawer"><span data-i18n="cta.specialist"></span></a>' +
       '</aside>';
   }
   window.SF_renderHeader = render;

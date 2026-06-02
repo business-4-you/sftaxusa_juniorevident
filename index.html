@@ -17,7 +17,7 @@
 <div data-header></div>
 
 <!-- ============================ HERO ============================ -->
-<section class="hero home-hero-bg">
+<section class="hero">
   <div class="wrap">
     <div class="hero-grid">
       <div class="hero-copy">
@@ -35,9 +35,7 @@
         </div>
       </div>
       <div class="hero-visual">
-        <div class="ph hero-city-photo">
-          <img src="https://images.unsplash.com/photo-1535498730771-e735b998cd64?auto=format&fit=crop&w=1200&q=80" alt="Skyline de Miami, Florida" loading="eager" decoding="async" />
-        </div>
+        <div class="ph"><span class="ph__label" data-i18n="hero.imgLabel">[ foto: equipe / escritório SF TAX USA — Flórida ]</span></div>
         <div class="float-card float-card--tl">
           <span class="fc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
           <span><b data-i18n="hero.floatAName">Resposta no mesmo dia</b><span data-i18n="hero.floatALabel">Atendimento humano e próximo</span></span>
@@ -84,7 +82,18 @@
       </div>
       <a class="btn btn--ghost" href="servicos.html" data-href-lang><span data-i18n="servicesHome.cta">Ver todos os serviços</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
-    <div class="grid reveal" data-service-grid data-limit="8" style="grid-template-columns:repeat(4,1fr);margin-top:40px"></div>
+    <div class="home-services-carousel reveal" data-home-services-carousel>
+      <div class="grid home-services-carousel__track" data-service-grid data-limit="8" style="grid-template-columns:repeat(4,1fr);margin-top:40px"></div>
+      <div class="home-services-carousel__controls" aria-label="Navegação dos serviços">
+        <button class="home-services-carousel__arrow home-services-carousel__arrow--prev" type="button" data-home-services-prev aria-label="Serviço anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18 9 12l6-6"/></svg>
+        </button>
+        <div class="home-services-carousel__dots" data-home-services-dots></div>
+        <button class="home-services-carousel__arrow home-services-carousel__arrow--next" type="button" data-home-services-next aria-label="Próximo serviço">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
     <div class="center reveal" style="margin-top:34px">
       <a class="btn btn--navy btn--lg" href="servicos.html" data-href-lang><span data-i18n="servicesHome.cta">Ver todos os serviços</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
@@ -119,7 +128,18 @@
       <span class="eyebrow" data-i18n="why.eyebrow">Por que escolher a SF TAX USA</span>
       <h2 class="h-1" data-i18n="why.title">Confiança, clareza e acompanhamento em cada etapa</h2>
     </div>
-    <div class="grid reveal" data-why style="grid-template-columns:repeat(3,1fr);margin-top:44px;gap:32px"></div>
+    <div class="home-why-carousel reveal" data-home-why-carousel>
+      <div class="grid home-why-carousel__track" data-why style="grid-template-columns:repeat(3,1fr);margin-top:44px;gap:32px"></div>
+      <div class="home-why-carousel__controls" aria-label="Navegação dos diferenciais">
+        <button class="home-why-carousel__arrow home-why-carousel__arrow--prev" type="button" data-home-why-prev aria-label="Diferencial anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18 9 12l6-6"/></svg>
+        </button>
+        <div class="home-why-carousel__dots" data-home-why-dots></div>
+        <button class="home-why-carousel__arrow home-why-carousel__arrow--next" type="button" data-home-why-next aria-label="Próximo diferencial">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -130,7 +150,18 @@
       <span class="eyebrow eyebrow--center" data-i18n="process.eyebrow">Como funciona</span>
       <h2 class="h-1" data-i18n="process.title">Um caminho simples e organizado, do primeiro contato ao acompanhamento</h2>
     </div>
-    <div class="grid reveal" data-process style="grid-template-columns:repeat(5,1fr);margin-top:44px"></div>
+    <div class="home-process-carousel reveal" data-home-process-carousel>
+      <div class="grid home-process-carousel__track" data-process style="grid-template-columns:repeat(5,1fr);margin-top:44px"></div>
+      <div class="home-process-carousel__controls" aria-label="Navegação do processo">
+        <button class="home-process-carousel__arrow home-process-carousel__arrow--prev" type="button" data-home-process-prev aria-label="Passo anterior">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18 9 12l6-6"/></svg>
+        </button>
+        <div class="home-process-carousel__dots" data-home-process-dots></div>
+        <button class="home-process-carousel__arrow home-process-carousel__arrow--next" type="button" data-home-process-next aria-label="Próximo passo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -146,18 +177,6 @@
       </div>
       <div class="lang-pills" data-langpills></div>
     </div>
-  </div>
-</section>
-
-<!-- ============================ INSIGHTS ============================ -->
-<section class="section" id="insights" style="background:var(--bg-soft);border-block:1px solid var(--line)">
-  <div class="wrap">
-    <div class="section-head reveal" style="max-width:680px">
-      <span class="eyebrow" data-i18n="blog.eyebrow">Insights</span>
-      <h2 class="h-1" data-i18n="blog.title">Conteúdos para você decidir com mais segurança</h2>
-      <p class="lead" style="margin-top:14px" data-i18n="blog.sub">Explicações práticas sobre impostos e empresas nos EUA.</p>
-    </div>
-    <div class="grid reveal" data-blog style="grid-template-columns:repeat(3,1fr);margin-top:40px;gap:26px"></div>
   </div>
 </section>
 

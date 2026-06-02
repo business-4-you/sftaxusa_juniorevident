@@ -174,50 +174,6 @@
       '</a>';
   }
   function renderServiceGrids() {
-    function applyServiceGridMode(host) {
-      var cards = Array.prototype.slice.call(host.querySelectorAll("[data-svc]"));
-      var isCarousel = window.innerWidth <= 1180;
-      var isMobile = window.innerWidth <= 720;
-
-      if (isCarousel) {
-        host.style.setProperty("display", "flex", "important");
-        host.style.flexWrap = "nowrap";
-        host.style.overflowX = "auto";
-        host.style.overflowY = "hidden";
-        host.style.gap = isMobile ? "14px" : "18px";
-        host.style.padding = isMobile ? "4px 6px 10px" : "4px 6px 12px";
-        host.style.marginInline = "-6px";
-        host.style.scrollSnapType = "x mandatory";
-        host.style.scrollPaddingInline = "6px";
-        host.style.overscrollBehaviorX = "contain";
-        host.style.webkitOverflowScrolling = "touch";
-        cards.forEach(function (card) {
-          card.style.flex = isMobile ? "0 0 calc(100vw - 48px)" : "0 0 clamp(280px, 42vw, 340px)";
-          card.style.minWidth = isMobile ? "calc(100vw - 48px)" : "clamp(280px, 42vw, 340px)";
-          card.style.scrollSnapAlign = "start";
-          card.style.scrollSnapStop = "always";
-        });
-      } else {
-        host.style.removeProperty("display");
-        host.style.flexWrap = "";
-        host.style.overflowX = "";
-        host.style.overflowY = "";
-        host.style.gap = "";
-        host.style.padding = "";
-        host.style.marginInline = "";
-        host.style.scrollSnapType = "";
-        host.style.scrollPaddingInline = "";
-        host.style.overscrollBehaviorX = "";
-        host.style.webkitOverflowScrolling = "";
-        cards.forEach(function (card) {
-          card.style.flex = "";
-          card.style.minWidth = "";
-          card.style.scrollSnapAlign = "";
-          card.style.scrollSnapStop = "";
-        });
-      }
-    }
-
     document.querySelectorAll("[data-service-grid]").forEach(function (host) {
       var limit = parseInt(host.getAttribute("data-limit") || "0", 10);
       var order = window.SERVICE_ORDER.slice();
@@ -226,136 +182,316 @@
       host.querySelectorAll("[data-svc]").forEach(function (a) {
         a.addEventListener("click", function () { track("service_click", { service: a.getAttribute("data-svc") }); });
       });
-      applyServiceGridMode(host);
-
-      var section = host.closest("section");
-      var carousel = host.closest(".service-carousel");
-      if (!carousel && section) {
-        carousel = document.createElement("div");
-        carousel.className = "service-carousel";
-        section.insertBefore(carousel, host);
-        carousel.appendChild(host);
-      }
-
-      if (carousel && !carousel.querySelector(".service-carousel__controls")) {
-        var controls = document.createElement("div");
-        controls.className = "service-carousel__controls";
-        controls.innerHTML =
-          '<button type="button" class="service-carousel__arrow service-carousel__arrow--prev" data-service-prev aria-label="Anterior">' +
-            icon("chevron") +
-          '</button>' +
-          '<div class="service-carousel__dots" data-service-dots aria-label="Indicadores do carrossel"></div>' +
-          '<button type="button" class="service-carousel__arrow service-carousel__arrow--next" data-service-next aria-label="Próximo">' +
-            icon("chevron") +
-          '</button>';
-        carousel.appendChild(controls);
-      }
-
-      var dotsHost = carousel ? carousel.querySelector("[data-service-dots]") : null;
-      if (dotsHost) {
-        dotsHost.innerHTML = order.map(function (_, i) {
-          return '<button type="button" class="service-carousel__dot" data-service-dot="' + i + '" aria-label="Ir para o serviço ' + (i + 1) + '"></button>';
-        }).join("");
-      }
-
-      if (carousel && !carousel.dataset.carouselBound) {
-        carousel.dataset.carouselBound = "1";
-
-        var prev = carousel.querySelector("[data-service-prev]");
-        var next = carousel.querySelector("[data-service-next]");
-
-        function getCards() {
-          return Array.prototype.slice.call(host.querySelectorAll("[data-svc]"));
-        }
-
-        function getStepWidth() {
-          var cards = getCards();
-          if (!cards.length) return host.clientWidth || 0;
-          var cardWidth = cards[0].getBoundingClientRect().width;
-          var gap = parseFloat(getComputedStyle(host).gap || "0") || 0;
-          return cardWidth + gap;
-        }
-
-        function getActiveIndex() {
-          var cards = getCards();
-          if (!cards.length) return 0;
-          var center = host.scrollLeft + (host.clientWidth / 2);
-          var active = 0;
-          var bestDistance = Infinity;
-          cards.forEach(function (card, index) {
-            var cardCenter = card.offsetLeft + (card.offsetWidth / 2);
-            var distance = Math.abs(cardCenter - center);
-            if (distance < bestDistance) {
-              bestDistance = distance;
-              active = index;
-            }
-          });
-          return active;
-        }
-
-        function setActiveDot(index) {
-          var dots = carousel.querySelectorAll("[data-service-dot]");
-          dots.forEach(function (dot, dotIndex) {
-            dot.classList.toggle("is-active", dotIndex === index);
-            dot.setAttribute("aria-pressed", dotIndex === index ? "true" : "false");
-          });
-        }
-
-        function syncControls() {
-          setActiveDot(getActiveIndex());
-        }
-
-        if (prev) {
-          prev.addEventListener("click", function () {
-            host.scrollBy({ left: -getStepWidth(), behavior: "smooth" });
-          });
-        }
-        if (next) {
-          next.addEventListener("click", function () {
-            host.scrollBy({ left: getStepWidth(), behavior: "smooth" });
-          });
-        }
-
-        carousel.querySelectorAll("[data-service-dot]").forEach(function (dot) {
-          dot.addEventListener("click", function () {
-            var index = parseInt(dot.getAttribute("data-service-dot"), 10) || 0;
-            var cards = getCards();
-            if (cards[index]) {
-              host.scrollTo({ left: cards[index].offsetLeft, behavior: "smooth" });
-            }
-          });
-        });
-
-        host.addEventListener("scroll", function () {
-          window.requestAnimationFrame(syncControls);
-        }, { passive: true });
-        window.addEventListener("resize", syncControls);
-        if (!window.__sfServiceGridResizeBound) {
-          window.__sfServiceGridResizeBound = true;
-          window.addEventListener("resize", function () {
-            document.querySelectorAll("[data-service-grid]").forEach(applyServiceGridMode);
-          });
-        }
-        syncControls();
-      } else if (carousel) {
-        var cardsNow = Array.prototype.slice.call(host.querySelectorAll("[data-svc]"));
-        var activeCenter = host.scrollLeft + (host.clientWidth / 2);
-        var activeIndex = 0;
-        var activeDistance = Infinity;
-        cardsNow.forEach(function (card, index) {
-          var cardCenter = card.offsetLeft + (card.offsetWidth / 2);
-          var distance = Math.abs(cardCenter - activeCenter);
-          if (distance < activeDistance) {
-            activeDistance = distance;
-            activeIndex = index;
-          }
-        });
-        carousel.querySelectorAll("[data-service-dot]").forEach(function (dot, dotIndex) {
-          dot.classList.toggle("is-active", dotIndex === activeIndex);
-          dot.setAttribute("aria-pressed", dotIndex === activeIndex ? "true" : "false");
-        });
-      }
     });
+  }
+
+  /* ---------- Home why carousel (tablet/mobile) ---------- */
+  var HOME_WHY_MQ = window.matchMedia ? window.matchMedia("(max-width: 1180px)") : null;
+  var homeWhyCarouselBound = false;
+  function renderHomeWhyCarousel() {
+    var host = document.querySelector("[data-home-why-carousel]");
+    if (!host) return;
+    var track = host.querySelector("[data-why]");
+    var dotsHost = host.querySelector("[data-home-why-dots]");
+    var prev = host.querySelector("[data-home-why-prev]");
+    var next = host.querySelector("[data-home-why-next]");
+    if (!track || !dotsHost || !prev || !next) return;
+
+    var cards = Array.prototype.slice.call(track.querySelectorAll(".feature"));
+    if (!cards.length) return;
+
+    dotsHost.innerHTML = cards.map(function (_, index) {
+      return '<button type="button" class="home-why-carousel__dot" data-home-why-dot="' + index + '" aria-label="Ir para o diferencial ' + (index + 1) + '"></button>';
+    }).join("");
+
+    var dots = Array.prototype.slice.call(dotsHost.querySelectorAll("[data-home-why-dot]"));
+    var activeIndex = -1;
+    var rafId = 0;
+
+    function isActiveMode() {
+      return !HOME_WHY_MQ || HOME_WHY_MQ.matches;
+    }
+
+    function slideStep() {
+      if (!cards.length) return 0;
+      var style = window.getComputedStyle(track);
+      var gap = parseFloat(style.columnGap || style.gap || "0") || 0;
+      return cards[0].getBoundingClientRect().width + gap;
+    }
+
+    function clampIndex(index) {
+      return Math.max(0, Math.min(cards.length - 1, index));
+    }
+
+    function setActive(index) {
+      var nextIndex = clampIndex(index);
+      if (nextIndex === activeIndex) return;
+      activeIndex = nextIndex;
+      dots.forEach(function (dot, dotIndex) {
+        var active = dotIndex === activeIndex;
+        dot.classList.toggle("is-active", active);
+        dot.setAttribute("aria-current", active ? "true" : "false");
+      });
+    }
+
+    function syncFromScroll() {
+      if (!isActiveMode()) return;
+      var step = slideStep();
+      if (!step) return;
+      setActive(Math.round(track.scrollLeft / step));
+    }
+
+    function scrollToIndex(index, behavior) {
+      var nextIndex = clampIndex(index);
+      var card = cards[nextIndex];
+      if (!card) return;
+      card.scrollIntoView({ behavior: behavior || "smooth", inline: "start", block: "nearest" });
+      setActive(nextIndex);
+    }
+
+    function scrollByDirection(direction) {
+      if (!isActiveMode()) return;
+      scrollToIndex(activeIndex + direction, "smooth");
+    }
+
+    function toggleCarouselMode() {
+      host.classList.toggle("is-carousel", isActiveMode());
+      if (!isActiveMode()) {
+        setActive(0);
+        return;
+      }
+      syncFromScroll();
+    }
+
+    if (!homeWhyCarouselBound) {
+      prev.addEventListener("click", function () { scrollByDirection(-1); });
+      next.addEventListener("click", function () { scrollByDirection(1); });
+      dotsHost.addEventListener("click", function (e) {
+        var dot = e.target.closest("[data-home-why-dot]");
+        if (!dot || !dotsHost.contains(dot)) return;
+        var index = parseInt(dot.getAttribute("data-home-why-dot"), 10);
+        if (!isNaN(index)) scrollToIndex(index, "smooth");
+      });
+      track.addEventListener("scroll", function () {
+        if (rafId) window.cancelAnimationFrame(rafId);
+        rafId = window.requestAnimationFrame(syncFromScroll);
+      }, { passive: true });
+      if (HOME_WHY_MQ && HOME_WHY_MQ.addEventListener) {
+        HOME_WHY_MQ.addEventListener("change", toggleCarouselMode);
+      } else if (HOME_WHY_MQ && HOME_WHY_MQ.addListener) {
+        HOME_WHY_MQ.addListener(toggleCarouselMode);
+      }
+      window.addEventListener("resize", toggleCarouselMode);
+      homeWhyCarouselBound = true;
+    }
+
+    toggleCarouselMode();
+  }
+
+  /* ---------- Home process carousel (tablet/mobile) ---------- */
+  var HOME_PROCESS_MQ = window.matchMedia ? window.matchMedia("(max-width: 1180px)") : null;
+  var homeProcessCarouselBound = false;
+  function renderHomeProcessCarousel() {
+    var host = document.querySelector("[data-home-process-carousel]");
+    if (!host) return;
+    var track = host.querySelector("[data-process]");
+    var dotsHost = host.querySelector("[data-home-process-dots]");
+    var prev = host.querySelector("[data-home-process-prev]");
+    var next = host.querySelector("[data-home-process-next]");
+    if (!track || !dotsHost || !prev || !next) return;
+
+    var cards = Array.prototype.slice.call(track.querySelectorAll(".process-step"));
+    if (!cards.length) return;
+
+    dotsHost.innerHTML = cards.map(function (_, index) {
+      return '<button type="button" class="home-process-carousel__dot" data-home-process-dot="' + index + '" aria-label="Ir para o passo ' + (index + 1) + '"></button>';
+    }).join("");
+
+    var dots = Array.prototype.slice.call(dotsHost.querySelectorAll("[data-home-process-dot]"));
+    var activeIndex = -1;
+    var rafId = 0;
+
+    function isActiveMode() {
+      return !HOME_PROCESS_MQ || HOME_PROCESS_MQ.matches;
+    }
+
+    function slideStep() {
+      if (!cards.length) return 0;
+      var style = window.getComputedStyle(track);
+      var gap = parseFloat(style.columnGap || style.gap || "0") || 0;
+      return cards[0].getBoundingClientRect().width + gap;
+    }
+
+    function clampIndex(index) {
+      return Math.max(0, Math.min(cards.length - 1, index));
+    }
+
+    function setActive(index) {
+      var nextIndex = clampIndex(index);
+      if (nextIndex === activeIndex) return;
+      activeIndex = nextIndex;
+      dots.forEach(function (dot, dotIndex) {
+        var active = dotIndex === activeIndex;
+        dot.classList.toggle("is-active", active);
+        dot.setAttribute("aria-current", active ? "true" : "false");
+      });
+    }
+
+    function syncFromScroll() {
+      if (!isActiveMode()) return;
+      var step = slideStep();
+      if (!step) return;
+      setActive(Math.round(track.scrollLeft / step));
+    }
+
+    function scrollToIndex(index, behavior) {
+      var nextIndex = clampIndex(index);
+      var card = cards[nextIndex];
+      if (!card) return;
+      card.scrollIntoView({ behavior: behavior || "smooth", inline: "start", block: "nearest" });
+      setActive(nextIndex);
+    }
+
+    function scrollByDirection(direction) {
+      if (!isActiveMode()) return;
+      scrollToIndex(activeIndex + direction, "smooth");
+    }
+
+    function toggleCarouselMode() {
+      host.classList.toggle("is-carousel", isActiveMode());
+      if (!isActiveMode()) {
+        setActive(0);
+        return;
+      }
+      syncFromScroll();
+    }
+
+    if (!homeProcessCarouselBound) {
+      prev.addEventListener("click", function () { scrollByDirection(-1); });
+      next.addEventListener("click", function () { scrollByDirection(1); });
+      dotsHost.addEventListener("click", function (e) {
+        var dot = e.target.closest("[data-home-process-dot]");
+        if (!dot || !dotsHost.contains(dot)) return;
+        var index = parseInt(dot.getAttribute("data-home-process-dot"), 10);
+        if (!isNaN(index)) scrollToIndex(index, "smooth");
+      });
+      track.addEventListener("scroll", function () {
+        if (rafId) window.cancelAnimationFrame(rafId);
+        rafId = window.requestAnimationFrame(syncFromScroll);
+      }, { passive: true });
+      if (HOME_PROCESS_MQ && HOME_PROCESS_MQ.addEventListener) {
+        HOME_PROCESS_MQ.addEventListener("change", toggleCarouselMode);
+      } else if (HOME_PROCESS_MQ && HOME_PROCESS_MQ.addListener) {
+        HOME_PROCESS_MQ.addListener(toggleCarouselMode);
+      }
+      window.addEventListener("resize", toggleCarouselMode);
+      homeProcessCarouselBound = true;
+    }
+
+    toggleCarouselMode();
+  }
+
+  /* ---------- Home services carousel (tablet/mobile) ---------- */
+  var HOME_SERVICES_MQ = window.matchMedia ? window.matchMedia("(max-width: 1180px)") : null;
+  var homeServicesCarouselBound = false;
+  function renderHomeServicesCarousel() {
+    var host = document.querySelector("[data-home-services-carousel]");
+    if (!host) return;
+    var track = host.querySelector("[data-service-grid]");
+    var dotsHost = host.querySelector("[data-home-services-dots]");
+    var prev = host.querySelector("[data-home-services-prev]");
+    var next = host.querySelector("[data-home-services-next]");
+    if (!track || !dotsHost || !prev || !next) return;
+
+    var cards = Array.prototype.slice.call(track.querySelectorAll("[data-svc]"));
+    if (!cards.length) return;
+
+    dotsHost.innerHTML = cards.map(function (_, index) {
+      return '<button type="button" class="home-services-carousel__dot" data-home-services-dot="' + index + '" aria-label="Ir para o serviço ' + (index + 1) + '"></button>';
+    }).join("");
+
+    var dots = Array.prototype.slice.call(dotsHost.querySelectorAll("[data-home-services-dot]"));
+    var activeIndex = -1;
+    var rafId = 0;
+
+    function isActiveMode() {
+      return !HOME_SERVICES_MQ || HOME_SERVICES_MQ.matches;
+    }
+
+    function slideStep() {
+      if (!cards.length) return 0;
+      var style = window.getComputedStyle(track);
+      var gap = parseFloat(style.columnGap || style.gap || "0") || 0;
+      return cards[0].getBoundingClientRect().width + gap;
+    }
+
+    function clampIndex(index) {
+      return Math.max(0, Math.min(cards.length - 1, index));
+    }
+
+    function setActive(index) {
+      var nextIndex = clampIndex(index);
+      if (nextIndex === activeIndex) return;
+      activeIndex = nextIndex;
+      dots.forEach(function (dot, dotIndex) {
+        var active = dotIndex === activeIndex;
+        dot.classList.toggle("is-active", active);
+        dot.setAttribute("aria-current", active ? "true" : "false");
+      });
+    }
+
+    function syncFromScroll() {
+      if (!isActiveMode()) return;
+      var step = slideStep();
+      if (!step) return;
+      setActive(Math.round(track.scrollLeft / step));
+    }
+
+    function scrollToIndex(index, behavior) {
+      var nextIndex = clampIndex(index);
+      var card = cards[nextIndex];
+      if (!card) return;
+      card.scrollIntoView({ behavior: behavior || "smooth", inline: "start", block: "nearest" });
+      setActive(nextIndex);
+    }
+
+    function scrollByDirection(direction) {
+      if (!isActiveMode()) return;
+      scrollToIndex(activeIndex + direction, "smooth");
+    }
+
+    function toggleCarouselMode() {
+      host.classList.toggle("is-carousel", isActiveMode());
+      if (!isActiveMode()) {
+        setActive(0);
+        return;
+      }
+      syncFromScroll();
+    }
+
+    if (!homeServicesCarouselBound) {
+      prev.addEventListener("click", function () { scrollByDirection(-1); });
+      next.addEventListener("click", function () { scrollByDirection(1); });
+      dotsHost.addEventListener("click", function (e) {
+        var dot = e.target.closest("[data-home-services-dot]");
+        if (!dot || !dotsHost.contains(dot)) return;
+        var index = parseInt(dot.getAttribute("data-home-services-dot"), 10);
+        if (!isNaN(index)) scrollToIndex(index, "smooth");
+      });
+      track.addEventListener("scroll", function () {
+        if (rafId) window.cancelAnimationFrame(rafId);
+        rafId = window.requestAnimationFrame(syncFromScroll);
+      }, { passive: true });
+      if (HOME_SERVICES_MQ && HOME_SERVICES_MQ.addEventListener) {
+        HOME_SERVICES_MQ.addEventListener("change", toggleCarouselMode);
+      } else if (HOME_SERVICES_MQ && HOME_SERVICES_MQ.addListener) {
+        HOME_SERVICES_MQ.addListener(toggleCarouselMode);
+      }
+      window.addEventListener("resize", toggleCarouselMode);
+      homeServicesCarouselBound = true;
+    }
+
+    toggleCarouselMode();
   }
 
   /* ---------- Services dropdown + footer links + form options ---------- */
@@ -408,150 +544,9 @@
     // process
     var proc = document.querySelector("[data-process]");
     if (proc) {
-      var stepsData = t("process.steps") || [];
-      proc.innerHTML = stepsData.map(function (s, i) {
-        return '<div class="process-step card process-slide" data-process-card>' +
-          '<div class="step-num">' + (i + 1) + '</div><h3>' + s.t + '</h3><p>' + s.d + '</p></div>';
+      proc.innerHTML = (t("process.steps") || []).map(function (s, i) {
+        return '<div class="process-step card"><div class="step-num">' + (i + 1) + '</div><h3>' + s.t + '</h3><p>' + s.d + '</p></div>';
       }).join("");
-
-      var section = proc.closest("section");
-      var carousel = proc.closest(".process-carousel");
-      if (!carousel && section) {
-        carousel = document.createElement("div");
-        carousel.className = "process-carousel";
-        section.insertBefore(carousel, proc);
-        carousel.appendChild(proc);
-      }
-
-      if (carousel && !carousel.querySelector(".process-carousel__controls")) {
-        var controls = document.createElement("div");
-        controls.className = "process-carousel__controls";
-        controls.innerHTML =
-          '<button type="button" class="process-carousel__arrow process-carousel__arrow--prev" data-process-prev aria-label="Anterior">' +
-            icon("chevron") +
-          '</button>' +
-          '<div class="process-carousel__dots" data-process-dots aria-label="Indicadores do carrossel"></div>' +
-          '<button type="button" class="process-carousel__arrow process-carousel__arrow--next" data-process-next aria-label="Próximo">' +
-            icon("chevron") +
-          '</button>';
-        carousel.appendChild(controls);
-      }
-
-      var dotsHost = carousel ? carousel.querySelector("[data-process-dots]") : null;
-      if (dotsHost) {
-        dotsHost.innerHTML = stepsData.map(function (_, i) {
-          return '<button type="button" class="process-carousel__dot" data-process-dot="' + i + '" aria-label="Ir para o passo ' + (i + 1) + '"></button>';
-        }).join("");
-      }
-
-      if (carousel && !carousel.dataset.carouselBound) {
-        carousel.dataset.carouselBound = "1";
-
-        var prev = carousel.querySelector("[data-process-prev]");
-        var next = carousel.querySelector("[data-process-next]");
-
-        function getCards() {
-          return Array.prototype.slice.call(proc.querySelectorAll("[data-process-card]"));
-        }
-
-        function getStepWidth() {
-          var cards = getCards();
-          if (!cards.length) return proc.clientWidth || 0;
-          var cardWidth = cards[0].getBoundingClientRect().width;
-          var gap = parseFloat(getComputedStyle(proc).gap || "0") || 0;
-          return cardWidth + gap;
-        }
-
-        function getActiveIndex() {
-          var cards = getCards();
-          if (!cards.length) return 0;
-          var center = proc.scrollLeft + (proc.clientWidth / 2);
-          var active = 0;
-          var bestDistance = Infinity;
-          cards.forEach(function (card, index) {
-            var cardCenter = card.offsetLeft + (card.offsetWidth / 2);
-            var distance = Math.abs(cardCenter - center);
-            if (distance < bestDistance) {
-              bestDistance = distance;
-              active = index;
-            }
-          });
-          return active;
-        }
-
-        function setActiveDot(index) {
-          var dots = carousel.querySelectorAll("[data-process-dot]");
-          dots.forEach(function (dot, dotIndex) {
-            dot.classList.toggle("is-active", dotIndex === index);
-            dot.setAttribute("aria-pressed", dotIndex === index ? "true" : "false");
-          });
-        }
-
-        function syncControls() {
-          setActiveDot(getActiveIndex());
-        }
-
-        if (prev) {
-          prev.addEventListener("click", function () {
-            proc.scrollBy({ left: -getStepWidth(), behavior: "smooth" });
-          });
-        }
-        if (next) {
-          next.addEventListener("click", function () {
-            proc.scrollBy({ left: getStepWidth(), behavior: "smooth" });
-          });
-        }
-
-        carousel.querySelectorAll("[data-process-dot]").forEach(function (dot) {
-          dot.addEventListener("click", function () {
-            var index = parseInt(dot.getAttribute("data-process-dot"), 10) || 0;
-            var cards = getCards();
-            if (cards[index]) {
-              proc.scrollTo({ left: cards[index].offsetLeft, behavior: "smooth" });
-            }
-          });
-        });
-
-        proc.addEventListener("scroll", function () {
-          window.requestAnimationFrame(syncControls);
-        }, { passive: true });
-        window.addEventListener("resize", syncControls);
-        syncControls();
-      } else if (carousel) {
-        var dotsHost = carousel.querySelector("[data-process-dots]");
-        if (dotsHost && dotsHost.children.length !== stepsData.length) {
-          dotsHost.innerHTML = stepsData.map(function (_, i) {
-            return '<button type="button" class="process-carousel__dot" data-process-dot="' + i + '" aria-label="Ir para o passo ' + (i + 1) + '"></button>';
-          }).join("");
-        }
-        carousel.querySelectorAll("[data-process-dot]").forEach(function (dot) {
-          if (dot.dataset.bound) return;
-          dot.dataset.bound = "1";
-          dot.addEventListener("click", function () {
-            var index = parseInt(dot.getAttribute("data-process-dot"), 10) || 0;
-            var cards = Array.prototype.slice.call(proc.querySelectorAll("[data-process-card]"));
-            if (cards[index]) {
-              proc.scrollTo({ left: cards[index].offsetLeft, behavior: "smooth" });
-            }
-          });
-        });
-        var activeCards = Array.prototype.slice.call(proc.querySelectorAll("[data-process-card]"));
-        var activeCenter = proc.scrollLeft + (proc.clientWidth / 2);
-        var activeIndex = 0;
-        var activeDistance = Infinity;
-        activeCards.forEach(function (card, index) {
-          var cardCenter = card.offsetLeft + (card.offsetWidth / 2);
-          var distance = Math.abs(cardCenter - activeCenter);
-          if (distance < activeDistance) {
-            activeDistance = distance;
-            activeIndex = index;
-          }
-        });
-        carousel.querySelectorAll("[data-process-dot]").forEach(function (dot, dotIndex) {
-          dot.classList.toggle("is-active", dotIndex === activeIndex);
-          dot.setAttribute("aria-pressed", dotIndex === activeIndex ? "true" : "false");
-        });
-      }
     }
     // lang pills
     var pills = document.querySelector("[data-langpills]");
@@ -599,33 +594,41 @@
     var backdrop = document.querySelector(".drawer-backdrop");
     var drawer = document.querySelector(".drawer");
     var burger = document.querySelector(".burger");
+    var servicesToggle = drawer ? drawer.querySelector(".drawer-services-toggle") : null;
+    var servicesPanel = drawer ? drawer.querySelector("[data-drawer-services]") : null;
     if (!drawer || !burger) return;
-    function open() {
-      drawer.classList.add("open");
-      backdrop.classList.add("open");
-      document.body.classList.add("drawer-open");
-      document.body.style.overflow = "hidden";
+    function closeServices() {
+      if (servicesToggle) servicesToggle.setAttribute("aria-expanded", "false");
+      if (servicesPanel) servicesPanel.setAttribute("hidden", "");
+      if (servicesToggle) servicesToggle.classList.remove("is-open");
     }
-    function close() {
-      drawer.classList.remove("open");
-      backdrop.classList.remove("open");
-      document.body.classList.remove("drawer-open");
-      document.body.style.overflow = "";
-    }
+    function open() { drawer.classList.add("open"); backdrop.classList.add("open"); document.body.style.overflow = "hidden"; }
+    function close() { drawer.classList.remove("open"); backdrop.classList.remove("open"); document.body.style.overflow = ""; closeServices(); }
     burger.addEventListener("click", open);
     backdrop.addEventListener("click", close);
     var c = drawer.querySelector(".drawer-close"); if (c) c.addEventListener("click", close);
+    if (servicesToggle && servicesPanel) {
+      servicesToggle.addEventListener("click", function () {
+        var expanded = servicesToggle.getAttribute("aria-expanded") === "true";
+        servicesToggle.setAttribute("aria-expanded", String(!expanded));
+        servicesToggle.classList.toggle("is-open", !expanded);
+        if (expanded) {
+          servicesPanel.setAttribute("hidden", "");
+        } else {
+          servicesPanel.removeAttribute("hidden");
+        }
+      });
+    }
     drawer.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", close); });
-    window.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") close();
-    });
   }
   function renderDrawerServices() {
     var host = document.querySelector("[data-drawer-services]");
     if (!host) return;
     host.innerHTML = window.SERVICE_ORDER.map(function (slug) {
       var s = svcData()[slug]; if (!s) return "";
-      return '<a href="servico.html?s=' + slug + '&lang=' + getLang() + '">' + s.name + '</a>';
+      return '<a class="drawer-service-link" href="servico.html?s=' + slug + '&lang=' + getLang() + '">' +
+        icon(window.SERVICE_ICONS[slug] || "doc") +
+        '<span>' + s.name + '</span></a>';
     }).join("");
   }
 
@@ -772,133 +775,9 @@
   function renderAboutValues() {
     var host = document.querySelector("[data-about-values]");
     if (!host) return;
-    var items = t("pages.about.values") || [];
-    host.innerHTML = items.map(function (v, i) {
-      return '<div class="feature about-values-slide" data-about-card>' +
-        '<div class="icon-badge">' + icon(v.i) + '</div><div><h3>' + v.t + '</h3><p>' + v.d + '</p></div></div>';
+    host.innerHTML = (t("pages.about.values") || []).map(function (v) {
+      return '<div class="feature"><div class="icon-badge">' + icon(v.i) + '</div><div><h3>' + v.t + '</h3><p>' + v.d + '</p></div></div>';
     }).join("");
-
-    var section = host.closest("section");
-    var carousel = host.closest(".about-values-carousel");
-    if (!carousel && section) {
-      carousel = document.createElement("div");
-      carousel.className = "about-values-carousel";
-      section.insertBefore(carousel, host);
-      carousel.appendChild(host);
-    }
-
-    if (carousel && !carousel.querySelector(".about-values-carousel__controls")) {
-      var controls = document.createElement("div");
-      controls.className = "about-values-carousel__controls";
-      controls.innerHTML =
-        '<button type="button" class="about-values-carousel__arrow about-values-carousel__arrow--prev" data-about-prev aria-label="Anterior">' +
-          icon("chevron") +
-        '</button>' +
-        '<div class="about-values-carousel__dots" data-about-dots aria-label="Indicadores do carrossel"></div>' +
-        '<button type="button" class="about-values-carousel__arrow about-values-carousel__arrow--next" data-about-next aria-label="Próximo">' +
-          icon("chevron") +
-        '</button>';
-      carousel.appendChild(controls);
-    }
-
-    var dotsHost = carousel ? carousel.querySelector("[data-about-dots]") : null;
-    if (dotsHost) {
-      dotsHost.innerHTML = items.map(function (_, i) {
-        return '<button type="button" class="about-values-carousel__dot" data-about-dot="' + i + '" aria-label="Ir para o card ' + (i + 1) + '"></button>';
-      }).join("");
-    }
-
-    if (carousel && !carousel.dataset.carouselBound) {
-      carousel.dataset.carouselBound = "1";
-
-      var prev = carousel.querySelector("[data-about-prev]");
-      var next = carousel.querySelector("[data-about-next]");
-
-      function getCards() {
-        return Array.prototype.slice.call(host.querySelectorAll("[data-about-card]"));
-      }
-
-      function getStepWidth() {
-        var cards = getCards();
-        if (!cards.length) return host.clientWidth || 0;
-        var cardWidth = cards[0].getBoundingClientRect().width;
-        var gap = parseFloat(getComputedStyle(host).gap || "0") || 0;
-        return cardWidth + gap;
-      }
-
-      function getActiveIndex() {
-        var cards = getCards();
-        if (!cards.length) return 0;
-        var center = host.scrollLeft + (host.clientWidth / 2);
-        var active = 0;
-        var bestDistance = Infinity;
-        cards.forEach(function (card, index) {
-          var cardCenter = card.offsetLeft + (card.offsetWidth / 2);
-          var distance = Math.abs(cardCenter - center);
-          if (distance < bestDistance) {
-            bestDistance = distance;
-            active = index;
-          }
-        });
-        return active;
-      }
-
-      function setActiveDot(index) {
-        var dots = carousel.querySelectorAll("[data-about-dot]");
-        dots.forEach(function (dot, dotIndex) {
-          dot.classList.toggle("is-active", dotIndex === index);
-          dot.setAttribute("aria-pressed", dotIndex === index ? "true" : "false");
-        });
-      }
-
-      function syncControls() {
-        setActiveDot(getActiveIndex());
-      }
-
-      if (prev) {
-        prev.addEventListener("click", function () {
-          host.scrollBy({ left: -getStepWidth(), behavior: "smooth" });
-        });
-      }
-      if (next) {
-        next.addEventListener("click", function () {
-          host.scrollBy({ left: getStepWidth(), behavior: "smooth" });
-        });
-      }
-
-      carousel.querySelectorAll("[data-about-dot]").forEach(function (dot) {
-        dot.addEventListener("click", function () {
-          var index = parseInt(dot.getAttribute("data-about-dot"), 10) || 0;
-          var cards = getCards();
-          if (cards[index]) {
-            host.scrollTo({ left: cards[index].offsetLeft, behavior: "smooth" });
-          }
-        });
-      });
-
-      host.addEventListener("scroll", function () {
-        window.requestAnimationFrame(syncControls);
-      }, { passive: true });
-      window.addEventListener("resize", syncControls);
-      syncControls();
-    } else if (carousel) {
-      var activeCards = Array.prototype.slice.call(host.querySelectorAll("[data-about-card]"));
-      var activeCenter = host.scrollLeft + (host.clientWidth / 2);
-      var activeIndex = 0;
-      var activeDistance = Infinity;
-      activeCards.forEach(function (card, index) {
-        var cardCenter = card.offsetLeft + (card.offsetWidth / 2);
-        var distance = Math.abs(cardCenter - activeCenter);
-        if (distance < activeDistance) {
-          activeDistance = distance;
-          activeIndex = index;
-        }
-      });
-      carousel.querySelectorAll("[data-about-dot]").forEach(function (dot, dotIndex) {
-        dot.classList.toggle("is-active", dotIndex === activeIndex);
-        dot.setAttribute("aria-pressed", dotIndex === activeIndex ? "true" : "false");
-      });
-    }
   }
 
   function render() {
@@ -914,6 +793,9 @@
     renderFaqGroups();
     renderLegal();
     renderAboutValues();
+    renderHomeProcessCarousel();
+    renderHomeWhyCarousel();
+    renderHomeServicesCarousel();
     applyLinks();
     bindForm();
     initReveal();
