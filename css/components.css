@@ -610,10 +610,13 @@
     right: 0;
   }
   .drawer {
-    width: 85vw;
-    min-width: 300px;
-    max-width: 380px;
-    padding: 16px 14px 18px;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    min-width: 0;
+    border-radius: 0;
+    padding: 18px 16px calc(18px + env(safe-area-inset-bottom));
     gap: 10px;
   }
   .drawer-head {
@@ -686,9 +689,11 @@
     padding: 10px 11px;
   }
   .drawer {
-    width: 85vw;
-    min-width: 300px;
-    max-width: 380px;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    min-width: 0;
   }
   .home-process-carousel__controls { gap: 10px; margin-top: 14px; }
   .home-process-carousel__arrow { width: 40px; height: 40px; }
