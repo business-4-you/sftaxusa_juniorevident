@@ -8,9 +8,7 @@
     host.outerHTML =
       '<header class="site-header"><div class="wrap header-inner">' +
         '<a class="brand" href="index.html" data-href-lang aria-label="SF TAX USA">' +
-          '<img class="brand__icon" src="assets/sf-logo-icon.png" alt="SF TAX USA — Santiago & Felix Accounting Services" />' +
-          '<span class="brand__text"><span class="brand__name">SF TAX <b>USA</b></span>' +
-          '<span class="brand__sub">Santiago &amp; Felix Accounting</span></span>' +
+          '<img class="brand__logo" src="assets/sf-logo-full.png" alt="SF TAX USA — Santiago & Felix Accounting Services" />' +
         '</a>' +
         '<nav class="nav" aria-label="Primary">' +
           '<a href="index.html" data-href-lang data-i18n="nav.home"></a>' +
