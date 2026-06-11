@@ -491,11 +491,12 @@
   }
 
   /* ---------- FAQ accordion ---------- */
-  function renderFAQ(host, items) {
+  function renderFAQ(host, items, openFirst) {
     if (!host) return;
+    var doOpen = openFirst !== false;
     host.innerHTML = items.map(function (it, i) {
-      return '<div class="faq-item' + (i === 0 ? ' open' : '') + '">' +
-        '<button class="faq-q" aria-expanded="' + (i === 0) + '">' + it.q + '<span class="pm">' + icon("plus") + '</span></button>' +
+      return '<div class="faq-item' + (i === 0 && doOpen ? ' open' : '') + '">' +
+        '<button class="faq-q" aria-expanded="' + (i === 0 && doOpen) + '">' + it.q + '<span class="pm">' + icon("plus") + '</span></button>' +
         '<div class="faq-a"><div>' + it.a + '</div></div></div>';
     }).join("");
     host.querySelectorAll(".faq-item").forEach(function (item) {
@@ -649,7 +650,7 @@
         '<div class="faq" data-faq-g="' + gi + '"></div></div>';
     }).join("");
     groups.forEach(function (g, gi) {
-      renderFAQ(host.querySelector('[data-faq-g="' + gi + '"]'), g.items || []);
+      renderFAQ(host.querySelector('[data-faq-g="' + gi + '"]'), g.items || [], gi === 0);
     });
   }
 
