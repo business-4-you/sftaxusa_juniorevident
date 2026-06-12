@@ -70,5 +70,6 @@ window.SERVICE_IMAGES = {
   'recadastramento-anual':      'assets/images/servicos/recadastramento-anual-nos-eua-sf-tax-usa-ajuda.png',
   'imposto-renda-estimado':     'assets/images/servicos/imposto-renda-estimado-nos-eua-sf-tax-usa.png',
   'fbar':                       'assets/images/servicos/fbar-contas-no-exterior-sf-tax-usa.png',
-  'abertura-empresa':           'assets/images/servicos/abertura-emrpesa-nos-eua-com-seguranca-sf-tax-usa.png'
+  'abertura-empresa':           'assets/images/servicos/abertura-emrpesa-nos-eua-com-seguranca-sf-tax-usa.png',
+  'folha-pagamento':            'assets/images/servicos/folha-pagamento-payroll-nos-eua-com-seguranca-sf-tax-usa.png'
 };
