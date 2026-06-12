@@ -68,5 +68,6 @@ window.SERVICE_IMAGES = {
   'planejamento-tributario': 'assets/images/servicos/planejamento-tributario-sf-tax-usa.png',
   'consultoria-premium':     'assets/images/servicos/consulta-premium-nos-eua-sf-tax-usa.png',
   'recadastramento-anual':      'assets/images/servicos/recadastramento-anual-nos-eua-sf-tax-usa-ajuda.png',
-  'imposto-renda-estimado':     'assets/images/servicos/imposto-renda-estimado-nos-eua-sf-tax-usa.png'
+  'imposto-renda-estimado':     'assets/images/servicos/imposto-renda-estimado-nos-eua-sf-tax-usa.png',
+  'fbar':                       'assets/images/servicos/fbar-contas-no-exterior-sf-tax-usa.png'
 };
