@@ -67,5 +67,5 @@ window.SERVICE_IMAGES = {
   'escrita-contabil':       'assets/images/servicos/escrita-fiscal-sf-tax-usa.png',
   'planejamento-tributario': 'assets/images/servicos/planejamento-tributario-sf-tax-usa.png',
   'consultoria-premium':     'assets/images/servicos/consulta-premium-nos-eua-sf-tax-usa.png',
-  'recadastramento-anual':   'assets/images/servicos/recadastramento-anual-nos-eua-sf-tax-usa.png'
+  'recadastramento-anual':   'assets/images/servicos/recadastramento-anual-nos-eua-sf-tax-usa-ajuda.png'
 };
