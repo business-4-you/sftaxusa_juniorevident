@@ -63,5 +63,6 @@ window.SERVICE_ICONS = {
 };
 /* Hero images for service pages. Add slug → path as images become available. */
 window.SERVICE_IMAGES = {
-  'preparacao-impostos': 'assets/images/servicos/preparacao-impostos-nos-eua-sf-tax-usa.png'
+  'preparacao-impostos': 'assets/images/servicos/preparacao-impostos-nos-eua-sf-tax-usa.png',
+  'escrita-contabil':    'assets/images/servicos/escrita-fiscal-sf-tax-usa.png'
 };
