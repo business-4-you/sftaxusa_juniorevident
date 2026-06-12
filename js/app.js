@@ -602,7 +602,11 @@
             '<a class="btn btn--outline-light btn--lg" href="#svc-form">' + t("svc.heroCtaSecondary") + '</a>' +
           '</div>' +
         '</div>' +
-        '<div class="hero-visual reveal in"><div class="ph"><span class="ph__label">[ ' + s.name + ' ]</span></div></div>' +
+        '<div class="hero-visual reveal in"><div class="ph">' +
+          (window.SERVICE_IMAGES && window.SERVICE_IMAGES[slug]
+            ? '<img src="' + window.SERVICE_IMAGES[slug] + '" alt="' + s.name + '" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;">'
+            : '<span class="ph__label">[ ' + s.name + ' ]</span>') +
+        '</div></div>' +
       '</div></div></section>' +
 
       '<div class="wrap svc-body">' +

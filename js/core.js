@@ -61,3 +61,7 @@ window.SERVICE_ICONS = {
   'quit-claim-deed':'deed','imposto-renda-estimado':'estimated','firpta':'firpta',
   'fbar':'fbar','consultoria-estrangeiros':'foreign'
 };
+/* Hero images for service pages. Add slug → path as images become available. */
+window.SERVICE_IMAGES = {
+  'preparacao-impostos': 'assets/images/servicos/preparacao-impostos-nos-eua-sf-tax-usa.png'
+};
