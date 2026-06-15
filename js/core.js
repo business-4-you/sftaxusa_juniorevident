@@ -72,5 +72,6 @@ window.SERVICE_IMAGES = {
   'fbar':                       'assets/images/servicos/fbar-contas-no-exterior-sf-tax-usa.png',
   'abertura-empresa':           'assets/images/servicos/abertura-emrpesa-nos-eua-com-seguranca-sf-tax-usa.png',
   'folha-pagamento':            'assets/images/servicos/folha-pagamento-payroll-nos-eua-com-seguranca-sf-tax-usa.png',
-  'sales-tax':                  'assets/images/servicos/sales-tax-controle-impostos-nos-eua-sf-tax-usa-ajuda.png'
+  'sales-tax':                  'assets/images/servicos/sales-tax-controle-impostos-nos-eua-sf-tax-usa-ajuda.png',
+  'tributacao-internacional':   'assets/images/servicos/tributacao-internacional-visao-nos-eua-sf-tax-usa-ajuda.png'
 };
