@@ -75,5 +75,6 @@ window.SERVICE_IMAGES = {
   'sales-tax':                  'assets/images/servicos/sales-tax-controle-impostos-nos-eua-sf-tax-usa-ajuda.png',
   'tributacao-internacional':   'assets/images/servicos/tributacao-internacional-visao-nos-eua-sf-tax-usa-ajuda.png',
   'quit-claim-deed':            'assets/images/servicos/quit-claimdeed-sf-tax-usa-ajuda.png',
-  'firpta':                     'assets/images/servicos/firpta-venda-imovel-nos-eua-sf-tax-usa-ajuda.png'
+  'firpta':                     'assets/images/servicos/firpta-venda-imovel-nos-eua-sf-tax-usa-ajuda.png',
+  'consultoria-estrangeiros':   'assets/images/servicos/consultoria-brasileiros-estrangeiros-nos-eua-sf-tax-usa-ajuda.png'
 };
