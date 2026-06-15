@@ -533,16 +533,84 @@
     var form = document.querySelector("[data-contact-form]");
     if (!form || form.dataset.bound) return;
     form.dataset.bound = "1";
+
+    var VM = {
+      required: { pt: "Campo obrigatório",  en: "Required field",  es: "Campo obligatorio" },
+      email:    { pt: "E-mail inválido",    en: "Invalid e-mail",  es: "Correo inválido"   }
+    };
+    function vmsg(key) { return (VM[key] || {})[getLang()] || VM[key].pt; }
+
+    // Inject error message span into every .field
+    form.querySelectorAll(".field").forEach(function (f) {
+      if (!f.querySelector(".field__msg")) {
+        var s = document.createElement("span");
+        s.className = "field__msg";
+        f.appendChild(s);
+      }
+    });
+
+    function setError(el, msg) {
+      var field = el.closest ? el.closest(".field") : null;
+      if (!field) return;
+      field.classList.add("field--error");
+      var s = field.querySelector(".field__msg");
+      if (s) s.textContent = msg;
+    }
+
+    function clearError(el) {
+      var field = el.closest ? el.closest(".field") : null;
+      if (!field) return;
+      field.classList.remove("field--error");
+      var s = field.querySelector(".field__msg");
+      if (s) s.textContent = "";
+    }
+
+    // Clear error on user input
+    form.querySelectorAll("input,select,textarea").forEach(function (el) {
+      el.addEventListener("input",  function () { clearError(el); });
+      el.addEventListener("change", function () { clearError(el); });
+    });
+
+    function validate() {
+      var ok = true;
+      form.querySelectorAll("input,select,textarea").forEach(function (el) { clearError(el); });
+
+      var nameEl    = form.querySelector("[name=name]");
+      var phoneEl   = form.querySelector("[name=phone]");
+      var emailEl   = form.querySelector("[name=email]");
+      var messageEl = form.querySelector("[name=message]");
+
+      if (nameEl && nameEl.value.trim() === "") {
+        setError(nameEl, vmsg("required")); ok = false;
+      }
+      if (phoneEl && phoneEl.value.trim() === "") {
+        setError(phoneEl, vmsg("required")); ok = false;
+      }
+      if (emailEl) {
+        var ev = emailEl.value.trim();
+        if (ev === "") {
+          setError(emailEl, vmsg("required")); ok = false;
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(ev)) {
+          setError(emailEl, vmsg("email")); ok = false;
+        }
+      }
+      if (messageEl && messageEl.value.trim() === "") {
+        setError(messageEl, vmsg("required")); ok = false;
+      }
+      return ok;
+    }
+
     form.addEventListener("submit", function (e) {
       e.preventDefault();
+      if (!validate()) return;
+
       track("form_submit", { form: "contact" });
 
-      var fields = form.querySelectorAll("input,select,textarea,button");
-      var okEl   = form.querySelector("[data-form-success]");
-      var errEl  = form.querySelector("[data-form-error]");
-      var btn    = form.querySelector("button[type=submit]");
+      var allFields = form.querySelectorAll("input,select,textarea,button");
+      var okEl  = form.querySelector("[data-form-success]");
+      var errEl = form.querySelector("[data-form-error]");
 
-      fields.forEach(function (el) { el.disabled = true; });
+      allFields.forEach(function (el) { el.disabled = true; });
       if (errEl) errEl.hidden = true;
 
       var payload = {
@@ -564,12 +632,12 @@
           if (data.ok) {
             if (okEl) { okEl.hidden = false; }
           } else {
-            fields.forEach(function (el) { el.disabled = false; });
+            allFields.forEach(function (el) { el.disabled = false; });
             if (errEl) { errEl.hidden = false; }
           }
         })
         .catch(function () {
-          fields.forEach(function (el) { el.disabled = false; });
+          allFields.forEach(function (el) { el.disabled = false; });
           if (errEl) { errEl.hidden = false; }
         });
     });
