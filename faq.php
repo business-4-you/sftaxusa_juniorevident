@@ -21,7 +21,7 @@
   <div class="wrap">
     <div style="max-width:760px;padding-block:clamp(44px,6vw,72px)">
       <nav class="breadcrumb svc-breadcrumb reveal in" style="margin-bottom:18px">
-        <a href="index.html" data-href-lang style="color:#c5d2ea" data-i18n="svc.breadcrumbHome">Início</a>
+        <a href="index.php" data-href-lang style="color:#c5d2ea" data-i18n="svc.breadcrumbHome">Início</a>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;opacity:.5"><path d="m6 9 6 6 6-6"/></svg>
         <span style="color:#fff" data-i18n="pages.faqPage.eyebrow">Perguntas frequentes</span>
       </nav>
@@ -45,7 +45,7 @@
       <p class="lead" data-i18n="pages.faqPage.ctaSub"></p>
       <div class="hero-cta">
         <a class="btn btn--green btn--lg" data-wa data-loc="faq_cta"><svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.004c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.02z"/></svg><span data-i18n="cta.specialist">Fale com um especialista</span></a>
-        <a class="btn btn--light btn--lg" href="contato.html" data-href-lang><span data-i18n="nav.contact">Contato</span></a>
+        <a class="btn btn--light btn--lg" href="contato.php" data-href-lang><span data-i18n="nav.contact">Contato</span></a>
       </div>
     </div>
   </div>
@@ -55,7 +55,7 @@
 
 <div class="sticky-cta">
   <a class="btn btn--green" data-wa data-loc="sticky"><svg viewBox="0 0 24 24" fill="currentColor" style="width:18px;height:18px"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.004c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.02z"/></svg><span data-i18n="cta.whatsapp">WhatsApp</span></a>
-  <a class="btn btn--navy" href="contato.html" data-href-lang><span data-i18n="cta.requestAnalysis">Solicitar análise</span></a>
+  <a class="btn btn--navy" href="contato.php" data-href-lang><span data-i18n="cta.requestAnalysis">Solicitar análise</span></a>
 </div>
 <a class="wa-float" data-wa data-loc="float" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" style="width:30px;height:30px"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.004c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.02zM12.04 20.15h-.004a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23a8.2 8.2 0 0 1 5.82 2.41 8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.23-8.24 8.23z"/></svg></a>
 

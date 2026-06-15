@@ -13,8 +13,8 @@
 </style>
 </head>
 <body>
-  <div class="col"><div class="phone"><iframe src="index.html" title="Home"></iframe></div><div class="cap">Home</div></div>
-  <div class="col"><div class="phone"><iframe src="servico.html?s=fbar" title="Serviço"></iframe></div><div class="cap">Página de serviço</div></div>
-  <div class="col"><div class="phone"><iframe src="contato.html" title="Contato"></iframe></div><div class="cap">Contato</div></div>
+  <div class="col"><div class="phone"><iframe src="index.php" title="Home"></iframe></div><div class="cap">Home</div></div>
+  <div class="col"><div class="phone"><iframe src="servico.php?s=fbar" title="Serviço"></iframe></div><div class="cap">Página de serviço</div></div>
+  <div class="col"><div class="phone"><iframe src="contato.php" title="Contato"></iframe></div><div class="cap">Contato</div></div>
 </body>
 </html>

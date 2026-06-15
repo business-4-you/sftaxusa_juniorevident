@@ -20,7 +20,7 @@
 <section class="section" style="border-bottom:1px solid var(--line)">
   <div class="wrap">
     <nav class="breadcrumb reveal in" style="margin-bottom:18px">
-      <a href="index.html" data-href-lang data-i18n="svc.breadcrumbHome">Início</a>
+      <a href="index.php" data-href-lang data-i18n="svc.breadcrumbHome">Início</a>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
       <span data-i18n="pages.privacy.h1">Política de Privacidade</span>
     </nav>
@@ -33,7 +33,7 @@
 <section class="section">
   <div class="wrap legal-wrap" data-legal="privacy"></div>
   <div class="wrap" style="margin-top:8px">
-    <a class="btn btn--ghost" href="index.html" data-href-lang><span data-i18n="pages.legal.backHome">Voltar para a Home</span></a>
+    <a class="btn btn--ghost" href="index.php" data-href-lang><span data-i18n="pages.legal.backHome">Voltar para a Home</span></a>
   </div>
 </section>
 
