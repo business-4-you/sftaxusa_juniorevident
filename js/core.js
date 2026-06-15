@@ -74,5 +74,6 @@ window.SERVICE_IMAGES = {
   'folha-pagamento':            'assets/images/servicos/folha-pagamento-payroll-nos-eua-com-seguranca-sf-tax-usa.png',
   'sales-tax':                  'assets/images/servicos/sales-tax-controle-impostos-nos-eua-sf-tax-usa-ajuda.png',
   'tributacao-internacional':   'assets/images/servicos/tributacao-internacional-visao-nos-eua-sf-tax-usa-ajuda.png',
-  'quit-claim-deed':            'assets/images/servicos/quit-claimdeed-sf-tax-usa-ajuda.png'
+  'quit-claim-deed':            'assets/images/servicos/quit-claimdeed-sf-tax-usa-ajuda.png',
+  'firpta':                     'assets/images/servicos/firpta-venda-imovel-nos-eua-sf-tax-usa-ajuda.png'
 };
