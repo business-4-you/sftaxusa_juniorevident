@@ -201,6 +201,7 @@
         <button class="btn btn--green btn--block btn--lg" type="submit" data-i18n="contact.submit">Solicitar análise</button>
         <p class="form-note" data-i18n="contact.privacy">Ao enviar, você concorda com a nossa Política de Privacidade.</p>
         <p class="form-note" data-form-success hidden style="color:var(--green-600);font-weight:700;font-size:15px" data-i18n="contact.success">Recebemos a sua mensagem!</p>
+        <p class="form-note" data-form-error hidden style="color:#c0392b;font-weight:700;font-size:15px" data-i18n="contact.error">Ocorreu um erro ao enviar. Tente novamente ou entre em contato pelo WhatsApp.</p>
       </form>
     </div>
   </div>

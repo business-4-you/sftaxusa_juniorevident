@@ -285,7 +285,7 @@
   function serviceCardHTML(slug) {
     var s = svcData()[slug]; if (!s) return "";
     var ic = window.SERVICE_ICONS[slug] || "doc";
-    return '<a class="card svc-card" href="servico.html?s=' + slug + '&lang=' + getLang() + '" data-svc="' + slug + '">' +
+    return '<a class="card svc-card" href="servico.php?s=' + slug + '&lang=' + getLang() + '" data-svc="' + slug + '">' +
       '<div class="icon-badge">' + icon(ic) + '</div>' +
       '<h3>' + s.name + '</h3>' +
       '<p>' + s.short + '</p>' +
@@ -440,7 +440,7 @@
     document.querySelectorAll("[data-service-dropdown]").forEach(function (host) {
       host.innerHTML = window.SERVICE_ORDER.map(function (slug) {
         var s = svcData()[slug]; if (!s) return "";
-        return '<a href="servico.html?s=' + slug + '&lang=' + getLang() + '">' +
+        return '<a href="servico.php?s=' + slug + '&lang=' + getLang() + '">' +
           icon(window.SERVICE_ICONS[slug] || "doc") + '<span>' + s.name + '</span></a>';
       }).join("");
     });
@@ -450,7 +450,7 @@
       if (limit > 0) order = order.slice(0, limit);
       host.innerHTML = order.map(function (slug) {
         var s = svcData()[slug]; if (!s) return "";
-        return '<a href="servico.html?s=' + slug + '&lang=' + getLang() + '">' + s.name + '</a>';
+        return '<a href="servico.php?s=' + slug + '&lang=' + getLang() + '">' + s.name + '</a>';
       }).join("");
     });
     document.querySelectorAll("[data-service-options]").forEach(function (sel) {
@@ -517,7 +517,7 @@
     if (!host) return;
     host.innerHTML = window.SERVICE_ORDER.map(function (slug) {
       var s = svcData()[slug]; if (!s) return "";
-      return '<a href="servico.html?s=' + slug + '&lang=' + getLang() + '">' +
+      return '<a href="servico.php?s=' + slug + '&lang=' + getLang() + '">' +
         icon(window.SERVICE_ICONS[slug] || "doc") + '<span>' + s.name + '</span></a>';
     }).join("");
     // if the accordion is open, recompute its height after re-render
@@ -536,9 +536,42 @@
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       track("form_submit", { form: "contact" });
-      var ok = form.querySelector("[data-form-success]");
-      form.querySelectorAll("input,select,textarea,button").forEach(function (el) { el.disabled = true; });
-      if (ok) { ok.hidden = false; ok.scrollIntoView ? null : null; }
+
+      var fields = form.querySelectorAll("input,select,textarea,button");
+      var okEl   = form.querySelector("[data-form-success]");
+      var errEl  = form.querySelector("[data-form-error]");
+      var btn    = form.querySelector("button[type=submit]");
+
+      fields.forEach(function (el) { el.disabled = true; });
+      if (errEl) errEl.hidden = true;
+
+      var payload = {
+        name:    (form.querySelector("[name=name]")    || {}).value || "",
+        phone:   (form.querySelector("[name=phone]")   || {}).value || "",
+        email:   (form.querySelector("[name=email]")   || {}).value || "",
+        lang:    (form.querySelector("[name=lang]")    || {}).value || "",
+        service: (form.querySelector("[name=service]") || {}).value || "",
+        message: (form.querySelector("[name=message]") || {}).value || "",
+      };
+
+      fetch("mail.php", {
+        method:  "POST",
+        headers: { "Content-Type": "application/json" },
+        body:    JSON.stringify(payload),
+      })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (data.ok) {
+            if (okEl) { okEl.hidden = false; }
+          } else {
+            fields.forEach(function (el) { el.disabled = false; });
+            if (errEl) { errEl.hidden = false; }
+          }
+        })
+        .catch(function () {
+          fields.forEach(function (el) { el.disabled = false; });
+          if (errEl) { errEl.hidden = false; }
+        });
     });
   }
 
@@ -592,8 +625,8 @@
     host.innerHTML =
       '<section class="svc-hero hero"><div class="wrap"><div class="hero-grid">' +
         '<div class="reveal in">' +
-          '<nav class="breadcrumb svc-breadcrumb"><a href="index.html?lang=' + getLang() + '">' + t("svc.breadcrumbHome") + '</a>' + icon("chevron") +
-          '<a href="servicos.html?lang=' + getLang() + '">' + t("svc.breadcrumbServices") + '</a>' + icon("chevron") + '<span>' + s.name + '</span></nav>' +
+          '<nav class="breadcrumb svc-breadcrumb"><a href="index.php?lang=' + getLang() + '">' + t("svc.breadcrumbHome") + '</a>' + icon("chevron") +
+          '<a href="servicos.php?lang=' + getLang() + '">' + t("svc.breadcrumbServices") + '</a>' + icon("chevron") + '<span>' + s.name + '</span></nav>' +
           '<div class="eyebrow" style="color:var(--gold);margin-top:18px">' + s.name + '</div>' +
           '<h1>' + s.h1 + '</h1>' +
           '<p class="lead" style="margin-top:18px">' + s.sub + '</p>' +

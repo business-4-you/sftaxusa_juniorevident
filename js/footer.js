@@ -29,15 +29,15 @@
           '</div>' +
           '<div class="footer-col">' +
             '<h4 data-i18n="footer.colCompany"></h4>' +
-            '<a href="sobre.html" data-href-lang data-i18n="footer.aboutLink"></a>' +
-            '<a href="servicos.html" data-href-lang data-i18n="nav.services"></a>' +
-            '<a href="contato.html" data-href-lang data-i18n="footer.contactLink"></a>' +
-            '<a href="faq.html" data-href-lang data-i18n="footer.faqLink"></a>' +
+            '<a href="sobre.php" data-href-lang data-i18n="footer.aboutLink"></a>' +
+            '<a href="servicos.php" data-href-lang data-i18n="nav.services"></a>' +
+            '<a href="contato.php" data-href-lang data-i18n="footer.contactLink"></a>' +
+            '<a href="faq.php" data-href-lang data-i18n="footer.faqLink"></a>' +
           '</div>' +
           '<div class="footer-col">' +
             '<h4 data-i18n="footer.colLegal"></h4>' +
-            '<a href="privacidade.html" data-href-lang data-i18n="footer.privacy"></a>' +
-            '<a href="termos.html" data-href-lang data-i18n="footer.terms"></a>' +
+            '<a href="privacidade.php" data-href-lang data-i18n="footer.privacy"></a>' +
+            '<a href="termos.php" data-href-lang data-i18n="footer.terms"></a>' +
             '<a data-wa data-loc="footer_col" data-i18n="cta.whatsapp"></a>' +
             '<a data-mail data-cfg-mail></a>' +
           '</div>' +
