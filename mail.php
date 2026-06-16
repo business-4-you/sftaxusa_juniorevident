@@ -104,7 +104,11 @@ if ($result['ok']) {
 } else {
     http_response_code(500);
     echo json_encode([
-        'ok'    => false,
-        'error' => $result['error'] ?: 'Falha ao enviar e-mail. Tente novamente.',
+        'ok'           => false,
+        'error'        => $result['error'] ?: 'Falha ao enviar e-mail. Tente novamente.',
+        'http_status'  => $result['status']        ?? null,
+        'curl_errno'   => $result['curl_errno']    ?? null,
+        'smtp_response'=> $result['response_json'] ?? null,
+        'debug'        => $result['debug']         ?? null,
     ]);
 }
