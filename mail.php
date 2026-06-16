@@ -99,19 +99,12 @@ $result = smtp2go_send([
     'debug'      => 1,
 ]);
 
-$logEntry = date('[Y-m-d H:i:s] ') . json_encode($result, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) . "\n---\n";
-file_put_contents(__DIR__ . '/mail_debug.log', $logEntry, FILE_APPEND);
-
 if ($result['ok']) {
     echo json_encode(['ok' => true]);
 } else {
     http_response_code(500);
     echo json_encode([
-        'ok'           => false,
-        'error'        => $result['error'] ?: 'Falha ao enviar e-mail. Tente novamente.',
-        'status'       => $result['status']        ?? null,
-        'curl_errno'   => $result['curl_errno']    ?? null,
-        'smtp_response'=> $result['response_json'] ?? null,
-        'debug'        => $result['debug']         ?? null,
+        'ok'    => false,
+        'error' => $result['error'] ?: 'Falha ao enviar e-mail. Tente novamente.',
     ]);
 }
