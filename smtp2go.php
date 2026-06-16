@@ -9,7 +9,7 @@
 */
 
 define('SMTP2GO_API_KEY',  'api-AFC658387CCF4E118144EDFF3F497494');
-define('SMTP2GO_FROM_EMAIL', 'noreply@sftaxusa.com');
+define('SMTP2GO_FROM_EMAIL', 'junior@evidentlogistics.com');
 define('SMTP2GO_FROM_NAME',  'SF TAX USA');
 define('SMTP2GO_ENDPOINT',   'https://api.smtp2go.com/v3/email/send');
 
