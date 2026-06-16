@@ -59,7 +59,7 @@
     </div>
 
     <div class="reveal">
-      <form class="form-card" data-contact-form>
+      <form class="form-card" data-contact-form novalidate>
         <h3 class="h-2" style="margin-bottom:22px" data-i18n="contact.formTitle">Solicite uma análise</h3>
         <div class="field-row">
           <div class="field"><label data-i18n="contact.f_name">Nome completo</label><input type="text" name="name" required /></div>
