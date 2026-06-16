@@ -578,6 +578,7 @@
       var nameEl    = form.querySelector("[name=name]");
       var phoneEl   = form.querySelector("[name=phone]");
       var emailEl   = form.querySelector("[name=email]");
+      var serviceEl = form.querySelector("[name=service]");
       var messageEl = form.querySelector("[name=message]");
 
       if (nameEl && nameEl.value.trim() === "") {
@@ -593,6 +594,9 @@
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(ev)) {
           setError(emailEl, vmsg("email")); ok = false;
         }
+      }
+      if (serviceEl && serviceEl.value === "") {
+        setError(serviceEl, vmsg("required")); ok = false;
       }
       if (messageEl && messageEl.value.trim() === "") {
         setError(messageEl, vmsg("required")); ok = false;
