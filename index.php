@@ -29,9 +29,11 @@
           <a class="btn btn--outline-light btn--lg" href="servicos.php" data-href-lang><span data-i18n="cta.seeServices">Ver serviços</span></a>
         </div>
         <div class="hero-trust">
-          <span class="chip chip--ghost-light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.trust1">Atendimento em 3 idiomas</span></span>
-          <span class="chip chip--ghost-light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.trust2">Especialistas em residentes e estrangeiros</span></span>
-          <span class="chip chip--ghost-light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.trust3">Foco em prazos e conformidade</span></span>
+          <span class="chip chip--ghost-light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.trust1">Orlando, FL — Escritório físico</span></span>
+          <span class="chip chip--ghost-light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.trust2">Atendemos todos os EUA</span></span>
+          <span class="chip chip--ghost-light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.trust3">Especialistas em brasileiros e estrangeiros</span></span>
+          <span class="chip chip--ghost-light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.trust4">Resposta em até 24h</span></span>
+          <span class="chip chip--ghost-light"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="hero.trust5">Atendimento em PT, EN e ES</span></span>
         </div>
       </div>
       <div class="hero-visual">
