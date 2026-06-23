@@ -55,6 +55,15 @@ window.I18N.es = {
       "¿Recibe ingresos en Brasil y en EE. UU. al mismo tiempo?",
       "¿Necesita organizar la contabilidad de su empresa?",
       "¿Teme perder plazos y obligaciones fiscales?"
+    ],
+    itemCta: "¿Le pasa esto? Hable con nosotros →",
+    itemMessages: [
+      "¡Hola! Quiero abrir una empresa en EE. UU. y necesito orientación.",
+      "¡Hola! Necesito ayuda con mi declaración de impuestos en EE. UU.",
+      "¡Hola! Llegué desde su sitio web y me gustaría hablar con un especialista.",
+      "¡Hola! Tengo dudas sobre mi situación fiscal en EE. UU. y necesito ayuda.",
+      "¡Hola! Llegué desde su sitio web y me gustaría hablar con un especialista.",
+      "¡Hola! Tengo dudas sobre mi situación fiscal en EE. UU. y necesito ayuda."
     ]
   },
   servicesHome: {

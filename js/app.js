@@ -471,8 +471,16 @@
     // pains
     var pains = document.querySelector("[data-pains]");
     if (pains) {
-      pains.innerHTML = (t("pains.items") || []).map(function (txt) {
-        return '<div class="pain"><span class="q">' + icon("chat") + '</span><p>' + txt + '</p></div>';
+      var painItems = t("pains.items") || [];
+      var painMessages = t("pains.itemMessages") || [];
+      var painCta = t("pains.itemCta") || "";
+      pains.innerHTML = painItems.map(function (txt, i) {
+        var msg = painMessages[i] || "";
+        var waHref = "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(msg);
+        var ctaLink = painCta
+          ? '<a class="pain-cta" href="' + waHref + '" target="_blank" rel="noopener noreferrer">' + painCta + '</a>'
+          : "";
+        return '<div class="pain"><span class="q">' + icon("chat") + '</span><div><p>' + txt + '</p>' + ctaLink + '</div></div>';
       }).join("");
     }
     // why features

@@ -55,6 +55,15 @@ window.I18N.pt = {
       "Recebe renda no Brasil e nos EUA ao mesmo tempo?",
       "Precisa organizar a contabilidade da sua empresa?",
       "Tem receio de perder prazos e obrigações fiscais?"
+    ],
+    itemCta: "Isso acontece com você? Fale com a gente →",
+    itemMessages: [
+      "Olá! Quero abrir uma empresa nos EUA e preciso de orientação.",
+      "Olá! Preciso de ajuda com minha declaração de imposto nos EUA.",
+      "Olá! Vim pelo site e gostaria de falar com um especialista.",
+      "Olá! Tenho dúvidas sobre minha situação fiscal nos EUA e preciso de ajuda.",
+      "Olá! Vim pelo site e gostaria de falar com um especialista.",
+      "Olá! Tenho dúvidas sobre minha situação fiscal nos EUA e preciso de ajuda."
     ]
   },
   servicesHome: {

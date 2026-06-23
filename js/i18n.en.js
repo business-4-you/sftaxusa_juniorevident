@@ -55,6 +55,15 @@ window.I18N.en = {
       "Do you earn income in both Brazil and the U.S.?",
       "Do you need to organize your company's bookkeeping?",
       "Are you afraid of missing deadlines and tax obligations?"
+    ],
+    itemCta: "Does this sound like you? Talk to us →",
+    itemMessages: [
+      "Hello! I want to open a company in the U.S. and need guidance.",
+      "Hello! I need help with my U.S. tax return.",
+      "Hello! I came from your website and would like to talk to a specialist.",
+      "Hello! I have questions about my tax situation in the U.S. and need help.",
+      "Hello! I came from your website and would like to talk to a specialist.",
+      "Hello! I have questions about my tax situation in the U.S. and need help."
     ]
   },
   servicesHome: {
