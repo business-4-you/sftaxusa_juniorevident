@@ -231,6 +231,8 @@ p { margin: 0; text-wrap: pretty; }
 }
 .svc-card:hover .svc-more svg { transform: translateX(3px); }
 .svc-more svg { width: 15px; height: 15px; transition: transform .2s ease; }
+.svc-card__main { display: contents; text-decoration: none; color: inherit; }
+.svc-wa-btn { align-self: flex-start; font-size: 13px; padding: 10px 18px; }
 
 /* ----------------------------------------------------------------- placeholder imagery */
 .ph {

@@ -18,7 +18,9 @@ window.I18N.es = {
     schedule: "Agendar una consulta",
     learnMore: "Saber más",
     sendMessage: "Enviar mensaje",
-    talkNow: "Hablar ahora"
+    talkNow: "Hablar ahora",
+    wantToKnowMore: "Quiero saber más",
+    svcCardWaMsg: "¡Hola! Estoy interesado en el servicio de {{name}} y me gustaría obtener más información."
   },
   hero: {
     eyebrow: "Contabilidad • Impuestos • Negocios en EE. UU.",

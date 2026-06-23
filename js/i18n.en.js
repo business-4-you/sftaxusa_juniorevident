@@ -18,7 +18,9 @@ window.I18N.en = {
     schedule: "Book a consultation",
     learnMore: "Learn more",
     sendMessage: "Send message",
-    talkNow: "Talk now"
+    talkNow: "Talk now",
+    wantToKnowMore: "I want to know more",
+    svcCardWaMsg: "Hello! I'm interested in the {{name}} service and would like more information."
   },
   hero: {
     eyebrow: "Accounting • Taxes • Business in the USA",

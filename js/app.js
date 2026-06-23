@@ -285,12 +285,18 @@
   function serviceCardHTML(slug) {
     var s = svcData()[slug]; if (!s) return "";
     var ic = window.SERVICE_ICONS[slug] || "doc";
-    return '<a class="card svc-card" href="servico.php?s=' + slug + '&lang=' + getLang() + '" data-svc="' + slug + '">' +
-      '<div class="icon-badge">' + icon(ic) + '</div>' +
-      '<h3>' + s.name + '</h3>' +
-      '<p>' + s.short + '</p>' +
-      '<span class="svc-more">' + t("cta.learnMore") + icon("arrowR") + '</span>' +
-      '</a>';
+    var waMsgTemplate = t("cta.svcCardWaMsg") || "Olá! Tenho interesse no serviço de {{name}} e gostaria de mais informações.";
+    var waMsg = waMsgTemplate.replace("{{name}}", s.name);
+    var waUrl = "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(waMsg);
+    return '<div class="card svc-card" data-svc="' + slug + '">' +
+      '<a class="svc-card__main" href="servico.php?s=' + slug + '&lang=' + getLang() + '">' +
+        '<div class="icon-badge">' + icon(ic) + '</div>' +
+        '<h3>' + s.name + '</h3>' +
+        '<p>' + s.short + '</p>' +
+        '<span class="svc-more">' + t("cta.learnMore") + icon("arrowR") + '</span>' +
+      '</a>' +
+      '<a class="btn btn--ghost svc-wa-btn" href="' + waUrl + '" target="_blank" rel="noopener noreferrer" data-loc="service_card_wa">' + (t("cta.wantToKnowMore") || "Quero saber mais") + '</a>' +
+    '</div>';
   }
   function renderServiceGrids() {
     document.querySelectorAll("[data-service-grid]").forEach(function (host) {
