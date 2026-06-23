@@ -511,7 +511,9 @@
     host.innerHTML = items.map(function (it, i) {
       return '<div class="faq-item' + (i === 0 && doOpen ? ' open' : '') + '">' +
         '<button class="faq-q" aria-expanded="' + (i === 0 && doOpen) + '">' + it.q + '<span class="pm">' + icon("plus") + '</span></button>' +
-        '<div class="faq-a"><div>' + it.a + '</div></div></div>';
+        '<div class="faq-a"><div>' + it.a +
+        '<a class="faq-doubts-link" href="https://wa.me/' + CFG.whatsapp + '?text=' + encodeURIComponent(t("faq.doubtsWaMsg")) + '" target="_blank" rel="noopener noreferrer">' + t("faq.doubtsLink") + '</a>' +
+        '</div></div></div>';
     }).join("");
     host.querySelectorAll(".faq-item").forEach(function (item) {
       var q = item.querySelector(".faq-q"), a = item.querySelector(".faq-a");

@@ -157,7 +157,9 @@ window.I18N.en = {
       { q:"What languages do you serve in?", a:"We serve in English, Portuguese and Spanish, so you understand every step clearly." },
       { q:"How does the first contact work?", a:"You reach us via WhatsApp or the form, we understand your need and recommend the best path — no obligation." },
       { q:"Do you help people with income in both Brazil and the U.S.?", a:"Yes. This is one of our specialties: guiding people with income, accounts or assets in both countries to comply correctly." }
-    ]
+    ],
+    doubtsLink: "Still have a question? Talk to us now →",
+    doubtsWaMsg: "Hello! I have a question and would like to talk to a specialist."
   },
   ctaband: {
     title: "Avoid tax mistakes. Talk to people who understand.",

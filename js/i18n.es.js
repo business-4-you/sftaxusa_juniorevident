@@ -157,7 +157,9 @@ window.I18N.es = {
       { q:"¿En qué idiomas atienden?", a:"Atendemos en español, portugués e inglés, para que entienda cada paso con claridad." },
       { q:"¿Cómo funciona el primer contacto?", a:"Nos escribe por WhatsApp o el formulario, entendemos su necesidad e indicamos el mejor camino, sin compromiso." },
       { q:"¿Ayudan a quienes tienen ingresos en Brasil y en EE. UU.?", a:"Sí. Es una de nuestras especialidades: orientar a quienes tienen ingresos, cuentas o patrimonio en ambos países para cumplir correctamente." }
-    ]
+    ],
+    doubtsLink: "¿Todavía tiene dudas? Hable con nosotros ahora →",
+    doubtsWaMsg: "¡Hola! Tengo una duda y me gustaría conversar con un especialista."
   },
   ctaband: {
     title: "Evite errores fiscales. Hable con quienes saben del tema.",

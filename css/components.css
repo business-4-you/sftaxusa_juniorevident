@@ -273,6 +273,8 @@
 .faq-item.open .faq-q .pm svg { color: #fff; transform: rotate(45deg); }
 .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
 .faq-a > div { padding: 0 22px 20px; color: var(--muted); font-size: .98rem; }
+.faq-doubts-link { display: inline-block; margin-top: 12px; font-size: .85rem; color: var(--blue); text-decoration: none; }
+.faq-doubts-link:hover { text-decoration: underline; }
 
 /* ------------------------------------------------------------------ CTA band */
 .cta-band {
