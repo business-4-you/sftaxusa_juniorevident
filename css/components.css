@@ -109,7 +109,8 @@
 .hero-grid {
   display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(32px, 5vw, 70px);
   align-items: center;
-  padding-block: clamp(56px, 8vw, 104px);
+  padding-top: clamp(28px, 4vw, 52px);
+  padding-bottom: clamp(56px, 8vw, 104px);
 }
 .hero h1 { color: #fff; }
 .hero h1 .accent { color: var(--gold); }
