@@ -111,6 +111,14 @@
         a.dataset.bound = "1";
       }
     });
+    document.querySelectorAll("[data-wa-full]").forEach(function (a) {
+      var msg = t(a.getAttribute("data-wa-full")) || "";
+      a.href = "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(msg);
+      if (!a.dataset.bound) {
+        a.addEventListener("click", function () { track("whatsapp_click", { location: a.getAttribute("data-loc") || "" }); });
+        a.dataset.bound = "1";
+      }
+    });
     document.querySelectorAll("[data-href-lang]").forEach(function (a) {
       var base = a.getAttribute("href").split("?")[0];
       a.href = base + "?lang=" + getLang();

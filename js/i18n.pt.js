@@ -162,10 +162,12 @@ window.I18N.pt = {
     doubtsWaMsg: "Olá! Tenho uma dúvida e gostaria de conversar com um especialista."
   },
   ctaband: {
-    title: "Evite erros fiscais. Fale com quem entende do assunto.",
-    sub: "Dê o primeiro passo para organizar a sua contabilidade e os seus impostos nos Estados Unidos com segurança.",
-    primary: "Falar no WhatsApp",
-    secondary: "Solicitar uma análise"
+    title: "Pronto para organizar sua vida fiscal nos EUA?",
+    sub: "Fale com nosso time em Orlando. Atendemos você em português, inglês ou espanhol — onde quer que você esteja nos EUA.",
+    primary: "Falar no WhatsApp agora",
+    secondary: "Solicitar análise gratuita",
+    microcopy: "📍 Escritório em Orlando, FL · Atendimento remoto para todos os EUA · Resposta em até 24h",
+    waMsg: "Olá! Quero organizar minha situação fiscal nos EUA. Podem me ajudar?"
   },
   footer: {
     tagline: "Santiago & Felix Accounting Services. Contabilidade, impostos e orientação fiscal na Flórida para brasileiros, estrangeiros e empresas.",

@@ -162,10 +162,12 @@ window.I18N.en = {
     doubtsWaMsg: "Hello! I have a question and would like to talk to a specialist."
   },
   ctaband: {
-    title: "Avoid tax mistakes. Talk to people who understand.",
-    sub: "Take the first step to organize your accounting and taxes in the United States with confidence.",
-    primary: "Chat on WhatsApp",
-    secondary: "Request a review"
+    title: "Ready to organize your tax life in the U.S.?",
+    sub: "Talk to our team in Orlando. We serve you in English, Portuguese or Spanish — wherever you are in the U.S.",
+    primary: "Chat on WhatsApp now",
+    secondary: "Request a free review",
+    microcopy: "📍 Office in Orlando, FL · Remote service across the U.S. · Response within 24h",
+    waMsg: "Hello! I want to organize my tax situation in the U.S. Can you help me?"
   },
   footer: {
     tagline: "Santiago & Felix Accounting Services. Accounting, taxes and fiscal guidance in Florida for Brazilians, foreigners and businesses.",
