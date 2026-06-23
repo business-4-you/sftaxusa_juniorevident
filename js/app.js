@@ -69,9 +69,9 @@
 
   /* ---------- WhatsApp helpers ---------- */
   var WA_MSG = {
-    pt: "Olá! Vim pelo site da SF TAX USA e gostaria de falar com um especialista.",
-    en: "Hello! I came from the SF TAX USA website and would like to talk to a specialist.",
-    es: "¡Hola! Vine desde el sitio de SF TAX USA y me gustaría hablar con un especialista."
+    pt: "Olá! Vim pelo site e gostaria de falar com um especialista sobre minha situação fiscal.",
+    en: "Hello! I found your website and would like to talk to a specialist about my tax situation.",
+    es: "¡Hola! Llegué desde su sitio web y me gustaría hablar con un especialista sobre mi situación fiscal."
   };
   function waLink(extra) {
     var msg = (WA_MSG[getLang()] || WA_MSG.pt) + (extra ? " " + extra : "");
