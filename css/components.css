@@ -236,7 +236,7 @@
 /* ------------------------------------------------------------------ split / about */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px,4vw,60px); align-items: center; }
 .stat-row { display: flex; flex-wrap: wrap; gap: 28px 40px; margin-top: 30px; }
-.stat b { font-family: var(--font-head); font-size: clamp(1.5rem,2.5vw,2rem); color: var(--brand); display: block; line-height: 1; }
+.stat b { font-family: var(--font-head); font-size: clamp(1.3rem,2vw,1.7rem); color: var(--brand); display: block; line-height: 1; }
 .stat span { font-size: 13.5px; color: var(--muted); font-weight: 600; }
 
 /* ------------------------------------------------------------------ multilang band */
