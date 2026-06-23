@@ -97,6 +97,21 @@
   </div>
 </section>
 
+<!-- WHY ORLANDO -->
+<section class="section">
+  <div class="wrap">
+    <div class="card reveal" style="display:flex;gap:24px;align-items:flex-start;padding:clamp(28px,5vw,48px)">
+      <div class="icon-badge icon-badge--green" style="flex-shrink:0">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div>
+        <h2 class="h-2" data-i18n="pages.about.orlandoTitle">Sediados em Orlando, presentes em todo o EUA</h2>
+        <p class="muted" style="margin-top:12px" data-i18n="pages.about.orlandoText">Nosso escritório físico fica em Orlando, FL — coração da comunidade brasileira na Flórida. Mas nosso atendimento vai além: atendemos clientes em todos os estados americanos, 100% de forma remota e segura, nos três idiomas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CTA -->
 <section class="section--tight">
   <div class="wrap">
