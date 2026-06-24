@@ -172,8 +172,8 @@ window.I18N.es = {
       { q:"¿Cómo funciona el primer contacto?", a:"Nos escribe por WhatsApp o el formulario, entendemos su necesidad e indicamos el mejor camino, sin compromiso." },
       { q:"¿Ayudan a quienes tienen ingresos en Brasil y en EE. UU.?", a:"Sí. Es una de nuestras especialidades: orientar a quienes tienen ingresos, cuentas o patrimonio en ambos países para cumplir correctamente." }
     ],
-    doubtsLink: "¿Todavía tiene dudas? Hable con nosotros ahora →",
-    doubtsWaMsg: "¡Hola! Tengo una duda y me gustaría conversar con un especialista."
+    doubtsLink: "¿Tienes más dudas? Habla con nosotros →",
+    doubtsWaMsg: "¡Hola! Leí las preguntas frecuentes en el sitio pero aún tengo dudas. ¿Pueden ayudarme?"
   },
   ctaband: {
     title: "¿Listo para organizar su vida fiscal en EE. UU.?",

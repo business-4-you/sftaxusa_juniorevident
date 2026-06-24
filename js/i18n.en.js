@@ -172,8 +172,8 @@ window.I18N.en = {
       { q:"How does the first contact work?", a:"You reach us via WhatsApp or the form, we understand your need and recommend the best path — no obligation." },
       { q:"Do you help people with income in both Brazil and the U.S.?", a:"Yes. This is one of our specialties: guiding people with income, accounts or assets in both countries to comply correctly." }
     ],
-    doubtsLink: "Still have a question? Talk to us now →",
-    doubtsWaMsg: "Hello! I have a question and would like to talk to a specialist."
+    doubtsLink: "Still have questions? Talk to us →",
+    doubtsWaMsg: "Hello! I read the FAQ on your website but I still have questions. Can you help me?"
   },
   ctaband: {
     title: "Ready to organize your tax life in the U.S.?",

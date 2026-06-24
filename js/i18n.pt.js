@@ -172,8 +172,8 @@ window.I18N.pt = {
       { q:"Como funciona o primeiro contato?", a:"Você fala com a gente pelo WhatsApp ou formulário, entendemos a sua necessidade e indicamos o melhor caminho, sem compromisso." },
       { q:"Vocês ajudam quem tem renda no Brasil e nos EUA?", a:"Sim. Esse é um dos nossos focos: orientar quem possui renda, contas ou patrimônio nos dois países e precisa cumprir as obrigações corretamente." }
     ],
-    doubtsLink: " Ainda tem dúvida? Fale com a gente agora →",
-    doubtsWaMsg: "Olá! Tenho uma dúvida e gostaria de conversar com um especialista."
+    doubtsLink: "Ainda tem dúvidas? Fala com a gente →",
+    doubtsWaMsg: "Olá! Li as perguntas frequentes no site mas ainda tenho dúvidas. Podem me ajudar?"
   },
   ctaband: {
     title: "Pronto para organizar sua vida fiscal nos EUA?",
