@@ -88,6 +88,12 @@ window.I18N.en = {
     stat3n: "100%", stat3l: "Compliance focused",
     cta: "See our approach"
   },
+  coverage: {
+    title: "We're in Orlando. We serve the entire U.S.",
+    body: "Our office is in Orlando, FL — but our clients are in Miami, New York, Atlanta, Houston, Boston, Los Angeles, and more than 30 states. Wherever you are, SF TAX USA is with you.",
+    cta: "Talk to a specialist →",
+    waMsg: "Hello! I live outside Florida and would like to know if you can help me."
+  },
   why: {
     eyebrow: "Why choose SF TAX USA",
     title: "Trust, clarity and support at every step",

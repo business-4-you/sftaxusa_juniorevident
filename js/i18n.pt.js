@@ -88,6 +88,12 @@ window.I18N.pt = {
     stat3n: "100%", stat3l: "Foco em conformidade",
     cta: "Conheça nossa abordagem"
   },
+  coverage: {
+    title: "Estamos em Orlando. Atendemos em todo o EUA.",
+    body: "Nosso escritório fica em Orlando, FL — mas nossos clientes estão em Miami, New York, Atlanta, Houston, Boston, Los Angeles e em mais de 30 estados americanos. Onde você estiver, a SF TAX USA está com você.",
+    cta: "Falar com um especialista →",
+    waMsg: "Olá! Moro fora da Flórida e gostaria de saber se vocês podem me atender."
+  },
   why: {
     eyebrow: "Por que escolher a SF TAX USA",
     title: "Confiança, clareza e acompanhamento em cada etapa",
