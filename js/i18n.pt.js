@@ -174,6 +174,10 @@ window.I18N.pt = {
     colServices: "Serviços", colCompany: "Empresa", colLegal: "Institucional",
     aboutLink: "Sobre nós", insightsLink: "Insights", contactLink: "Contato", faqLink: "Perguntas frequentes",
     privacy: "Política de Privacidade", terms: "Termos de Uso",
+    /* TODO: endereço placeholder — cliente deve confirmar o endereço real */
+    addrLine: "📍 6965 Piazza Gde Ave, Suite 309, Orlando, FL 33835",
+    hoursLine: "Seg–Sex, 9h às 18h (EST)",
+    remoteText: "Atendimento remoto para todos os EUA",
     rights: "Todos os direitos reservados.",
     disclaimer: "As informações deste site têm caráter informativo e não constituem aconselhamento contábil, fiscal ou jurídico específico. Cada situação deve ser avaliada individualmente. A SF TAX USA não oferece garantia de resultados fiscais ou de economia de impostos; nosso compromisso é com orientação profissional, responsável e conforme a legislação aplicável.",
     madeWith: "Atendimento em português, inglês e espanhol."

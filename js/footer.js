@@ -40,6 +40,11 @@
             '<a href="termos.php" data-href-lang data-i18n="footer.terms"></a>' +
             '<a data-wa data-loc="footer_col" data-i18n="cta.whatsapp"></a>' +
             '<a data-mail data-cfg-mail></a>' +
+            '<ul class="footer-loc">' +
+              '<li data-i18n="footer.addrLine"></li>' +
+              '<li data-i18n="footer.hoursLine"></li>' +
+              '<li data-i18n="footer.remoteText"></li>' +
+            '</ul>' +
           '</div>' +
         '</div>' +
         '<p class="footer-disclaimer" data-i18n="footer.disclaimer"></p>' +

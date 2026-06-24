@@ -174,6 +174,10 @@ window.I18N.en = {
     colServices: "Services", colCompany: "Company", colLegal: "Legal",
     aboutLink: "About us", insightsLink: "Insights", contactLink: "Contact", faqLink: "FAQ",
     privacy: "Privacy Policy", terms: "Terms of Use",
+    /* TODO: address placeholder — client must confirm the actual address */
+    addrLine: "📍 6965 Piazza Gde Ave, Suite 309, Orlando, FL 33835",
+    hoursLine: "Mon–Fri, 9am to 6pm (EST)",
+    remoteText: "Remote service across the U.S.",
     rights: "All rights reserved.",
     disclaimer: "The information on this site is for general informational purposes and does not constitute specific accounting, tax or legal advice. Each situation must be evaluated individually. SF TAX USA does not guarantee tax outcomes or tax savings; our commitment is to professional, responsible guidance in accordance with applicable law.",
     madeWith: "Service in English, Portuguese and Spanish."
