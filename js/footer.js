@@ -17,9 +17,8 @@
             '<img src="assets/sf-logo-full-white.png" alt="SF TAX USA — Santiago & Felix Accounting Services" />' +
             '<p data-i18n="footer.tagline"></p>' +
             '<div class="footer-social">' +
-              '<a href="' + CFG.instagram + '" aria-label="Instagram">' + svgi("instagram") + '</a>' +
-              '<a href="' + CFG.facebook + '" aria-label="Facebook">' + svgi("facebook") + '</a>' +
-              '<a href="' + CFG.linkedin + '" aria-label="LinkedIn">' + svgi("linkedin") + '</a>' +
+              '<a href="' + CFG.instagram + '" aria-label="Instagram" target="_blank" rel="noopener noreferrer">' + svgi("instagram") + '</a>' +
+              '<a href="' + CFG.facebook + '" aria-label="Facebook" target="_blank" rel="noopener noreferrer">' + svgi("facebook") + '</a>' +
               '<a data-wa data-loc="footer" aria-label="WhatsApp">' + svgi("whatsapp") + '</a>' +
             '</div>' +
           '</div>' +

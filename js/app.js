@@ -6,14 +6,14 @@
 
   /* ---------- Easily editable business config ---------- */
   window.SF_CONFIG = window.SF_CONFIG || {
-    whatsapp: "4079689944",          // digits only, country code first — EDIT HERE
-    whatsappDisplay: "+1 (407)  968-9944",
-    phone: "+1 (407) 9689944",
-    phoneHref: "+13055551234",
+    whatsapp: "14079689944",           // digits only, country code first, no + — EDIT HERE
+    whatsappDisplay: "+1 (407) 968-9944",
+    phone: "+1 (407) 968-9944",
+    phoneHref: "+14079689944",
     email: "adm@sftaxusa.com",
     addressLine: "Florida, United States",
-    // instagram: "@santiagoefelix", facebook: "#", linkedin: "#"
-    instagram: "@santiagoefelix", facebook: "santiagoefelix"
+    instagram: "https://www.instagram.com/santiagoefelix/",
+    facebook: "https://www.facebook.com/santiagoefelix"
   };
   var CFG = window.SF_CONFIG;
 
