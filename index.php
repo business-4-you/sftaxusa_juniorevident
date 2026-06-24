@@ -75,6 +75,7 @@
       <p class="lead" style="margin-top:16px" data-i18n="pains.sub">A maioria dos nossos clientes chega com uma destas preocupações.</p>
     </div>
     <div class="pain-grid reveal" data-pains style="margin-top:42px"></div>
+    <div class="pains-cta-block reveal" data-pains-cta style="margin-top:36px;text-align:center"></div>
   </div>
 </section>
 

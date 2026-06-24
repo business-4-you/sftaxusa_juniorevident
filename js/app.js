@@ -498,6 +498,18 @@
         return '<div class="pain"><span class="q">' + icon("chat") + '</span><div><p>' + txt + '</p>' + ctaLink + '</div></div>';
       }).join("");
     }
+    // pains CTA block
+    var painsCta = document.querySelector("[data-pains-cta]");
+    if (painsCta) {
+      var ctaSub = t("pains.ctaSub") || "";
+      var ctaBtn = t("pains.ctaBtn") || "";
+      if (ctaSub && ctaBtn) {
+        painsCta.innerHTML =
+          '<p class="lead" style="margin-bottom:20px">' + ctaSub + '</p>' +
+          '<a class="btn btn--green btn--lg" data-wa-full="pains.ctaBtnMsg" data-loc="pains_section_cta" target="_blank" rel="noopener noreferrer">' +
+          icon("whatsapp") + ctaBtn + '</a>';
+      }
+    }
     // why features
     renderWhySection();
     // process

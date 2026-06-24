@@ -49,7 +49,7 @@ window.I18N.en = {
   },
   pains: {
     eyebrow: "Sound familiar?",
-    title: "Dealing with U.S. taxes doesn't have to be a source of stress",
+    title: "If any of these sound familiar, you're in the right place.",
     sub: "Most of our clients come to us with one of these concerns. If any of them is yours, we can help.",
     items: [
       "Are you opening a company in the U.S. and don't know where to start?",
@@ -60,6 +60,9 @@ window.I18N.en = {
       "Are you afraid of missing deadlines and tax obligations?"
     ],
     itemCta: "Does this sound like you? Talk to us →",
+    ctaSub: "We've helped hundreds of people in the same situation.",
+    ctaBtn: "Tell us what's going on →",
+    ctaBtnMsg: "Hello! I found you through your website and I'd like to talk about my tax situation in the U.S.",
     itemMessages: [
       "Hello! I want to open a company in the U.S. and need guidance.",
       "Hello! I need help with my U.S. tax return.",

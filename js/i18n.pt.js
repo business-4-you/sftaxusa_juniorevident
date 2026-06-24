@@ -49,7 +49,7 @@ window.I18N.pt = {
   },
   pains: {
     eyebrow: "Você se identifica?",
-    title: "Lidar com impostos nos EUA não precisa ser uma fonte de estresse",
+    title: "Se você tem alguma dessas preocupações, está no lugar certo.",
     sub: "A maioria dos nossos clientes chega com uma destas preocupações. Se alguma é a sua, podemos ajudar.",
     items: [
       "Está abrindo uma empresa nos EUA e não sabe por onde começar?",
@@ -60,6 +60,9 @@ window.I18N.pt = {
       "Tem receio de perder prazos e obrigações fiscais?"
     ],
     itemCta: "Isso acontece com você? Fale com a gente →",
+    ctaSub: "Já ajudamos centenas de brasileiros nessa mesma situação.",
+    ctaBtn: "Conta pra gente o que está acontecendo →",
+    ctaBtnMsg: "Olá! Vim pelo site e gostaria de conversar sobre minha situação fiscal nos EUA.",
     itemMessages: [
       "Olá! Quero abrir uma empresa nos EUA e preciso de orientação.",
       "Olá! Preciso de ajuda com minha declaração de imposto nos EUA.",

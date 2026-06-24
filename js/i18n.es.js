@@ -49,7 +49,7 @@ window.I18N.es = {
   },
   pains: {
     eyebrow: "¿Se identifica?",
-    title: "Lidiar con los impuestos en EE. UU. no tiene por qué ser estresante",
+    title: "Si alguna de estas preocupaciones te suena familiar, estás en el lugar correcto.",
     sub: "La mayoría de nuestros clientes llega con una de estas preocupaciones. Si alguna es la suya, podemos ayudar.",
     items: [
       "¿Está abriendo una empresa en EE. UU. y no sabe por dónde empezar?",
@@ -60,6 +60,9 @@ window.I18N.es = {
       "¿Teme perder plazos y obligaciones fiscales?"
     ],
     itemCta: "¿Le pasa esto? Hable con nosotros →",
+    ctaSub: "Ya ayudamos a cientos de personas en la misma situación.",
+    ctaBtn: "Cuéntanos qué está pasando →",
+    ctaBtnMsg: "¡Hola! Los encontré a través del sitio web y me gustaría hablar sobre mi situación fiscal en EE.UU.",
     itemMessages: [
       "¡Hola! Quiero abrir una empresa en EE. UU. y necesito orientación.",
       "¡Hola! Necesito ayuda con mi declaración de impuestos en EE. UU.",
