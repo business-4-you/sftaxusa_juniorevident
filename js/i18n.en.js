@@ -190,8 +190,10 @@ window.I18N.en = {
     privacy: "Privacy Policy", terms: "Terms of Use",
     /* TODO: address placeholder — client must confirm the actual address */
     addrLine: "📍 6965 Piazza Gde Ave, Suite 309, Orlando, FL 33835",
+    coverageLine: "Orlando, FL — Serving clients across the U.S.",
     hoursLine: "Mon–Fri, 9am to 6pm (EST)",
     remoteText: "Remote service across the U.S.",
+    waMsg: "Hello! I'd like to learn more about SF TAX USA's services.",
     rights: "All rights reserved.",
     disclaimer: "The information on this site is for general informational purposes and does not constitute specific accounting, tax or legal advice. Each situation must be evaluated individually. SF TAX USA does not guarantee tax outcomes or tax savings; our commitment is to professional, responsible guidance in accordance with applicable law.",
     madeWith: "Service in English, Portuguese and Spanish."

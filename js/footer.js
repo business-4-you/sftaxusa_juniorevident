@@ -19,7 +19,7 @@
             '<div class="footer-social">' +
               '<a href="' + CFG.instagram + '" aria-label="Instagram" target="_blank" rel="noopener noreferrer">' + svgi("instagram") + '</a>' +
               '<a href="' + CFG.facebook + '" aria-label="Facebook" target="_blank" rel="noopener noreferrer">' + svgi("facebook") + '</a>' +
-              '<a data-wa data-loc="footer" aria-label="WhatsApp">' + svgi("whatsapp") + '</a>' +
+              '<a data-wa-full="footer.waMsg" data-loc="footer" aria-label="WhatsApp">' + svgi("whatsapp") + '</a>' +
             '</div>' +
           '</div>' +
           '<div class="footer-col">' +
@@ -37,10 +37,11 @@
             '<h4 data-i18n="footer.colLegal"></h4>' +
             '<a href="privacidade.php" data-href-lang data-i18n="footer.privacy"></a>' +
             '<a href="termos.php" data-href-lang data-i18n="footer.terms"></a>' +
-            '<a data-wa data-loc="footer_col" data-i18n="cta.whatsapp"></a>' +
+            '<a data-wa-full="footer.waMsg" data-loc="footer_col" data-i18n="cta.whatsapp"></a>' +
             '<a data-mail data-cfg-mail></a>' +
             '<ul class="footer-loc">' +
               '<li data-i18n="footer.addrLine"></li>' +
+              '<li data-i18n="footer.coverageLine"></li>' +
               '<li data-i18n="footer.hoursLine"></li>' +
               '<li data-i18n="footer.remoteText"></li>' +
             '</ul>' +
