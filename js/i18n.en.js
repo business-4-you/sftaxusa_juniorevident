@@ -20,7 +20,8 @@ window.I18N.en = {
     sendMessage: "Send message",
     talkNow: "Talk now",
     wantToKnowMore: "I want to know more",
-    svcCardWaMsg: "Hello! I'm interested in the {{name}} service and would like more information."
+    svcCardWaMsg: "Hello! I'm interested in the {{name}} service. Can you tell me more?",
+    svcCardCta: "I'm interested in this service"
   },
   hero: {
     eyebrow: "Based in Orlando · Serving all of the U.S.",
@@ -222,7 +223,7 @@ window.I18N.en = {
   servicesPage: {
     title: "Services",
     eyebrow: "What we do",
-    h1: "Accounting and tax services in Florida",
+    h1: "Accounting and tax services — Orlando and all of the U.S.",
     sub: "Complete solutions for individuals, businesses, Brazilians and foreigners in the United States. Choose a service and talk to a specialist.",
     metaTitle: "Accounting & Tax Services in Florida | SF TAX USA",
     metaDesc: "Explore SF TAX USA services: tax preparation, business formation, Sales Tax, tax planning, FBAR, FIRPTA and more. Service in 3 languages."

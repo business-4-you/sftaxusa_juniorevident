@@ -304,7 +304,7 @@
         '<p>' + s.short + '</p>' +
         '<span class="svc-more">' + t("cta.learnMore") + icon("arrowR") + '</span>' +
       '</a>' +
-      '<a class="btn btn--ghost svc-wa-btn" href="' + waUrl + '" target="_blank" rel="noopener noreferrer" data-loc="service_card_wa">' + (t("cta.wantToKnowMore") || "Quero saber mais") + '</a>' +
+      '<a class="svc-wa-btn" href="' + waUrl + '" target="_blank" rel="noopener noreferrer" data-loc="service_card_wa">' + (t("cta.svcCardCta") || "Tenho interesse nesse serviço") + icon("arrowR") + '</a>' +
     '</div>';
   }
   function renderServiceGrids() {

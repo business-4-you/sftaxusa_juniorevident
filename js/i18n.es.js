@@ -20,7 +20,8 @@ window.I18N.es = {
     sendMessage: "Enviar mensaje",
     talkNow: "Hablar ahora",
     wantToKnowMore: "Quiero saber más",
-    svcCardWaMsg: "¡Hola! Estoy interesado en el servicio de {{name}} y me gustaría obtener más información."
+    svcCardWaMsg: "¡Hola! Me interesa el servicio de {{name}}. ¿Pueden contarme más?",
+    svcCardCta: "Me interesa este servicio"
   },
   hero: {
     eyebrow: "Oficina en Orlando · Atención en todo EE.UU.",
@@ -222,7 +223,7 @@ window.I18N.es = {
   servicesPage: {
     title: "Servicios",
     eyebrow: "Qué hacemos",
-    h1: "Servicios de contabilidad e impuestos en Florida",
+    h1: "Servicios de contabilidad e impuestos — Orlando y todo EE.UU.",
     sub: "Soluciones completas para personas, empresas, brasileños y extranjeros en los Estados Unidos. Elija un servicio y hable con un especialista.",
     metaTitle: "Servicios de Contabilidad e Impuestos en Florida | SF TAX USA",
     metaDesc: "Conozca los servicios de SF TAX USA: preparación de impuestos, apertura de empresa, Sales Tax, planificación fiscal, FBAR, FIRPTA y más. Atención en 3 idiomas."
