@@ -15,6 +15,7 @@
 <body data-page="home">
 
 <div data-header></div>
+<div data-seasonal-banner></div>
 
 <!-- ============================ HERO ============================ -->
 <section class="hero">
@@ -282,5 +283,6 @@
 <script src="js/drawer.js"></script>
 <script src="js/footer.js"></script>
 <script src="js/app.js"></script>
+<script src="js/seasonal-banner.js"></script>
 </body>
 </html>
