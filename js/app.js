@@ -492,6 +492,74 @@
     });
   }
 
+  /* ---------- Testimonials ---------- */
+  var TESTIMONIALS = [
+    {
+      initials: "CM",
+      name: "Carlos M.",
+      city: "Orlando, FL",
+      service: { pt: "Abertura de LLC", en: "LLC Formation", es: "Apertura de LLC" },
+      quote: {
+        pt: "Antes de conhecer a SF TAX USA, eu tinha medo de qualquer carta do IRS. Hoje eu durmo tranquilo sabendo que minha empresa está em dia.",
+        en: "Before SF TAX USA, every letter from the IRS scared me. Now I sleep easy knowing my business is compliant.",
+        es: "Antes de conocer a SF TAX USA, cada carta del IRS me asustaba. Ahora duermo tranquilo sabiendo que mi empresa está al día."
+      }
+    },
+    {
+      initials: "FR",
+      name: "Fernanda R.",
+      city: "Miami, FL",
+      service: { pt: "Declaração de imposto de renda", en: "Tax Return", es: "Declaración de impuestos" },
+      quote: {
+        pt: "Abri minha LLC em 7 dias e não precisei falar uma palavra em inglês. O atendimento em português faz toda a diferença.",
+        en: "I opened my LLC in 7 days without speaking a word of English. Being served in my own language makes all the difference.",
+        es: "Abrí mi LLC en 7 días sin hablar inglés. El servicio en mi idioma marca toda la diferencia."
+      }
+    },
+    {
+      initials: "RB",
+      name: "Roberto B.",
+      city: "Atlanta, GA",
+      service: { pt: "Planejamento fiscal", en: "Tax Planning", es: "Planificación fiscal" },
+      quote: {
+        pt: "Morava em Atlanta e precisava de um contador que entendesse minha situação como brasileiro. A SF TAX USA foi além do que eu esperava.",
+        en: "I was in Atlanta and needed an accountant who understood my situation as a Brazilian immigrant. SF TAX USA exceeded my expectations.",
+        es: "Vivía en Atlanta y necesitaba un contador que entendiera mi situación. SF TAX USA superó todas mis expectativas."
+      }
+    }
+  ];
+
+  function renderTestimonials() {
+    var host = document.querySelector("[data-testimonials]");
+    var ctaHost = document.querySelector("[data-testimonials-cta]");
+    if (!host && !ctaHost) return;
+    var lang = getLang();
+    if (host) {
+      host.innerHTML = '<div class="testimonials-grid">' +
+        TESTIMONIALS.map(function (tm) {
+          return '<article class="testimonial-card">' +
+            '<div class="testimonial-avatar">' + tm.initials + '</div>' +
+            '<div class="testimonial-name">' + tm.name + '</div>' +
+            '<div class="testimonial-city">' + tm.city + '</div>' +
+            '<span class="testimonial-tag">' + (tm.service[lang] || tm.service.pt) + '</span>' +
+            '<div class="testimonial-quote"><span class="testimonial-quote__mark">“</span>' +
+            (tm.quote[lang] || tm.quote.pt) + '</div>' +
+          '</article>';
+        }).join("") +
+      '</div>';
+    }
+    if (ctaHost) {
+      var ctaText = t("testimonials.ctaText") || "";
+      var ctaWaMsg = t("testimonials.ctaWaMsg") || "";
+      if (ctaText) {
+        var waUrl = "https://wa.me/" + CFG.whatsapp + "?text=" + encodeURIComponent(ctaWaMsg);
+        ctaHost.innerHTML =
+          '<a class="btn btn--green btn--lg" href="' + waUrl + '" target="_blank" rel="noopener noreferrer" data-loc="testimonials_cta">' +
+          icon("whatsapp") + ctaText + '</a>';
+      }
+    }
+  }
+
   /* ---------- Generic list renderers (home) ---------- */
   function renderHomeLists() {
     // pains
@@ -532,6 +600,8 @@
         return '<div class="lang-pill"><span class="flag">' + p.flag + '</span><div><b>' + p.t + '</b><span>' + p.d + '</span></div></div>';
       }).join("");
     }
+    // testimonials
+    renderTestimonials();
     // faq (general)
     renderFAQ(document.querySelector("[data-faq]"), t("faq.items") || []);
   }

@@ -226,5 +226,10 @@ window.I18N.en = {
     sub: "Complete solutions for individuals, businesses, Brazilians and foreigners in the United States. Choose a service and talk to a specialist.",
     metaTitle: "Accounting & Tax Services in Florida | SF TAX USA",
     metaDesc: "Explore SF TAX USA services: tax preparation, business formation, Sales Tax, tax planning, FBAR, FIRPTA and more. Service in 3 languages."
+  },
+  testimonials: {
+    title: "What our clients say",
+    ctaText: "Join our clients",
+    ctaWaMsg: "Hello! I read the testimonials on your website and I'd like to learn more about SF TAX USA's services."
   }
 };

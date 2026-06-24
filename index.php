@@ -97,6 +97,17 @@
   </div>
 </section>
 
+<!-- ============================ TESTIMONIALS ============================ -->
+<section class="section" id="depoimentos">
+  <div class="wrap">
+    <div class="section-head section-head--center reveal" style="max-width:640px;margin-inline:auto">
+      <h2 class="h-1" data-i18n="testimonials.title">O que nossos clientes dizem</h2>
+    </div>
+    <div class="reveal" data-testimonials style="margin-top:48px"></div>
+    <div class="center reveal" data-testimonials-cta style="margin-top:40px"></div>
+  </div>
+</section>
+
 <!-- ============================ ABOUT ============================ -->
 <section class="section" id="sobre">
   <div class="wrap split">

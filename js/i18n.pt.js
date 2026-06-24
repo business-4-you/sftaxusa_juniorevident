@@ -226,5 +226,10 @@ window.I18N.pt = {
     sub: "Soluções completas para pessoas físicas, empresas, brasileiros e estrangeiros nos Estados Unidos. Escolha o serviço e fale com um especialista.",
     metaTitle: "Serviços de Contabilidade e Impostos na Flórida | SF TAX USA",
     metaDesc: "Conheça os serviços da SF TAX USA: preparação de impostos, abertura de empresa, Sales Tax, planejamento tributário, FBAR, FIRPTA e mais. Atendimento em 3 idiomas."
+  },
+  testimonials: {
+    title: "O que nossos clientes dizem",
+    ctaText: "Faça parte dessa história",
+    ctaWaMsg: "Olá! Li os depoimentos no site e gostaria de conhecer os serviços da SF TAX USA."
   }
 };
