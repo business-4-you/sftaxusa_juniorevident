@@ -24,9 +24,9 @@
     },
     offSeason: {
       text: {
-        pt: "Planejamento fiscal agora = menos imposto em abril.",
-        en: "Tax planning now = less taxes in April.",
-        es: "Planificación fiscal ahora = menos impuestos en abril."
+        pt: "Planejamento fiscal inteligente = menos imposto no futuro.",
+        en: "Smart tax planning = less taxes ahead.",
+        es: "Planificación fiscal inteligente = menos impuestos en el futuro."
       },
       btn: {
         pt: "Marcar uma conversa →",
@@ -34,9 +34,9 @@
         es: "Agendar una conversación →"
       },
       waMsg: {
-        pt: "Olá! Quero fazer um planejamento fiscal para pagar menos imposto em abril. Podem me ajudar?",
-        en: "Hello! I want to do tax planning to reduce my taxes in April. Can you help me?",
-        es: "¡Hola! Quiero hacer una planificación fiscal para pagar menos impuestos en abril. ¿Pueden ayudarme?"
+        pt: "Olá! Quero fazer um planejamento fiscal para pagar menos imposto. Podem me ajudar?",
+        en: "Hello! I want to do tax planning to reduce my taxes. Can you help me?",
+        es: "¡Hola! Quiero hacer una planificación fiscal para pagar menos impuestos. ¿Pueden ayudarme?"
       }
     }
   };
