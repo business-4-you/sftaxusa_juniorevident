@@ -448,6 +448,17 @@
         '</article>';
       }
     });
+    var processCta = document.querySelector("[data-process-cta]");
+    if (processCta) {
+      var ctaSub = t("process.ctaSub") || "";
+      var ctaBtn = t("process.ctaBtn") || "";
+      if (ctaSub && ctaBtn) {
+        processCta.innerHTML =
+          '<p class="lead" style="margin-bottom:20px">' + ctaSub + '</p>' +
+          '<a class="btn btn--green btn--lg" data-wa-full="process.ctaBtnMsg" data-loc="process_section_cta" target="_blank" rel="noopener noreferrer">' +
+          icon("whatsapp") + ctaBtn + '</a>';
+      }
+    }
   }
 
   /* ---------- Services dropdown + footer links + form options ---------- */

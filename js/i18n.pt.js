@@ -109,7 +109,10 @@ window.I18N.pt = {
       { t:"Organização", d:"Estruturamos a sua documentação e definimos o melhor caminho." },
       { t:"Execução", d:"Realizamos o serviço com precisão e transparência em cada etapa." },
       { t:"Acompanhamento", d:"Seguimos ao seu lado para manter tudo em dia ao longo do ano." }
-    ]
+    ],
+    ctaSub: "Está pronto para dar o primeiro passo?",
+    ctaBtn: "Falar no WhatsApp agora →",
+    ctaBtnMsg: "Olá! Quero dar o primeiro passo e organizar minha vida fiscal nos EUA. Podem me ajudar?"
   },
   langband: {
     eyebrow: "Atendimento multilíngue",

@@ -109,7 +109,10 @@ window.I18N.en = {
       { t:"Organization", d:"We structure your documentation and define the best path forward." },
       { t:"Execution", d:"We deliver the service with precision and transparency at every step." },
       { t:"Ongoing support", d:"We stay by your side to keep everything on track throughout the year." }
-    ]
+    ],
+    ctaSub: "Ready to take the first step?",
+    ctaBtn: "Talk to us on WhatsApp →",
+    ctaBtnMsg: "Hello! I want to take the first step and organize my finances in the U.S. Can you help me?"
   },
   langband: {
     eyebrow: "Multilingual service",
