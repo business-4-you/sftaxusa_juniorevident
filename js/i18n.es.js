@@ -23,11 +23,12 @@ window.I18N.es = {
     svcCardWaMsg: "¡Hola! Estoy interesado en el servicio de {{name}} y me gustaría obtener más información."
   },
   hero: {
-    eyebrow: "Contabilidad • Impuestos • Negocios en EE. UU.",
-    titleA: "Su contador brasileño en Orlando — ",
-    titleAccent: "cuidando sus impuestos en EE. UU.",
-    titleB: " mientras usted se enfoca en lo que importa.",
-    sub: "Atendemos a clientes en todo EE. UU. Oficina en Orlando, FL — contáctenos ahora por WhatsApp.",
+    eyebrow: "Oficina en Orlando · Atención en todo EE.UU.",
+    titleA: "Tu contador en Orlando — ",
+    titleAccent: "para brasileños, latinos y empresas",
+    titleB: " en todo EE.UU.",
+    sub: "Con oficina en Orlando y clientes en todos los estados, SF TAX USA ha ayudado a cientos de inmigrantes a organizar su vida fiscal en EE.UU. Habla con nosotros hoy.",
+    microcopy: "✓ Respuesta en menos de 2 horas  ·  ✓ Sin compromiso  ·  ✓ Atendemos en todo EE.UU.",
     ctaWhatsapp: "Hablar con un especialista ahora",
     trust1: "Orlando, FL — Oficina física",
     trust2: "Atendemos todo EE. UU.",

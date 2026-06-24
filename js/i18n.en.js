@@ -23,11 +23,12 @@ window.I18N.en = {
     svcCardWaMsg: "Hello! I'm interested in the {{name}} service and would like more information."
   },
   hero: {
-    eyebrow: "Accounting • Taxes • Business in the USA",
-    titleA: "Your Brazilian accountant in Orlando — ",
-    titleAccent: "handling your U.S. taxes",
-    titleB: " while you focus on what matters.",
-    sub: "We serve clients across the U.S. Office in Orlando, FL — reach us now on WhatsApp.",
+    eyebrow: "Based in Orlando · Serving all of the U.S.",
+    titleA: "Your accountant in Orlando — ",
+    titleAccent: "serving Brazilians, Latinos, and businesses",
+    titleB: " across the U.S.",
+    sub: "Based in Orlando with clients across all 50 states, SF TAX USA has helped hundreds of immigrants navigate the U.S. tax system. Talk to us today — in English, Portuguese, or Spanish.",
+    microcopy: "✓ Response within 2 hours  ·  ✓ No obligation  ·  ✓ Serving all 50 states",
     ctaWhatsapp: "Talk to a specialist now",
     trust1: "Orlando, FL — Physical office",
     trust2: "We serve clients across the U.S.",
